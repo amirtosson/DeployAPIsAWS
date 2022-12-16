@@ -1,0 +1,63 @@
+version: "3"
+
+services:
+  mysqldb:
+    image: mysql:8.0
+    volumes:
+      - container-volume:/var/lib/mysql
+      - ./Databases/xdsdb_xdsusers.sql:/docker-entrypoint-initdb.d/dump.sql
+    environment:
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=1234567
+      - MYSQL_ROOT_PASSWORD=1234567
+      - MYSQL_DATABASE=daphne_db
+    ports:
+      - 3307:3306
+
+  user-authen:
+    depends_on:
+      - mysqldb
+    build:
+      context: Backend/User-Auth
+      dockerfile: Dockerfile
+    ports:
+      - "3005:3002"
+  shared-apis:
+    depends_on:
+      - mysqldb
+    build:
+      context: Backend/Shared-APIs
+      dockerfile: Dockerfile
+    ports:
+      - "3007:3001"
+
+  dataset-apis:
+    depends_on:
+      - mysqldb
+    build: 
+      context: Backend/Datasets-APIs
+      dockerfile: Dockerfile
+    command: npm start
+    ports:
+      - "3006:3000"
+    environment:
+      - DB_HOST=mysqldb
+      - DB_USER=root
+      - DB_PASSWORD=123456
+      - DB_NAME=daphne_db
+      - DB_PORT=3306
+
+  frontend-service:
+    container_name: angularcontainer  
+    build:       
+      context: Frontent
+      dockerfile: Dockerfile
+    volumes: 
+      - './daphne-frontend:/usr/src/app' 
+    ports: 
+      - '4200:4200' 
+    command: > 
+      bash -c "npm install && ng serve --host 0.0.0.0"
+
+volumes:
+  container-volume:

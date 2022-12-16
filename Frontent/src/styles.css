@@ -1,0 +1,71 @@
+/* You can add global styles to this file, and also import other style files */
+:root{
+    --main-color: #3a6cf4;
+    --main-color-low: #7894e0;
+    --main-gradient: linear-gradient(to bottom right,#dcd7d7, rgb(255, 255, 255));
+    --secondary-color: #f0f0f0;
+    --shadow-color: #c5d3e7;
+    --hover-color-gray: #dbd8d8;
+}
+
+.main-btn:hover {
+    background-color:var(--main-color);
+    transform: scale(1.1);
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.main-btn {
+    color: #fff;
+    background-color: var(--main-color);
+    font-size: 1.1em;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 15px;
+    transition: 0.5s ease;
+    border: none;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.4;
+}
+.main-btn:focus{
+    border: none;
+    outline:1px;
+    outline-color: #fff;
+}
+
+.function-button{
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--main-color-low);
+    transition: ease 0.5s;
+    margin: 10px;
+  }
+  .function-button i{
+    font-size: 36px;
+    color: black;
+  }
+
+  .function-button:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+  }
+
+  .function-button-small{
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--main-color-low);
+    transition: ease 0.5s;
+    margin: 5px;
+  }
+  .function-button-small:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+  }
