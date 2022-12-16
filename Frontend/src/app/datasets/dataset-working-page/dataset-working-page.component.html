@@ -1,0 +1,193 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+
+<section>
+	<div class="row">
+		<div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-file"></span> {{datasetName}}</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div>
+                            <h3 class="panel-title"><span class="glyphicon glyphicon-info-sign"></span> General Information and Metdata</h3>
+                            
+                        </div>
+                        <div class="container">
+                            <div class="panel-info">              
+                                <div *ngFor="let metadataitem of metadata;" class="row">
+                                    <div class="col-md-12 info-item">
+                                        <div class="">
+                                            <div class="col-md-3">
+                                                <p>{{metadataitem.key}}:</p>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <p>{{metadataitem.value}}</p>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <i id="icon" class="function-button-small material-icons">delete</i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-1">
+
+                                    </div>
+                                </div>
+                                <div id="add-new-item" class="row add-new-item" style="display: none;">
+                                    <div class="col-md-12">
+                                        <div class="">
+                                            <div class="col-md-3">
+                                                <input type="text" id="key" placeholder="key" name="fname">
+                                            </div>
+                                            <div class="col-md-7">
+                                                <input type="text" id="value" placeholder="value" name="fname">
+                                            </div>
+                                            <div class="col-md-1">
+                                                <i id="icon" (click)="AddNewMetadataItem()" class="function-button-small material-icons">check_circle</i>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <i id="icon" (click)="CloseAddNewMetadataItemFrom()" class="function-button-small material-icons">remove_circle</i>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-1">
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div  class="col-md-5">
+
+                                    </div>
+                                    <!-- grey -->
+                                    <a class="btn-block btn-style"  (click)="AddNewMetadataItemOpenForm()" role="button"><span class="glyphicon glyphicon-plus glyphsize green"></span> </a>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div >
+                            <h3 class="panel-title"><span class="glyphicon glyphicon-info-sign"></span> Statistic analysis</h3>
+                        </div>
+                        <div class="col-md-12">
+                          <!-- dblue -->
+                          <a id="average" class=" btn-dblue btn-lg" (click)="StaticAnalysisClicked($event)" role="button"> <span id="average">Average</span> </a>
+                          <a id="max-val" class=" btn-dblue btn-lg" (click)="StaticAnalysisClicked($event)"  role="button"><span id="max-val" >Max value</span> </a>
+                          <a id="min-val" class=" btn-dblue btn-lg" (click)="StaticAnalysisClicked($event)"  role="button"> <span id="min-val">Min value</span></a>
+                        </div>
+                        <div id="calculation-form" class="col-md-12 calculation-form">
+                            <div class="col-md-8" >
+                                <label for="col">Choose a col: </label>
+                                <input type="text" id="col" placeholder="col number " name="fname">
+                                <br>
+                                <br>
+                                <label for="col">Result =  </label>
+                                <strong id="results"> -- </strong>
+                            </div>
+                        
+                            <div class="col-md-1">
+                                <i id="icon" (click)="StartCalculation()" class="function-button-small material-icons">check_circle</i>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div >
+                            <h3 class="panel-title"><span class="glyphicon glyphicon-info-sign"></span> Data visualisation</h3>
+                        </div>
+                        <div class="col-md-12">
+                            <a id="line" class=" btn-dblue btn-lg" (click)="VisualizeClicked($event)" role="button"> <span id="line">Line</span> </a>
+                            <a id="scatter" class=" btn-dblue btn-lg" (click)="VisualizeClicked($event)"  role="button"><span id="scatter" >Scatter</span> </a>
+                            <a id="bar" class=" btn-dblue btn-lg" (click)="VisualizeClicked($event)"  role="button"> <span id="bar">Bar</span></a>
+                        </div>
+                        <div id="visualisation-form" class="col-md-12 calculation-form">
+                            <h3 class="col-md-12" >{{visualizationReq}} </h3>
+                            <div class="col-md-11" >
+                                <label for="x-col">Col on x-axis: </label>
+                                <input type="text" id="x-col" placeholder="col number " name="fname">
+                                <label for="y-col">Col on y-axis:  </label>
+                                <input type="text" id="y-col" placeholder="col number " name="fname">
+                            </div>
+                            <div class="col-md-1">
+                                <i id="icon" (click)="StartVisualisation()" class="function-button-small material-icons">check_circle</i>
+                            </div>
+                        </div>
+
+                        <div id="chart-div" class="col-md-12 chart-div">
+                            <div class="col-md-1">
+                                <input type="checkbox" id="xlog"  (change)="onLogScaleCheckboxChange($event)">
+                                <label id="xlog" for="xlog"> X Log</label><br>
+                                <input type="checkbox" id="ylog" (change)="onLogScaleCheckboxChange($event)">
+                                <label id="ylog" for="ylog"> Y Log</label><br>
+                            </div>
+                            <div class="col-md-10" style="width:100%; margin-top: 50px;">
+                                <canvas id="acquisitions"></canvas>
+                            </div>
+                            <div class="toolbar col-md-12">
+                                <a class=" btn-dblue btn-lg" role="button" (click)="SaveChartToAttacherFiles()" > <span>Save to attached files</span> </a>
+                                <div id="chart-name-form" class="col-md-12 calculation-form">
+                                    <div class="col-md-4" >
+                                        <label for="chart-name">File name: </label>
+                                        <input type="text" id="chart-name" placeholder="filename" name="fname">
+                                    </div>
+                                    <div class="col-md-1">
+                                        <i id="icon" (click)="StartSavingChart()" class="function-button-small material-icons">check_circle</i>
+                                        <i id="icon" (click)="CloseChartNameForm()" class="function-button-small material-icons">remove_circle</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+               
+                    
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div>
+                            <h3 class="panel-title"><span class="glyphicon glyphicon-info-sign"></span> Attached files</h3>
+                        </div>
+                        <div class="col-md-12">
+                          <div *ngFor="let file of attachedFiles;" class="attached_files_contents col-md-4">
+                            <div class="attached-file-card ">
+                                <img src="{{file.data}}" alt="">
+                                <div>
+                                    <h2>{{file.attached_file_name}}</h2>
+                                    <h4>Added by: {{file.login_name}}</h4>
+                                    <h4>Added on: {{file.added_on}}</h4>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div>
+                            <h3 class="panel-title"><span class="glyphicon glyphicon-info-sign"></span> Datasets activities</h3>
+                        </div>
+                        <div *ngIf="activities.length > 0" class="col-md-12 activities-list" >
+                            <ul *ngFor="let activity of activities;" >
+                                <li>On {{activity.created_on}}, user "{{activity.login_name}}" has {{activity.activity}}.  </li>
+                            </ul>
+                        </div>
+                        <div *ngIf="activities.length < 1" class="col-md-12 activities-list" >
+                            <h3>No activities</h3>
+                        </div>
+                    </div>
+                   
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>

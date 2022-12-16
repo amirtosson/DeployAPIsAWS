@@ -1,0 +1,33 @@
+:root{
+    --main-color: #1976d2;
+    --main-color-low: #7894e0;
+    --main-gradient: linear-gradient(to bottom right,#dcd7d7, rgb(255, 255, 255));
+    --secondary-color: #fafafa;
+    --shadow-color: #c5d3e7;
+    --hover-color-gray: #dbd8d8;
+    --black-color: #000000;
+    --gray-first:#eee; 
+}
+
+button{
+    background-color: var(--main-color); 
+    color: var(--secondary-color);
+}
+.disabled {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.function-button-small{
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--main-color);
+    transition: ease 0.5s;
+    margin: 5px;
+  }
+  .function-button-small:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+  }

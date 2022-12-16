@@ -1,0 +1,32 @@
+{
+  "/api/python/uploadsinglefile": {
+    "target": "http://localhost:5000",
+    "secure": false,
+    "changeOrigin": true
+  },  
+  
+  "/api/python/checkdataset": {
+    "target": "http://localhost:5000",
+    "secure": false,
+    "changeOrigin": true
+  }
+  ,  
+  
+  "/api/python/performcalculation": {
+    "target": "http://localhost:5000",
+    "secure": false,
+    "changeOrigin": true
+  },
+
+  "/api/python/getdatasetcols": {
+    "target": "http://localhost:5000",
+    "secure": false,
+    "changeOrigin": true
+  },
+
+  "/api/python/getattachedfilesbydoi": {
+    "target": "http://localhost:5000",
+    "secure": false,
+    "changeOrigin": true
+  }
+}
