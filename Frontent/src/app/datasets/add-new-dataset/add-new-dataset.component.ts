@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { SidebarService } from "../../services/sidebar-service.service";
 //import { GeneralAPIs } from "../../server-communication/general-apis";
 //import { MethodItem, DataStructureItem } from "../../objects/general-items";
 ////import { ProjectItem } from "../../objects/project-object"
 //import { UserService } from "../../services/user.service";
 ////import { ProjectsAPIs } from "../../server-communication/projects-apis";
-//import { HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 //import { GeneralService } from "../../services/general.service";
 //import { DatasetsAPIs } from "../../server-communication/datasets-apis";
 
@@ -24,12 +25,14 @@ export class AddNewDatasetComponent implements OnInit {
   file_reconstructed_name = '';
   constructor
   (
+    private sbService:SidebarService,
     //public userService:UserService,
     //public flyingBtnService:GeneralService,
-    //private http: HttpClient,
+    private http: HttpClient,
   ) { }
 
   ngOnInit(): void {
+    this.sbService.setCurrentPage("login")  
     // GeneralAPIs.GetDataStructuresList()
     // .then(
     //   res=>{
@@ -72,8 +75,8 @@ export class AddNewDatasetComponent implements OnInit {
     // )
     // this.flyingBtnService.setHeaderBarItems("back-to-dashboard");
   }
-  UpdateFileName(name_part:string){
-    this.file_reconstructed_name = this.file_reconstructed_name + name_part+"_"  
+  UpdateFileName(name_part:string, last_name = false){
+    last_name? this.file_reconstructed_name = this.file_reconstructed_name + name_part: this.file_reconstructed_name = this.file_reconstructed_name + name_part+ "+"  
   }
   SelectFile($event: { target: any; }) {
     if ($event.target.files.length > 0) {
@@ -106,21 +109,21 @@ export class AddNewDatasetComponent implements OnInit {
     var el = document.getElementById("1d") as HTMLDivElement;
     el.classList.add("card_pressed");
     this.startDetails()
-    this.file_reconstructed_name ="1d_"
+    this.file_reconstructed_name ="1d+"
   }
   twoDImageClicked(){
     this.allCardsToDefault()
     var el = document.getElementById("2d") as HTMLDivElement;
     el.classList.add("card_pressed");
     this.startDetails()
-    this.file_reconstructed_name ="2d_"
+    this.file_reconstructed_name ="2d+"
   }
   threeDImageClicked(){
     this.allCardsToDefault()
     var el = document.getElementById("3d") as HTMLDivElement;
     el.classList.add("card_pressed");
     this.startDetails()
-    this.file_reconstructed_name ="3d_"
+    this.file_reconstructed_name ="3d+"
   }
 
   DataStructureDetailsIsReady(){
@@ -140,7 +143,7 @@ export class AddNewDatasetComponent implements OnInit {
   onSubmit(){
 
     let id:string
-    id = sessionStorage.getItem("userID") as string 
+    id = sessionStorage.getItem("user_id") as string 
     this.UpdateFileName(id)
     var structure =  document.getElementById("structure") as HTMLSelectElement;
     this.UpdateFileName(structure.value)
@@ -152,9 +155,21 @@ export class AddNewDatasetComponent implements OnInit {
     this.UpdateFileName(dataName.value)
     var visibility = document.getElementById("visibility") as HTMLInputElement;
     this.UpdateFileName(visibility.value)
+    this.UpdateFileName(this.file.name, true)
     const formData = new FormData();
     formData.append('file', this.file, this.file_reconstructed_name);
-    //  this.http.post<any>('http://141.99.126.53:3050/uploadfile',formData, {reportProgress: true})
+    this.http.post<any>('http://18.197.145.132:3002/uploadfile',formData, {reportProgress: false})
+    .subscribe(res => {
+      console.log(res)
+      
+      var input =  document.getElementById("upload-file") as HTMLInputElement;
+      input.value = ''
+      window.alert("Your file has been uploaded uploaded with the name "+ this.file_reconstructed_name);
+      this.allCardsToDefault()
+    })
+  
+
+
     //  .subscribe(res => {
     //       DatasetsAPIs.SingleFileCheck(res)
     //       .then(

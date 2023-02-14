@@ -1,0 +1,27 @@
+
+.container{
+    background-color: #f9f9f9;
+}
+
+table, th, td {
+    border:1px solid black;
+    padding: 5px;
+    margin: 1px;
+    text-align: center;
+  }
+
+td {
+    transition: ease 0.3s;
+  }
+
+.table-row:hover{
+    background-color: var(--hover-color-gray); 
+    cursor: pointer;
+    transform:scale(1.01) ;
+}
+
+table {
+    margin: 5px;
+    width: 100%;
+}
+

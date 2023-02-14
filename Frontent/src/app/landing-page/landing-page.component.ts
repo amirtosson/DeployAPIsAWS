@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
+import { SidebarService } from "../services/sidebar-service.service";
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageComponent implements OnInit {
   title = 'DAPHNE';
-  constructor() { }
+  constructor(private router:Router, private sbService:SidebarService) { }
 
   ngOnInit(): void {
+    sessionStorage.clear()
+    this.sbService.setCurrentPage("landing")  
+  }
+
+  OnLoginClicked(){
+    this.router.navigateByUrl('login')
   }
 
 }

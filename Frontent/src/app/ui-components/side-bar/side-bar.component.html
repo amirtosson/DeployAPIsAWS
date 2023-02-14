@@ -1,0 +1,36 @@
+<body id="side-bar-body" [ngClass]="isExpanded? 'sidebar-is-expanded':'sidebar-is-reduced'">
+<div class="l-sidebar">
+    <div class="l-sidebar__content">
+      <nav class="c-menu js-menu">
+        <ul class="u-list" >
+            <li class="c-menu__item" >
+                <img class="logo-img" alt="Daphne Logo" src="../assets/resources/images/daphne.png"/>
+              </li>
+            <li class="c-menu__item toggle__btn" (click)="OnExpandClicked()" data-toggle="tooltip" [title]="isExpanded? 'Shrink toolbar':'Expand toolbar'">
+                <div class="c-menu__item__inner"><i [ngClass]="isExpanded? 'fa fa-arrow-left':'fa fa-arrow-right'"></i>
+                  <div class="c-menu-item__title"><span>Close toolbar</span></div>
+                </div>
+
+              </li>
+              <li class="c-menu__item toggle__btn" id="home" data-toggle="tooltip" [title]="isExpanded? 'Shrink toolbar':'Expand toolbar'">
+                <div id="home" class="c-menu__item__inner"><i id="home" class="fas fa-home"></i>
+                  <div id="home" class="c-menu-item__title"><span id="home">Home</span></div>
+                </div>
+
+              </li>
+              <li id="dataset-list" class="c-menu__item toggle__btn"  data-toggle="tooltip" [title]="isExpanded? 'Shrink toolbar':'Expand toolbar'">
+                <div id="dataset-list" class="c-menu__item__inner"><i id="dataset-list" class="fas fa-database"></i>
+                  <div id="dataset-list" class="c-menu-item__title"><span id="dataset-list">Datasets list</span></div>
+                </div>
+
+              </li>
+              <li  *ngFor="let item of sidebarItems; let i = index" (click)="OnItemClicked(item.RouterLink)" [id]="item.Name" (click)="OnItemClicked(item.RouterLink)" [class]="i ==0 ? 'c-menu__item ref_class is-active':'c-menu__item ref_class '" data-toggle="tooltip" [title]="item.ToolTip">
+                <div class="c-menu__item__inner"><i [class]="item.ButtonClass"></i>
+                  <div class="c-menu-item__title"><span>{{item.ToolTip}}</span></div>
+                </div>
+              </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</body>

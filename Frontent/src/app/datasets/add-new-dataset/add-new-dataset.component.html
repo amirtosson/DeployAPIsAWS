@@ -29,10 +29,13 @@
 </section>
 
 <section id="data_structure" class="disabled">
-    <hr class="rounded">
-    <h2 class="title">Data structure details</h2>
+  <h2 class="title">Data structure details</h2>
     <div class="form-group">
       <label for="structure">Choose a structure *</label>
+      <select  name="structure" id="structure" >
+            <option value="1">hor</option>
+            <option value="1">ver</option>
+      </select>
       <!-- <select  name="structure" id="structure" class="form-control">
         <option *ngFor="let structure of dataStructures;" value={{structure.structure_id}}>{{structure.structure_name}}</option>
       </select> -->
@@ -42,15 +45,18 @@
 
 
   <section id="details_section" class="disabled">
-    <hr class="rounded">
     <h2 class="title">Dataset details</h2>
     <form id="details-form" class="formstyle" onsubmit="return false">
       <div class="form-group">
         <label for="">Dataset Name *</label>
-        <input type="text" class="form-control" id="data-name" required="required" pattern="[A-Za-z0-9]{1,20}" placeholder="dataset_name">
+        <input type="text" class="form-control" id="data-name" required="required" pattern="[A-Za-z0-9]{1,20}" placeholder="dataset name">
       </div>
       <div class="form-group">
         <label for="methods">Method *</label>
+        <select  name="methods" id="methods">
+            <option value="1">m1</option>
+            <option value="2">m2</option>
+          </select>
         <!-- <select  name="methods" id="methods" class="form-control">
           <option *ngFor="let method of methods;" value={{method.method_id}}>{{method.method_name}}</option>
            <option value="XPCS">XPCS</option>
@@ -59,13 +65,17 @@
       </div>
       <div class="form-group">
         <label for="projects">Project *</label>
+        <select  name="projects" id="projects">
+            <option value="1">P1</option>
+            <option value="2">P2</option>
+          </select>
         <!-- <select  name="projects" id="projects" class="form-control">
           <option *ngFor="let project of projects;" value={{project.project_id}}>{{project.project_name}}</option>
         </select> -->
       </div>
       <div>
         <label for="visibility">visibility *</label>
-        <select  name="visibility" id="visibility" class="form-control">
+        <select  name="visibility" id="visibility">
            <option value="1">Public</option>
             <option value="2">Private</option>
         </select>

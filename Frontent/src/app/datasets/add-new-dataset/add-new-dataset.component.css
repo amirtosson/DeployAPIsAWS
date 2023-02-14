@@ -43,3 +43,16 @@ section{
     font-weight: 700;
     margin: 10px;
 }
+
+select{
+    height: 30px;
+    padding: 5px;
+    width: 100%;
+    line-height: 20px;
+    display: block;
+}
+option{
+    height: 50px;
+    padding: 5px;
+    line-height: 20px;
+}

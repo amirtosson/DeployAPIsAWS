@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 :root{
-    --main-color: #3a6cf4;
+    --main-color: #1e3e6f;
     --main-color-low: #7894e0;
     --main-gradient: linear-gradient(to bottom right,#dcd7d7, rgb(255, 255, 255));
     --secondary-color: #f0f0f0;
@@ -13,6 +13,7 @@
     transform: scale(1.1);
     border: 1px solid black;
     cursor: pointer;
+    color: var(--secondary-color);
 }
 
 .main-btn {
