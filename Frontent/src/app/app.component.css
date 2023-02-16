@@ -32,6 +32,10 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+body{
+  width: 90%;
+}
+
   h1,
   h2,
   h3,
