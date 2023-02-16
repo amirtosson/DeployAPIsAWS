@@ -25,18 +25,22 @@
   <span>Welcome</span>
   <div class="spacer"></div>
 </div> -->
+  
+
 <div class="row" >
   <img width="100%" height="100px" alt="Daphne banner" src="../assets/resources/images/DaphneBanner.png"/>
 </div>
-<div class=" col-md-12 col-xs-12 col-sm-8">
-  <div class="col col-md-2 col-xs-1 col-sm-1 col-ml-auto mr-auto">
-    <!-- <app-side-bar></app-side-bar> -->
-  </div>
-  <div class="content col-md-14 ml-auto mr-auto" role="main">
-    <router-outlet class="col-md-12 ml-auto mr-auto"></router-outlet>
+<app-side-bar></app-side-bar>
+
+<body>
+
+<div >
+
+  <div class="container" role="main">
+    <router-outlet></router-outlet>
   </div>
 </div>
-
+</body>
 
   <!-- Footer -->
 

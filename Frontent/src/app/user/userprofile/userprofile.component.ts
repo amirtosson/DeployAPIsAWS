@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserMetadata } from "../../entities/user/user-entity";
+import { SidebarService } from "../../services/sidebar-service.service";
 @Component({
   selector: 'app-userprofile',
   templateUrl: './userprofile.component.html',
@@ -9,9 +10,10 @@ import { UserMetadata } from "../../entities/user/user-entity";
 export class UserprofileComponent implements OnInit {
   loggedUserMetadata = new UserMetadata();
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private sidebarService : SidebarService) { }
 
   ngOnInit(): void {
+    this.sidebarService.setVisibility(false)
     this.loggedUserMetadata = JSON.parse(sessionStorage.getItem('userData')!)
   }
   OnGoToDashboard(){

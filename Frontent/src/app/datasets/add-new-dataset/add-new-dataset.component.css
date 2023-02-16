@@ -56,3 +56,12 @@ option{
     padding: 5px;
     line-height: 20px;
 }
+
+.toolbtn{
+    margin-bottom: 20px;
+    display:flex;
+    align-content: space-around;
+    justify-content: space-evenly;
+  
+  }
+  

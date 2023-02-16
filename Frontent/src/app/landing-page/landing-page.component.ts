@@ -12,7 +12,7 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit(): void {
     sessionStorage.clear()
-    this.sbService.setCurrentPage("landing")  
+    this.sbService.setVisibility(false)  
   }
 
   OnLoginClicked(){

@@ -1,3 +1,8 @@
+<div class="toolbtn">
+  <button (click)="GoToDashboard()" class="main-btn"> Go to dashboard </button>
+  <button (click)="GoToProfile()" class="main-btn"> Go to Profile </button>
+</div>
+
 <section class="cards" id="datatype">
   <h2 class="title">Dataset type</h2>
   <div class="content">
@@ -49,7 +54,8 @@
     <form id="details-form" class="formstyle" onsubmit="return false">
       <div class="form-group">
         <label for="">Dataset Name *</label>
-        <input type="text" class="form-control" id="data-name" required="required" pattern="[A-Za-z0-9]{1,20}" placeholder="dataset name">
+        <input type="text" class="form-control" id="data-name" required="required" pattern="[A-Za-z0-9\s]{1,150}" placeholder="dataset name">
+        <h6>Dataset name can NOT contain special character and max is 150 character</h6>
       </div>
       <div class="form-group">
         <label for="methods">Method *</label>

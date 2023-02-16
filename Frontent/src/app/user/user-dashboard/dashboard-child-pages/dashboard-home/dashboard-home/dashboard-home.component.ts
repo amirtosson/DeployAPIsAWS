@@ -1,5 +1,7 @@
 import {Component, OnInit, Injectable} from '@angular/core';
 import { Chart, LogarithmicScale } from 'chart.js/auto';
+import { SidebarService } from "../../../../../services/sidebar-service.service";
+
 @Component({
   selector: 'app-dashboard-home',
   templateUrl: './dashboard-home.component.html',
@@ -8,7 +10,7 @@ import { Chart, LogarithmicScale } from 'chart.js/auto';
 @Injectable()
 export class DashboardHomeComponent implements OnInit {
   public chart: any;
-  constructor() { }
+  constructor(private sidebarService : SidebarService) { }
   saleData = [
     { name: "Mobiles", value: 105000 },
     { name: "Laptop", value: 55000 },
@@ -17,6 +19,7 @@ export class DashboardHomeComponent implements OnInit {
     { name: "Fridge", value: 20000 }
   ];
   ngOnInit(): void {
+    this.sidebarService.setVisibility(true)
     this.createChart();
   }
   createChart(){

@@ -4,7 +4,10 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <div class="container">
-
+    <div class="toolbtn">
+        <button (click)="GoToDashboard()" class="main-btn"> Go to dashboard </button>
+        <button (click)="GoToProfile()" class="main-btn"> Go to Profile </button>
+    </div>
 <section>
 	<div class="row">
 		<div class="col-md-12">
@@ -151,7 +154,21 @@
                
                     
                     </div>
-                    <hr>
+                   
+                    <div class="row">
+                        <div>
+                            <h3 class="panel-title"><span class="glyphicon glyphicon-info-sign"></span> Datasets activities</h3>
+                        </div>
+                        <div *ngIf="activities.length > 0" class="col-md-12 activities-list" >
+                            <ul *ngFor="let activity of activities;" >
+                                <li>On {{activity.created_on}}, user "{{activity.login_name}}" has {{activity.activity}}.  </li>
+                            </ul>
+                        </div>
+                        <div *ngIf="activities.length < 1" class="col-md-12 activities-list" >
+                            <h3>No activities</h3>
+                        </div>
+                    </div>
+                    -->
                     <div class="row">
                         <div>
                             <h3 class="panel-title"><span class="glyphicon glyphicon-info-sign"></span> Attached files</h3>
@@ -170,21 +187,6 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="row">
-                        <div>
-                            <h3 class="panel-title"><span class="glyphicon glyphicon-info-sign"></span> Datasets activities</h3>
-                        </div>
-                        <div *ngIf="activities.length > 0" class="col-md-12 activities-list" >
-                            <ul *ngFor="let activity of activities;" >
-                                <li>On {{activity.created_on}}, user "{{activity.login_name}}" has {{activity.activity}}.  </li>
-                            </ul>
-                        </div>
-                        <div *ngIf="activities.length < 1" class="col-md-12 activities-list" >
-                            <h3>No activities</h3>
-                        </div>
-                    </div>
-                    -->
-
                 </div>
             </div>
         </div>

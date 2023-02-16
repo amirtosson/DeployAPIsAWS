@@ -15,11 +15,9 @@ export class UserLoginComponent implements OnInit {
   }
 
   OnLoginClicked(){
-    console.log("res")
     var userName = document.getElementById("username") as HTMLInputElement;
     //this.router.navigateByUrl('/userprofile/'+ userName.value);
     var userPassword = document.getElementById("userpwd") as HTMLInputElement;
-    console.log("res")
     UserAuthServerFunctions.LoginUser(userName.value,userPassword.value)
     .then
     (

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 //import { GeneralService } from "../../services/general.service";
 //import { DatasetService } from "../../services/dataset.service";
 import { MetadataItem } from "../../entities/dataset/metadata-entity";
-//import { DatasetActivityItem, AttachedFileItem} from "../../objects/general-items";
+import {AttachedFileItem} from "../../entities/general/attached-file-item";
 //import { ChartOption, BarChartData, LineChartData} from "../../objects/charts-item";
 import { DatasetsAPIs } from "../../server-communications/dataset-apis";
 import { Router } from '@angular/router';
@@ -18,7 +18,7 @@ import { HttpClient } from '@angular/common/http';
 export class DatasetWorkingPageComponent implements OnInit {
   PATH_ATTACHED = '/home/tosson/Desktop/Projects/datasets/attached_files/';
   metadata: MetadataItem[] = [];
-  //attachedFiles: AttachedFileItem[] =[]
+  attachedFiles: AttachedFileItem[] =[]
   //activities: DatasetActivityItem[] = [];
   datasetName = "";
   inUseDatasetDoi = ""
@@ -41,10 +41,19 @@ export class DatasetWorkingPageComponent implements OnInit {
     //this.datasetName =this.datasetService.GetDatasetInUse(this.inUseDatasetDoi)["dataset_name"];
     //this.UpdateActivitiesList();
     this.UpdateMetadatalist();
-    //this.UpdateAttachedFiles()
+    this.UpdateAttachedFiles()
 
   }
 
+  GoToDashboard(){
+    var u = JSON.parse(sessionStorage.getItem("userData")!) 
+    this.router.navigateByUrl(u["first_name"]+u["last_name"]+"/dashboard")
+  }
+
+  GoToProfile(){
+    var u = JSON.parse(sessionStorage.getItem("userData")!) 
+    this.router.navigateByUrl("userprofile/"+u["first_name"]+u["last_name"])
+  }
   UpdateMetadatalist(){
     this.metadata = []
     var inUseDatasetdetails = JSON.parse(sessionStorage.getItem('in_use_dataset')!)
@@ -251,8 +260,18 @@ export class DatasetWorkingPageComponent implements OnInit {
     el.style.display = "block";
   }
 
-  // UpdateAttachedFiles(){
-  //   this.attachedFiles = []
+  UpdateAttachedFiles(){
+    this.attachedFiles = []
+    var f = new AttachedFileItem();
+    f.added_on = "01.01.2001"
+    f.login_name = "admin"
+    f.attached_file_name = "test"
+    this.attachedFiles.push(f)
+    var f = new AttachedFileItem();
+    f.added_on = "01.01.2021"
+    f.login_name = "admin"
+    f.attached_file_name = "test2"
+    this.attachedFiles.push(f)
   //   DatasetsAPIs.GetAttachedFilesByDatasetDoi(this.inUseDatasetDoi)
   //   .then(
   //     res=>{
@@ -267,7 +286,7 @@ export class DatasetWorkingPageComponent implements OnInit {
   //     }
   //   )
 
- // }
+  }
 
   CloseChartNameForm(){
     var el = document.getElementById("chart-name-form") as HTMLDivElement;

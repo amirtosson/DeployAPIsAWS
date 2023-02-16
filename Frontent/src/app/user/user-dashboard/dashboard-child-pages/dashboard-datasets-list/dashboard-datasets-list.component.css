@@ -23,5 +23,6 @@ td {
 table {
     margin: 5px;
     width: 100%;
+    overflow-x: scroll;
 }
 

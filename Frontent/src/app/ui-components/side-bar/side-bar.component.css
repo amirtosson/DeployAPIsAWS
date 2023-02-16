@@ -15,7 +15,7 @@ hr{
     width: 70px;
 }
 .l-sidebar {
-    position:relative;
+  position:fixed;
   width: 70px;
   height: 100%;
   z-index: 10;
@@ -215,17 +215,20 @@ hr{
   @media screen and (max-width: 575px) {
 
       .sidebar-is-expanded .l-header {
-        padding-left: 100px;
+        padding-left: 10px;
       }
 
       .sidebar-is-expanded .l-sidebar {
         width: 70px;
       }
-      .toggle__btn{
-        display: none;
+      .toggle__btn{ 
+        display: block;
       }
-      .logo-img{
-        margin: 10px;
-        width: 60px;
+      .sidebar-is-expanded .logo-img{
+        margin: 5px;
+        width: 70px;
+    }
+    #exp-btn{
+      display: none;
     }
   }

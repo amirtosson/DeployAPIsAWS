@@ -1,86 +1,13 @@
 
-<div class="content-area col-md-13">
-    <app-side-bar class="col-md-2" (click)="NavItemClicked($event)"></app-side-bar>
-      <!--<aside class="col-md-2" (click)="NavItemClicked($event)">
-        
-       <nav>
-            <hr>
-            <a class="nav-title">
-                <i class="material-icons">
-                    <img width="100px" alt="Daphne Logo" src="../assets/resources/images/daphne.png"/>
-                </i>
-            </a>
-            <hr>
-            <a  id="home" class="nav-link active">
-                <i id="home" class="fas fa-home"></i>
-                <span id="home" > Home</span>
-            </a>
-            <a id="dataset-list" class="nav-link">
-                <i id="dataset-list" class="fas fa-database"></i>
-                <span id="dataset-list"> Datasets list</span>
-            </a>
 
-            
-            <a class="nav-title">
-                <i class="material-icons">
-                    search
-                </i>
-            </a>
-            <hr>
-            <a id="find-user" class="nav-link">
-                <i class="material-icons">
-                    person_search
-                </i>
-                <span> User</span>
-            </a>
-            <a id="find-dataset"  class="nav-link">
-                <i class="material-icons">
-                    query_stats
-                </i>
-                <span> Dataset</span>
-            </a>
-            <a id="find-publication"  class="nav-link">
-                <i class="material-icons">
-                    find_in_page
-                </i>
-                <span> Publication</span>
-            </a> 
-            <hr>
-            <a class="nav-title">
-                <i class="material-icons">
-                    add
-                </i>
-            </a>
-            <hr>
-            <a id="add-dataset" class="nav-link">
-                <i class="material-icons">
-                    upload_file
-                </i>
-                <span> Dataset</span>
-            </a>
-            <a id="add-publication" class="nav-link">
-                <i class="material-icons">
-                    note_add
-                </i>
-                <span> Publication</span>
-            </a>
-            <a id="add-function" class="nav-link">
-                <i class="material-icons">
-                    smart_button
-                </i>
-                <span> Function</span>
-            </a>
-            <a id="add-proposal" class="nav-link">
-                <i class="material-icons">
-                    sync_problem
-                </i>
-                <span> Proposal</span>
-            </a> 
-        </nav>
-    </aside>-->
-    
-    <main class="col-md-10">
-        <app-dashboard-home id="home-page" class="is-shown"></app-dashboard-home>
-        <app-dashboard-datasets-list id="dataset-list-page" class="is-hidden"></app-dashboard-datasets-list>
-    </main>
+<div class="container row">
+    <div class="col-md-2"></div>
+    <div class="content-area col-md-14">
+        
+            <app-dashboard-home id="home-page" class="is-shown"></app-dashboard-home>
+            <app-dashboard-datasets-list id="dataset-list-page" class="is-hidden"></app-dashboard-datasets-list>
+        
+    </div>
+
+
 </div>

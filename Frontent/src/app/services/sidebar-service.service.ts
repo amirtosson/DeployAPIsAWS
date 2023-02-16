@@ -6,9 +6,9 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class SidebarService {
 
-  public currentPage = new BehaviorSubject("");
+  public showToolbar = new BehaviorSubject(false);
   constructor() { }
-  setCurrentPage(pageName:string) {
-    this.currentPage.next(pageName);
+  setVisibility(show:boolean) {
+    this.showToolbar.next(show);
   }
 }

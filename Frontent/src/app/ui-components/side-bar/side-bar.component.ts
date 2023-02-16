@@ -16,51 +16,19 @@ export class SideBarComponent implements OnInit {
 
   constructor(private sidebarService : SidebarService, private router: Router) { }
   public sidebarItems: SidebarItem[] = [];
-  isExpanded = false
+  isExpanded = true;
+  isShown = true;
   ngOnInit(): void {
-    this.sidebarService.currentPage.subscribe(currentpage => {
-      //this.UpdateSidebarItems(currentpage)
+    this.sidebarService.showToolbar.subscribe(show => {
+      this.UpdateSidebarItems(show)
     })
    
     //this.TestSidebarItems()
   }
 
-  UpdateSidebarItems(pagename:string){
-    this.sidebarItems = []
-    if (pagename=="landing") {
-      this.isExpanded = true
-      var b = new SidebarItem;
-    b.Name = "SignIn"
-    b.RouterLink ="login"
-    b.ButtonClass = "fa fa-sign-in"
-    b.ToolTip = "Sign In"
-    this.sidebarItems.push(b)
-    } else if(pagename=="newdata"){
-      var b = new SidebarItem;
-      b.Name = "GoToDashboard"
-      b.ButtonClass = "fa fa-dashboard"
-      b.ToolTip = "Go To Dashboard"
-      this.sidebarItems.push(b)
-    } else if(pagename=="login"){
-    var b = new SidebarItem;
-    b.Name = "GoToDashboard"
-    b.ButtonClass = "fa fa-dashboard"
-    b.ToolTip = "Go To Dashboard"
-    this.sidebarItems.push(b)
-  }else if(pagename=="dashboard"){
-    var b = new SidebarItem;
-    b.Name = "Home"
-    b.RouterLink = this.router.url
-    b.ButtonClass = "fa fa-home"
-    b.ToolTip = "Home"
-    this.sidebarItems.push(b)
-    var b = new SidebarItem;
-    b.Name = "Datasets"
-    b.RouterLink = this.router.url +'/datasetslist'
-    b.ButtonClass = "fa fa-database"
-    b.ToolTip = "Your datasets"
-    this.sidebarItems.push(b)  
-  }
+  UpdateSidebarItems(show:boolean){
+    console.log(show)
+    this.isShown = show
   }
 
   TestSidebarItems(){
@@ -89,9 +57,23 @@ export class SideBarComponent implements OnInit {
     this.router.navigateByUrl
   }
 
-  OnItemClicked(event:any) {
-    console.log( event);
-    this.router.navigateByUrl(event)
+  OnItemClicked($event: { target: any; }) {
+    var id = $event.target.attributes.id.value
+    console.log(id)
+    var u = JSON.parse(sessionStorage.getItem("userData")!);
+    if (id === "profile") {
+      this.router.navigateByUrl("userprofile/"+u["first_name"]+u["last_name"])
+    }
+    else if (id === "dataset-list") {
+      this.router.navigateByUrl(u["first_name"]+u["last_name"]+"/dashboard/datasetslist")
+    }
+    else if (id === "home") {
+      this.router.navigateByUrl(u["first_name"]+u["last_name"]+"/dashboard/home")
+    }
+    else{
+      this.router.navigateByUrl(u["first_name"]+u["last_name"]+"/newdata")
+    }
+    //this.router.navigateByUrl(event)
     //var t = event.target as HTMLLIElement;
     //t.classList.remove('is-active')
   }

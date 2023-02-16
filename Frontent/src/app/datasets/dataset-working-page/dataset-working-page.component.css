@@ -1,7 +1,16 @@
-body { padding-top:20px; }
+body { padding-top:10px; }
 .container {
     max-width: 1200px;
 }
+.toolbtn{
+  margin-bottom: 20px;
+  display:flex;
+  align-content: space-around;
+  justify-content: space-evenly;
+
+}
+
+
 .panel-body 
 .btn:not(.btn-block) { 
 	width:140px !important;

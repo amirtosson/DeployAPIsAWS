@@ -8,7 +8,7 @@ import { SidebarService } from "../../services/sidebar-service.service";
 import { HttpClient } from '@angular/common/http';
 //import { GeneralService } from "../../services/general.service";
 //import { DatasetsAPIs } from "../../server-communication/datasets-apis";
-
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -29,10 +29,11 @@ export class AddNewDatasetComponent implements OnInit {
     //public userService:UserService,
     //public flyingBtnService:GeneralService,
     private http: HttpClient,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.sbService.setCurrentPage("login")  
+    this.sbService.setVisibility(false)  
     // GeneralAPIs.GetDataStructuresList()
     // .then(
     //   res=>{
@@ -135,6 +136,8 @@ export class AddNewDatasetComponent implements OnInit {
 
 
   DataDetailsAreReady(){
+    var inp = document.getElementById("data-name") as HTMLInputElement;
+    if (!inp.validity.valid) return;
     var el2 = document.getElementById("upload-section") as HTMLDivElement;
     el2.classList.remove("disabled");
     el2.scrollIntoView({behavior: 'smooth'})
@@ -189,5 +192,16 @@ export class AddNewDatasetComponent implements OnInit {
         
     //  });
 
+  }
+
+
+  GoToDashboard(){
+    var u = JSON.parse(sessionStorage.getItem("userData")!) 
+    this.router.navigateByUrl(u["first_name"]+u["last_name"]+"/dashboard")
+  }
+
+  GoToProfile(){
+    var u = JSON.parse(sessionStorage.getItem("userData")!) 
+    this.router.navigateByUrl("userprofile/"+u["first_name"]+u["last_name"])
   }
 }

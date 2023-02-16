@@ -23,11 +23,50 @@
 
 
 .content-area{
-  height: 100%;
-  background-color: transparent;
-  display: flex;
+  min-width: calc(100% - 10px);
+  background-color: rgb(164, 161, 161);
+  display: block;
+  overflow-x: auto;
+  height: calc(100vh - 50px);
+  padding: 20px;
 }
 
+
+.active{
+  background-color:  var(--main-color);
+  color:  black;
+  border: 1px solid #3a6cf4;
+  transform: scale(1.1);
+}
+
+hr{
+  height: 1px;
+  background-color: #3a6cf4;
+  border: none;
+  width: 100%;
+}
+.nav-title{
+  align-items: center;
+  text-align: center;
+
+}
+
+.main{
+
+
+}
+
+.is-shown{
+  display: block;
+}
+.is-hidden{
+  display: none;
+}
+
+@media screen and (max-width: 575px) {
+}
+
+/* 
 aside{
   height: 100%;
   width: 100%;
@@ -66,42 +105,4 @@ nav{
   font-size: 1.2rem;
   font-weight: bold;
   display: inline;
-}
-
-.active{
-  background-color:  var(--main-color);
-  color:  black;
-  border: 1px solid #3a6cf4;
-  transform: scale(1.1);
-}
-
-hr{
-  height: 1px;
-  background-color: #3a6cf4;
-  border: none;
-  width: 100%;
-}
-.nav-title{
-  align-items: center;
-  text-align: center;
-
-}
-
-main{
-  width: calc(100% - 200px);
-  min-width: 900px;
-  padding: 20px;
-  overflow-y: auto;
-  background-color: #fff;
-
-}
-
-.is-shown{
-  display: block;
-}
-.is-hidden{
-  display: none;
-}
-
-
-
+} */

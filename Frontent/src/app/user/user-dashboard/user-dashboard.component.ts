@@ -16,14 +16,14 @@ export class UserDashboardComponent implements OnInit {
   @ViewChild(DashboardDatasetsListComponent) _dbListComponent?: DashboardDatasetsListComponent;
 
   ngOnInit(): void {
-    //this.sbService.setCurrentPage("dashboard")
+    this.sbService.setVisibility(true)
     //this.router.navigateByUrl(this.router.url + '/home')  
   }
 
   NavItemClicked($event: { target: any; }){
 
-    var id = $event.target.attributes.id
-    if (id === undefined)return 
+    var id = $event.target.attributes.id.value
+    if (id === undefined || id === "profile" || id === "new-data" || id === "exp-btn")return 
     // var elesActive = document.getElementsByClassName("active") as HTMLCollectionOf<HTMLDivElement>;
     // if (elesActive === null)return 
     // elesActive[0].classList.remove("active");
@@ -35,7 +35,7 @@ export class UserDashboardComponent implements OnInit {
     eles[0].classList.add("is-hidden");
     eles[0].classList.remove("is-shown");
  
-    var el = document.getElementById(id.value+"-page") as HTMLDivElement;
+    var el = document.getElementById(id+"-page") as HTMLDivElement;
     if (el === null)return 
     el.classList.add("is-shown");
     el.classList.remove("is-hidden");   
