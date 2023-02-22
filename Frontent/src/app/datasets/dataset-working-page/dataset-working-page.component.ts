@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 //import { GeneralService } from "../../services/general.service";
 //import { DatasetService } from "../../services/dataset.service";
+import { SidebarService } from "../../services/sidebar-service.service";
 import { MetadataItem } from "../../entities/dataset/metadata-entity";
 import {AttachedFileItem} from "../../entities/general/attached-file-item";
 //import { ChartOption, BarChartData, LineChartData} from "../../objects/charts-item";
@@ -28,6 +29,7 @@ export class DatasetWorkingPageComponent implements OnInit {
   public chart : any;
 
   constructor(
+    private sbService:SidebarService,
     //public flyingBtnService:GeneralService,
     //public datasetService:DatasetService,
     private router:Router,
@@ -35,7 +37,7 @@ export class DatasetWorkingPageComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-
+    this.sbService.setVisibility(false)
     //this.flyingBtnService.setHeaderBarItems("back-to-dashboard");
     //this.inUseDatasetDoi = this.router.url.replace("/dataset/","")
     //this.datasetName =this.datasetService.GetDatasetInUse(this.inUseDatasetDoi)["dataset_name"];
@@ -135,9 +137,16 @@ export class DatasetWorkingPageComponent implements OnInit {
   //       )
   //     }
   //   )
-
-
    }
+
+  DeleteMetadataItem(key:string){
+
+  }
+
+  EditMetadataItem(key:string){
+    console.log(key)
+  }
+
 
   CloseAddNewMetadataItemFrom(){
     var el = document.getElementById("add-new-item") as HTMLDivElement;

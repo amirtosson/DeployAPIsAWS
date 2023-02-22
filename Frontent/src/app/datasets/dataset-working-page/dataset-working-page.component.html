@@ -23,19 +23,31 @@
                         </div>
                         <div class="container">
                             <div class="panel-info">              
-                                <div *ngFor="let metadataitem of metadata;" class="row">
+                                <div *ngFor="let metadataitem of metadata; let i = index" class="row">
                                     <div class="col-md-12 info-item">
-                                        <div class="">
+
                                             <div class="col-md-3">
                                                 <p>{{metadataitem.key}}:</p>
                                             </div>
-                                            <div class="col-md-8">
-                                                <p>{{metadataitem.value}}</p>
+                                            <div class="col-md-7">
+                                                <p id="metadataitem.value">{{metadataitem.value}}</p> 
+                                                <!-- <textarea class="readonly" id="metadataitem.value" type="text" placeholder="value" name="fname"> {{metadataitem.value}} </textarea> -->
+                                                <!-- <textarea
+                                                [(ngModel)]="text"
+                                                class="textarea-inline-control"  
+                                                cdkTextareaAutosize>
+                                                {metadataitem.value}}
+                                              </textarea> -->
+                                            
                                             </div>
-                                            <div class="col-md-1">
+                                       
+
+                                            <div *ngIf="i>2" (click)="EditMetadataItem(metadataitem.key)"  class="col-md-1">
+                                                <i id="icon" class="function-button-small material-icons">edit</i>
+                                            </div>
+                                            <div *ngIf="i>2"  class="col-md-1">
                                                 <i id="icon" class="function-button-small material-icons">delete</i>
                                             </div>
-                                        </div>
                                     </div>
                                     
                                     <div class="col-md-1">
@@ -44,12 +56,12 @@
                                 </div>
                                 <div id="add-new-item" class="row add-new-item" style="display: none;">
                                     <div class="col-md-12">
-                                        <div class="">
+                                       
                                             <div class="col-md-3">
-                                                <input type="text" id="key" placeholder="key" name="fname">
+                                                <input type="text" id="key" placeholder="key">
                                             </div>
                                             <div class="col-md-7">
-                                                <input type="text" id="value" placeholder="value" name="fname">
+                                                <textarea type="text" id="value" placeholder="value" name="fname"></textarea>
                                             </div>
                                             <div class="col-md-1">
                                                 <i id="icon" (click)="AddNewMetadataItem()" class="function-button-small material-icons">check_circle</i>
@@ -58,7 +70,6 @@
                                                 <i id="icon" (click)="CloseAddNewMetadataItemFrom()" class="function-button-small material-icons">remove_circle</i>
                                             </div>
 
-                                        </div>
                                     </div>
                                     
                                     <div class="col-md-1">

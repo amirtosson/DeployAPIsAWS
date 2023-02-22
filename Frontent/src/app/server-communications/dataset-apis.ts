@@ -58,4 +58,45 @@ export class DatasetsAPIs {
 
         return res;
     }
+
+    static async DeleteDatasetByDOI(dataset_doi:string, file_name:string)
+    {
+        const response = await fetch
+        (
+        'http://18.197.145.132:3002/deletedatasetbydoi', 
+        {
+            method:'POST',
+            headers: {
+                'Content-Type':'application/json', 
+                'Access-Control-Allow-Origin': '*',
+                
+            },  
+            body: JSON.stringify({'dataset_doi':dataset_doi, 'original_file_name':file_name })             
+        }
+        );
+        const res = await response.json();
+
+        return res;
+    }
+
+    static async AddFileDetailsToDatabases(dataset_details:any)
+    {
+        const response = await fetch
+        (
+        'http://18.197.145.132:3002/addfiletodatabases', 
+        {
+            method:'POST',
+            headers: {
+                'Content-Type':'application/json', 
+                'Access-Control-Allow-Origin': '*',
+                
+            },  
+            body: JSON.stringify({'dataset_details':dataset_details })             
+        }
+        );
+        const res = await response.json();
+
+        return res;
+    }
+
 }

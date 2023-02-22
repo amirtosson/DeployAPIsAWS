@@ -70,3 +70,14 @@
     cursor: pointer;
     transform: scale(1.2);
   }
+
+
+
+  .info-btn{
+    font-size: medium;
+    margin-left: 10px;
+  }
+
+  .info-btn:hover{
+    cursor: pointer;
+  }

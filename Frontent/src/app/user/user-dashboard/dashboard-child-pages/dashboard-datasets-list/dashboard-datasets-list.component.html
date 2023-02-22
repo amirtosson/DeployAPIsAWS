@@ -11,7 +11,7 @@
     </tr>
   <tr *ngFor='let dataset of datasets; let i=index;' class="table-row">
         <td>{{dataset.dataset_name}} </td>
-        <td>{{dataset.datasets_filename}} </td>
+        <td>{{dataset.dataset_filename}} </td>
         <td>{{dataset.added_on}} </td>
         <td>{{dataset.login_name}}</td>
         <td>{{dataset.project_name}}</td>
@@ -19,7 +19,7 @@
         <td style="width: 150px;">
             <i id="icon" (click)="OpenDataset(dataset.dataset_doi)" class="function-button-small material-icons" >arrow_forward</i>
             <i id="icon" (click)="DownloadDataset(dataset.dataset_pid)" class="function-button-small material-icons" >download</i>
-            <i id="icon" class="function-button-small material-icons" >delete</i>
+            <i id="icon" *ngIf="dataset.owner_id == loggedUserID " (click)="DeleteDataset(dataset.dataset_doi, dataset.dataset_filename)" class="function-button-small material-icons" >delete</i>
             <!-- <i [ngClass]="dataset.inUse? 'disabled':''" id="icon" class="function-button-small material-icons" (click)="UseDataset(dataset, dataset.inUse = true)" >arrow_forward</i>
             <i id="icon" class="function-button-small material-icons" (click)="DeleteDataset(dataset.DOI)">delete</i> -->
         </td>
