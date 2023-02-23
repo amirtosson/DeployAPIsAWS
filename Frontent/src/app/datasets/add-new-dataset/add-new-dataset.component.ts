@@ -183,7 +183,6 @@ export class AddNewDatasetComponent implements OnInit {
         this.dataset.dataset_filename = res.file_name; 
         DatasetsAPIs.AddFileDetailsToDatabases(this.dataset)
         .then(resu => {
-          console.log(resu)
           var input =  document.getElementById("upload-file") as HTMLInputElement;
           input.value = ''
           var inps = document.getElementsByTagName('input') as HTMLCollectionOf<HTMLInputElement>;

@@ -27,7 +27,6 @@ export class SideBarComponent implements OnInit {
   }
 
   UpdateSidebarItems(show:boolean){
-    console.log(show)
     this.isShown = show
   }
 
@@ -59,7 +58,6 @@ export class SideBarComponent implements OnInit {
 
   OnItemClicked($event: { target: any; }) {
     var id = $event.target.attributes.id.value
-    console.log(id)
     var u = JSON.parse(sessionStorage.getItem("userData")!);
     if (id === "profile") {
       this.router.navigateByUrl("userprofile/"+u["first_name"]+u["last_name"])

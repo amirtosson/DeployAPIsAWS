@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Dataset } from "../../../../entities/dataset/dataset-entity";
 import { DatasetsAPIs } from "../../../../server-communications/dataset-apis";
 import { Router } from '@angular/router';
+import { SidebarService } from "../../../../services/sidebar-service.service";
+
 
 @Component({
   selector: 'app-dashboard-datasets-list',
@@ -11,9 +13,10 @@ import { Router } from '@angular/router';
 export class DashboardDatasetsListComponent implements OnInit {
   datasets: Dataset[] = []
   loggedUserID:any;
-  constructor(private router: Router) { }
+  constructor(private router: Router, private sidebarService : SidebarService) { }
 
   ngOnInit(): void {
+    this.sidebarService.setVisibility(true)
     this.loggedUserID = sessionStorage.getItem('user_id')
     this.UpdateTable(this.loggedUserID)
   }
@@ -30,12 +33,10 @@ export class DashboardDatasetsListComponent implements OnInit {
   }
 
   DeleteDataset(dataset_doi:string, original_file_name:string){
-    console.log(dataset_doi, original_file_name);
     if(confirm("Are you sure to delete "+original_file_name)) {
       DatasetsAPIs.DeleteDatasetByDOI(dataset_doi, original_file_name)
       .then(
         res=>{
-          console.log(res)
           window.alert(original_file_name + " has been deleted.");
           this.UpdateTable(this.loggedUserID)
         }

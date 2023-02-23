@@ -13,7 +13,7 @@ export class Dataset{
     project_name = "";
     project_id = "";
     dataset_filename = "";
-    facilty_name = "";
+    facility_name = "";
     dataset_facility_id = "";
     dataset_sample_name = "";
     dataset_type = "";

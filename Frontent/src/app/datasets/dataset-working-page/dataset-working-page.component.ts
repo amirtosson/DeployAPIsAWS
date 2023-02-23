@@ -26,6 +26,7 @@ export class DatasetWorkingPageComponent implements OnInit {
   calaulationReq= "";
   visualizationReq= "";
   abstract = "";
+  stopEditing = false
   public dataset: any;
   public chart : any;
 
@@ -38,9 +39,8 @@ export class DatasetWorkingPageComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.sbService.setVisibility(false)
+    this.sbService.setVisibility(true)
     this.dataset = JSON.parse(sessionStorage.getItem('in_use_dataset')!)
-    console.log(this.dataset)
     //this.flyingBtnService.setHeaderBarItems("back-to-dashboard");
     //this.inUseDatasetDoi = this.router.url.replace("/dataset/","")
     //this.datasetName =this.datasetService.GetDatasetInUse(this.inUseDatasetDoi)["dataset_name"];
@@ -52,15 +52,6 @@ export class DatasetWorkingPageComponent implements OnInit {
 
   }
 
-  GoToDashboard(){
-    var u = JSON.parse(sessionStorage.getItem("userData")!) 
-    this.router.navigateByUrl(u["first_name"]+u["last_name"]+"/dashboard")
-  }
-
-  GoToProfile(){
-    var u = JSON.parse(sessionStorage.getItem("userData")!) 
-    this.router.navigateByUrl("userprofile/"+u["first_name"]+u["last_name"])
-  }
   UpdateMetadatalist(){
     this.metadata = []
     DatasetsAPIs.GetMetadataByDoi(this.inUseDatasetDoi)
@@ -90,8 +81,7 @@ export class DatasetWorkingPageComponent implements OnInit {
 
   GetMetadata(dsDetails:any){
     for (const [key, value] of Object.entries(dsDetails)) {
-      console.log(key)
-      if (key=="_id"||key=="dataset_doi") {
+      if (key=="_id"||key=="dataset_doi" || key=="dataset_name") {
         continue;
       }
       if (key=="abstract") {
@@ -112,9 +102,25 @@ export class DatasetWorkingPageComponent implements OnInit {
   }
 
   AddNewMetadataItemOpenForm(){
+    this.stopEditing = true
     var el = document.getElementById("add-new-item") as HTMLDivElement;
     el.style.display = "block";
 
+  }
+
+
+  EditMetadataItem(old_key:string, old_value:string){
+    var DivEle = document.getElementById(old_key) as HTMLDivElement;
+    var newKeVal = DivEle.getElementsByTagName("textarea") as HTMLCollectionOf <HTMLTextAreaElement>;
+
+    console.log(old_key, " : ",old_value, " : ",newKeVal[0].value, "  : ", newKeVal[1].value )
+    DatasetsAPIs.EditMetadataItem(this.inUseDatasetDoi, old_key, old_value, newKeVal[0].value, newKeVal[1].value)
+    .then(
+      ()=>{
+        this.UpdateMetadatalist()
+        this.CloseAddNewMetadataItemFrom(old_key)
+      }
+    )
   }
 
   AddNewMetadataItem(){
@@ -125,7 +131,7 @@ export class DatasetWorkingPageComponent implements OnInit {
      .then(
        ()=>{
          this.UpdateMetadatalist()
-         this.CloseAddNewMetadataItemFrom()
+         this.CloseAddNewMetadataItemFrom("add-new-item")
        }
      )
   //   .then(
@@ -141,18 +147,28 @@ export class DatasetWorkingPageComponent implements OnInit {
   //   )
    }
 
-  DeleteMetadataItem(key:string){
-
+  DeleteMetadataItem(key:string, value:string){
+      if(confirm("Are you sure to delete this item")) {
+        DatasetsAPIs.DeleteMetadataItem(this.inUseDatasetDoi, key, value)
+        .then(
+          res=>{
+            this.UpdateMetadatalist()
+          }
+        )
+      }
   }
 
-  EditMetadataItem(key:string){
-    console.log(key)
+  StartEditMetadataItem(key:string){
+    this.stopEditing = true
+    var el = document.getElementById(key) as HTMLDivElement;
+    el.style.display = "block";
   }
 
 
-  CloseAddNewMetadataItemFrom(){
-    var el = document.getElementById("add-new-item") as HTMLDivElement;
+  CloseAddNewMetadataItemFrom(id:string){
+    var el = document.getElementById(id) as HTMLDivElement;
     el.style.display = "none";
+    this.stopEditing = false
 
   }
 

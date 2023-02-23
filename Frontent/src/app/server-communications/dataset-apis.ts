@@ -59,6 +59,52 @@ export class DatasetsAPIs {
         return res;
     }
 
+
+    static async DeleteMetadataItem(dataset_doi:any, item_key:any, item_value:any)
+    {
+        const response = await fetch
+        (
+        'http://18.197.145.132:3002/deletemetadataitem', 
+        {
+            method:'POST',
+            headers: {
+                'Content-Type':'application/json', 
+                'Access-Control-Allow-Origin': '*',
+                'dataset_doi':dataset_doi
+                
+            },  
+            body: JSON.stringify({'key':item_key, 'value':item_value })             
+        }
+        );
+        const res = await response.json();
+
+    }
+
+
+    static async EditMetadataItem(dataset_doi:any, old_key:any, old_value:any, new_key:any, new_value:any)
+    {
+        const response = await fetch
+        (
+        'http://18.197.145.132:3002/Editmetadataitem', 
+        {
+            method:'POST',
+            headers: {
+                'Content-Type':'application/json', 
+                'Access-Control-Allow-Origin': '*',
+                'dataset_doi':dataset_doi
+                
+            },  
+            body: JSON.stringify({
+                'old_key':old_key, 
+                'old_value':old_value, 
+                'new_key':new_key, 
+                'new_value':new_value  })             
+        }
+        );
+        const res = await response.json();
+
+    }
+
     static async DeleteDatasetByDOI(dataset_doi:string, file_name:string)
     {
         const response = await fetch
@@ -78,6 +124,7 @@ export class DatasetsAPIs {
 
         return res;
     }
+    
 
     static async AddFileDetailsToDatabases(dataset_details:any)
     {
@@ -98,5 +145,7 @@ export class DatasetsAPIs {
 
         return res;
     }
+
+
 
 }
