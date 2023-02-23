@@ -28,10 +28,10 @@ const routes: Routes = [
     path: 'userprofile/:username', component: UserprofileComponent
   },
   {
-    path: ':username/dashboard', component: UserDashboardComponent
+    path: ':username/dashboard', component: DashboardHomeComponent
   },
   {
-    path: ':username/dashboard/home', component: UserDashboardComponent
+    path: ':username/dashboard/home', component: DashboardHomeComponent
   },
   {
     path: ':username/dashboard/datasetslist', component: DashboardDatasetsListComponent

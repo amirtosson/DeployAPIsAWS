@@ -25,7 +25,8 @@ export class DatasetWorkingPageComponent implements OnInit {
   inUseDatasetDoi = ""
   calaulationReq= "";
   visualizationReq= "";
-
+  abstract = "";
+  public dataset: any;
   public chart : any;
 
   constructor(
@@ -38,10 +39,14 @@ export class DatasetWorkingPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.sbService.setVisibility(false)
+    this.dataset = JSON.parse(sessionStorage.getItem('in_use_dataset')!)
+    console.log(this.dataset)
     //this.flyingBtnService.setHeaderBarItems("back-to-dashboard");
     //this.inUseDatasetDoi = this.router.url.replace("/dataset/","")
     //this.datasetName =this.datasetService.GetDatasetInUse(this.inUseDatasetDoi)["dataset_name"];
     //this.UpdateActivitiesList();
+    this.inUseDatasetDoi = this.dataset.dataset_doi;
+
     this.UpdateMetadatalist();
     this.UpdateAttachedFiles()
 
@@ -58,20 +63,6 @@ export class DatasetWorkingPageComponent implements OnInit {
   }
   UpdateMetadatalist(){
     this.metadata = []
-    var inUseDatasetdetails = JSON.parse(sessionStorage.getItem('in_use_dataset')!)
-    var stuct_name =inUseDatasetdetails["structure_name"];
-    this.inUseDatasetDoi = inUseDatasetdetails["dataset_doi"]
-    this.datasetName = inUseDatasetdetails["dataset_name"]
-    var orFile = inUseDatasetdetails["datasets_filename"]
-
-    var mD = new MetadataItem;
-    mD.key = "Structure name"
-    mD.value = stuct_name
-    this.metadata.push(mD)
-    var mD = new MetadataItem;
-    mD.key = "Original file name"
-    mD.value = orFile
-    this.metadata.push(mD)
     DatasetsAPIs.GetMetadataByDoi(this.inUseDatasetDoi)
     .then(
      res=>{
@@ -79,6 +70,7 @@ export class DatasetWorkingPageComponent implements OnInit {
        }
      )
   }
+
 
   // UpdateActivitiesList(){
   //   this.activities = []
@@ -98,7 +90,17 @@ export class DatasetWorkingPageComponent implements OnInit {
 
   GetMetadata(dsDetails:any){
     for (const [key, value] of Object.entries(dsDetails)) {
+      console.log(key)
       if (key=="_id"||key=="dataset_doi") {
+        continue;
+      }
+      if (key=="abstract") {
+        this.dataset.abstract = value as string;
+        continue;
+      }
+      
+      if (key=="publication_doi") {
+        this.dataset.publication_doi = value as string;
         continue;
       }
       var mD = new MetadataItem;

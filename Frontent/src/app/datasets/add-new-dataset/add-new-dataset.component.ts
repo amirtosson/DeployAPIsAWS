@@ -173,7 +173,7 @@ export class AddNewDatasetComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', this.file);
 
-    this.http.post<any>('http://localhost:3002/uploadfile',formData, {reportProgress: false})
+    this.http.post<any>('http://18.197.145.132:3002/uploadfile',formData, {reportProgress: false})
     .subscribe(res => {
       
       if (res.pid && res.doi && res.file_name) {

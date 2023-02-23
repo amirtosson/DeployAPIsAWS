@@ -1,6 +1,57 @@
-body { padding-top:10px; }
-.container {
-    max-width: 1200px;
+
+.panel-heading {
+  background-color: var(--main-color-low);
+}
+
+.glyphsize {
+	font-size:48px !important;
+}
+
+.dataset-name{
+  font-size:xx-large;
+  font-weight: bold; 
+  margin: 15px;
+  display:flex;
+  justify-content:center;
+  font-weight: bolder;
+  padding: 4px;
+}
+.panel-title {
+	font-size:large;
+  font-weight: bold; 
+  display:flex;
+  justify-content:center;
+  font-weight: bolder;
+  padding: 4px;
+}
+
+.panel-info{
+  margin: 15px;
+}
+
+
+
+.info-item .col-2 h4{
+  font-weight: bold;
+}
+
+.info-item {
+  padding: 4px;
+  
+}
+
+.info-item:nth-child(even) {
+  background-color: var(--shadow-color);
+  
+}
+
+
+
+
+.calculation-form{
+  margin-top: 50px;
+  font-size: x-large;
+  display: none;
 }
 .toolbtn{
   margin-bottom: 20px;
@@ -48,41 +99,13 @@ body { padding-top:10px; }
 .panel-body .panel-title{
     padding: 0 0 10px 0;
     border-bottom: #000 2px solid;
+   
 }
 
 
-.panel-info{
-    margin: 10px 5px 20px 20px;
-    
-}
 
-.panel-info .row{
-    margin-top: 5px;
-}
 
-.panel-info h2{
-    margin: 0px;
-    padding: 0px;
-    text-align:left;
 
-}
-
-.panel-info .row .col-md-5 .col-md-4, .col-md-6, .col-md-1{
-    padding: 0px;
-    text-align:left;
-}
-
-.info-item {
-    padding: 10px;
-    background-color:var(--gray-first);
-    height: fit-content;
-    
-}
-
-.info-item:hover{
-    background-color:var(--hover-color-gray);
-    
-}
 .add-new-item {
     padding: 15px;
     border: #000 1px solid;
@@ -153,27 +176,7 @@ body { padding-top:10px; }
     background-color: rgb(255, 255, 255);
 }
 
-.panel-heading {
-background-color: var(--main-color);
 
-}
-
-.calculation-form{
-    margin-top: 50px;
-    font-size: x-large;
-    display: none;
-}
-
-/* Font Size For Button Text */
-.glyphsize {
-	font-size:48px !important;
-}
-
-.panel-title {
-	font-size: large;
-    font-weight: bold; 
-    margin: 15px;
-}
 
 hr{
     background-color: var(--main-color);
