@@ -18,7 +18,7 @@ export class Dataset{
     dataset_sample_name = "";
     dataset_type = "";
     dataset_exp_system_id = "";
-    dataset_exp_system_name = "";
+    exp_system_name = "";
     dataset_visibility_id = "";
     publication_doi = "";
     abstract = "";
