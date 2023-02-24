@@ -16,6 +16,8 @@ import { NgxChartsModule }from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardDatasetsListComponent } from './user/user-dashboard/dashboard-child-pages/dashboard-datasets-list/dashboard-datasets-list.component';
 import { DatasetWorkingPageComponent } from "./datasets/dataset-working-page/dataset-working-page.component";
+import { ElectronicLabBookComponent } from './data-features/electronic-lab-book/electronic-lab-book.component';
+import { AuxiliaryFilesComponent } from './data-features/auxiliary-files/auxiliary-files.component';
 
 
 
@@ -32,7 +34,9 @@ import { DatasetWorkingPageComponent } from "./datasets/dataset-working-page/dat
     SideBarComponent,
     DashboardHomeComponent,
     DashboardDatasetsListComponent,
-    DatasetWorkingPageComponent
+    DatasetWorkingPageComponent,
+    ElectronicLabBookComponent,
+    AuxiliaryFilesComponent
   ],
   imports: [
     BrowserModule,
