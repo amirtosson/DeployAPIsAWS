@@ -28,6 +28,9 @@ export class UserLoginComponent implements OnInit {
         sessionStorage.setItem('isLogged', "true");
         sessionStorage.setItem('user_id', res.user_id);
         sessionStorage.setItem('user_token', res.user_token)
+        sessionStorage.setItem('first_name', res.first_name)
+        sessionStorage.setItem('last_name', res.last_name)
+
         this.router.navigateByUrl('/userprofile/'+ this.user.user.first_name+this.user.user.last_name);       
         
       }

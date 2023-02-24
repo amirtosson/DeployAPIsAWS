@@ -22,5 +22,7 @@ export class Dataset{
     dataset_visibility_id = "";
     publication_doi = "";
     abstract = "";
+    first_name="";
+    last_name="";
 
 }
