@@ -1,0 +1,54 @@
+<body *ngIf="this.isShown" id="side-bar-body" [ngClass]="isExpanded? 'sidebar-is-expanded':'sidebar-is-reduced'">
+<div class="l-sidebar">
+    <div class="l-sidebar__content">
+      <nav class="c-menu js-menu">
+        <ul class="u-list" >
+          <div>
+            <li class="c-menu__item" >
+                <img class="logo-img" alt="Daphne Logo" src="../assets/resources/images/daphne.png"/>
+              </li>
+            </div>
+            <div>
+            <li id="exp-btn" class="c-menu__item toggle__btn" (click)="OnExpandClicked()" data-toggle="tooltip" [title]="isExpanded? 'Shrink toolbar':'Expand toolbar'">
+                <div id="exp-btn" class="c-menu__item__inner"><i id="exp-btn" [ngClass]="isExpanded? 'fa fa-arrow-left':'fa fa-arrow-right'"></i>
+                  <div  id="exp-btn" class="c-menu-item__title"><span id="exp-btn">Close toolbar</span></div>
+                </div>
+
+              </li>
+              <li class="c-menu__item toggle__btn" id="home" data-toggle="tooltip" (click)="OnItemClicked($event)">
+                <div id="home" class="c-menu__item__inner"><i id="home" class="fas fa-home"></i>
+                  <div id="home" class="c-menu-item__title"><span id="home">Home</span></div>
+                </div>
+
+              </li>
+              <li id="dataset-list" class="c-menu__item toggle__btn"  data-toggle="tooltip" (click)="OnItemClicked($event)">
+                <div id="dataset-list" class="c-menu__item__inner"><i id="dataset-list" class="fas fa-database"></i>
+                  <div id="dataset-list" class="c-menu-item__title"><span id="dataset-list">Datasets list</span></div>
+                </div>
+
+              </li>
+              <li class="c-menu__item toggle__btn" id="profile" data-toggle="tooltip" (click)="OnItemClicked($event)">
+                <div id="profile" class="c-menu__item__inner"><i id="profile" class="fas 	fas fa-user-tie"></i>
+                  <div id="profile" class="c-menu-item__title"><span id="profile">Go To Profile</span></div>
+                </div>
+                <li class="c-menu__item toggle__btn" id="new-data" data-toggle="tooltip" (click)="OnItemClicked($event)" >
+                  <div id="new-data" class="c-menu__item__inner"><i id="new-data" class="fas fa-folder-plus"></i>
+                    <div id="new-data" class="c-menu-item__title"><span id="new-data">Add new dataset</span></div>
+                  </div>
+              </li>
+
+
+
+              <!-- <li  *ngFor="let item of sidebarItems; let i = index" (click)="OnItemClicked(item.RouterLink)" [id]="item.Name" (click)="OnItemClicked(item.RouterLink)" [class]="i ==0 ? 'c-menu__item ref_class is-active':'c-menu__item ref_class '" data-toggle="tooltip" [title]="item.ToolTip">
+                <div class="c-menu__item__inner"><i [class]="item.ButtonClass"></i>
+                  <div class="c-menu-item__title"><span>{{item.ToolTip}}</span></div>
+                </div>
+              </li> -->
+
+
+            </div>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</body>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +7,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'DAPHNE';
+  
+  constructor
+  (
+    //public userService:UserService,
+    //public flyingBtnService:GeneralService,
+    private http: HttpClient
+  ) { }
+  
+
+    
+
 }
+
+

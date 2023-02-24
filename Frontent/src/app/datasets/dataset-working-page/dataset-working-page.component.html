@@ -2,37 +2,184 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
+<div class="col-12">
+    <h1 class="dataset-name"><span class="glyphicon glyphicon-file"></span> {{dataset.dataset_name}}</h1>
 
+    <div class="panel">
+        <div class="panel-heading">
+            <h3 class="panel-title">Dataset general information</h3>
+        </div>
+        <div class="panel-info">
+            <div class="info-item row">
+                <div class="col-2"><h4>Added by:</h4></div>
+                <div class="col-4"><h4>{{dataset.login_name}}</h4> </div>
+                <div class="col-2"> <h4>Added on:</h4></div>
+                <div class="col-4"><h4>{{dataset.added_on}}</h4> </div>
+            </div>
+            <div class="info-item row">
+                <div class="col-2"><h4>Structure:</h4></div>
+                <div class="col-4"><h4>{{dataset.dataset_structure_name}}</h4> </div>
+                <div class="col-2"> <h4>Data type:</h4></div>
+                <div class="col-4"><h4>{{dataset.dataset_type}}</h4> </div>
+            </div>
+            <div class="info-item row">
+                <div class="col-2"><h4>Assigned project:</h4></div>
+                <div class="col-4"><h4>{{dataset.project_name}}</h4> </div>
+                <div class="col-2"> <h4>Data file:</h4></div>
+                <div class="col-4"><h4>{{dataset.dataset_filename}}</h4> </div>
+            </div>
+        </div>
+        <div class="panel-heading">
+            <h3 class="panel-title">Experimental information</h3>
+        </div>
+        <div class="panel-info">
+            <div class="info-item row">
+                <div class="col-2"><h4>Facility:</h4></div>
+                <div class="col-4"><h4>{{dataset.facility_name}}</h4> </div>
+                <div class="col-2"> <h4>Method:</h4></div>
+                <div class="col-4"><h4>{{dataset.method_name}}</h4> </div>
+            </div>
+            <div class="info-item row">
+                <div class="col-2"><h4>Sample:</h4></div>
+                <div class="col-4"><h4>{{dataset.dataset_sample_name}}</h4> </div>
+                <div class="col-2"> <h4>System:</h4></div>
+                <div class="col-4"><h4>{{dataset.exp_system_name}}</h4> </div>
+            </div>
+        </div>
+        <div class="panel-heading">
+            <h3 class="panel-title">Publication information</h3>
+        </div>
+        <div class="panel-info">
+            <div class="info-item row">
+                <div class="col-3"><h4>Publication DOI:</h4></div>
+                <div class="col-9"><h4>{{dataset.publication_doi}}</h4> </div>
+            </div>
+            <div class="info-item row">
+                <div class="col-3"> <h4>Abstract:</h4></div>
+                <div class="col-9"><h4>{{dataset.abstract}}</h4> </div>
+            </div>
+        </div>
+        <div class="panel-heading">
+            <h3 class="panel-title">User-defined metadata and information</h3>
+        </div>
+        <div class="panel-info">
+            <div *ngFor="let metadataitem of metadata; let i = index" class="info-item row">
+                <div class="col-3"><h4>{{metadataitem.key}}:</h4></div>
+                <div class="col-6"><p>{{metadataitem.value}}</p> </div>
+                <div class="col-3 tool-btns"> 
+                    <div class="col-1">
+                        <i id="icon" (click)="DeleteMetadataItem(metadataitem.key, metadataitem.value)" class="function-button-small material-icons">delete</i>
+                    </div>
+                    <div (click)="StartEditMetadataItem(metadataitem.key)"  class="col-2">
+                        <i id="icon" [ngClass]="stopEditing? 'function-button-small material-icons disabled' : 'function-button-small material-icons'">edit</i>
+                    </div>
+                </div>
+                <div id="{{metadataitem.key}}" class="col-11 edit-item" style="display: none;">
+                    <h3>New Key and Value</h3>
+                    <div class="row">
+                        <div class="col-2">
+                            <textarea type="text" id="key-e" placeholder="key">{{metadataitem.key}}</textarea>
+                        </div>
+                        <div class="col-7">
+                            <textarea type="text" id="value-e" placeholder="value" name="fname">{{metadataitem.value}}</textarea>
+                        </div>
+                        <div class="col-1">
+                            <i id="icon" (click)="EditMetadataItem(metadataitem.key, metadataitem.value)" class="function-button-small material-icons">check_circle</i>
+                        </div>
+                        <div class="col-1">
+                            <i id="icon" (click)="CloseAddNewMetadataItemFrom(metadataitem.key)" class="function-button-small material-icons">remove_circle</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div *ngIf="!stopEditing" class="add-btn row">
+                <button class="main-btn" (click)="AddNewMetadataItemOpenForm()" role="button">
+                    <span class="glyphicon glyphicon-plus glyphsize green"></span> 
+                    <h3>Add a new metadata item</h3> 
+                </button>
+            </div>
+            <div id="add-new-item" class="row add-new-item" style="display: none;">
+                <div class="row">
+                    <div class="col-3">
+                        <textarea type="text" id="key" placeholder="key"></textarea>
+                    </div>
+                    <div class="col-7">
+                        <textarea type="text" id="value" placeholder="value" name="fname"></textarea>
+                    </div>
+                    <div class="col-1">
+                        <i id="icon" (click)="AddNewMetadataItem()" class="function-button-small material-icons">check_circle</i>
+                    </div>
+                    <div class="col-1">
+                        <i id="icon" (click)="CloseAddNewMetadataItemFrom('add-new-item')" class="function-button-small material-icons">remove_circle</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-heading">
+            <h3 class="panel-title">Attached files</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+              <div *ngFor="let file of attachedFiles;" class="attached_files_contents col-md-4">
+                <div class="attached-file-card ">
+                    <img src="{{file.data}}" alt="">
+                    <div>
+                        <h2>{{file.attached_file_name}}</h2>
+                        <h4>Added by: {{file.login_name}}</h4>
+                        <h4>Added on: {{file.added_on}}</h4>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 
 <div class="container">
+
+
 
 <section>
 	<div class="row">
 		<div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><span class="glyphicon glyphicon-file"></span> {{datasetName}}</h3>
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-file"></span> {{dataset.dataset_name}}</h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">
                         <div>
-                            <h3 class="panel-title"><span class="glyphicon glyphicon-info-sign"></span> General Information and Metdata</h3>
+                            <h3 class="panel-title"> General Information and Metdata</h3>
                             
                         </div>
                         <div class="container">
                             <div class="panel-info">              
-                                <div *ngFor="let metadataitem of metadata;" class="row">
+                                <div *ngFor="let metadataitem of metadata; let i = index" class="row">
                                     <div class="col-md-12 info-item">
-                                        <div class="">
+
                                             <div class="col-md-3">
                                                 <p>{{metadataitem.key}}:</p>
                                             </div>
-                                            <div class="col-md-8">
-                                                <p>{{metadataitem.value}}</p>
+                                            <div class="col-md-7">
+                                                <p id="metadataitem.value">{{metadataitem.value}}</p> 
+                                               <textarea class="readonly" id="metadataitem.value" type="text" placeholder="value" name="fname"> {{metadataitem.value}} </textarea> 
+                                                 <textarea
+                                                [(ngModel)]="text"
+                                                class="textarea-inline-control"  
+                                                cdkTextareaAutosize>
+                                                {metadataitem.value}}
+                                              </textarea> 
                                             </div>
-                                            <div class="col-md-1">
+                                       
+
+                                            <div *ngIf="i>2" (click)="EditMetadataItem(metadataitem.key)"  class="col-md-1">
+                                                <i id="icon" class="function-button-small material-icons">edit</i>
+                                            </div>
+                                            <div *ngIf="i>2"  class="col-md-1">
                                                 <i id="icon" class="function-button-small material-icons">delete</i>
                                             </div>
-                                        </div>
                                     </div>
                                     
                                     <div class="col-md-1">
@@ -41,12 +188,12 @@
                                 </div>
                                 <div id="add-new-item" class="row add-new-item" style="display: none;">
                                     <div class="col-md-12">
-                                        <div class="">
+                                       
                                             <div class="col-md-3">
-                                                <input type="text" id="key" placeholder="key" name="fname">
+                                                <input type="text" id="key" placeholder="key">
                                             </div>
                                             <div class="col-md-7">
-                                                <input type="text" id="value" placeholder="value" name="fname">
+                                                <textarea type="text" id="value" placeholder="value" name="fname"></textarea>
                                             </div>
                                             <div class="col-md-1">
                                                 <i id="icon" (click)="AddNewMetadataItem()" class="function-button-small material-icons">check_circle</i>
@@ -55,7 +202,6 @@
                                                 <i id="icon" (click)="CloseAddNewMetadataItemFrom()" class="function-button-small material-icons">remove_circle</i>
                                             </div>
 
-                                        </div>
                                     </div>
                                     
                                     <div class="col-md-1">
@@ -67,7 +213,6 @@
                                     <div  class="col-md-5">
 
                                     </div>
-                                    <!-- grey -->
                                     <a class="btn-block btn-style"  (click)="AddNewMetadataItemOpenForm()" role="button"><span class="glyphicon glyphicon-plus glyphsize green"></span> </a>
                                 </div>
                                 
@@ -76,12 +221,12 @@
 
                     </div>
                     <hr>
+
                     <div class="row">
                         <div >
                             <h3 class="panel-title"><span class="glyphicon glyphicon-info-sign"></span> Statistic analysis</h3>
                         </div>
                         <div class="col-md-12">
-                          <!-- dblue -->
                           <a id="average" class=" btn-dblue btn-lg" (click)="StaticAnalysisClicked($event)" role="button"> <span id="average">Average</span> </a>
                           <a id="max-val" class=" btn-dblue btn-lg" (click)="StaticAnalysisClicked($event)"  role="button"><span id="max-val" >Max value</span> </a>
                           <a id="min-val" class=" btn-dblue btn-lg" (click)="StaticAnalysisClicked($event)"  role="button"> <span id="min-val">Min value</span></a>
@@ -151,7 +296,21 @@
                
                     
                     </div>
-                    <hr>
+                   
+                    <div class="row">
+                        <div>
+                            <h3 class="panel-title"><span class="glyphicon glyphicon-info-sign"></span> Datasets activities</h3>
+                        </div>
+                        <div *ngIf="activities.length > 0" class="col-md-12 activities-list" >
+                            <ul *ngFor="let activity of activities;" >
+                                <li>On {{activity.created_on}}, user "{{activity.login_name}}" has {{activity.activity}}.  </li>
+                            </ul>
+                        </div>
+                        <div *ngIf="activities.length < 1" class="col-md-12 activities-list" >
+                            <h3>No activities</h3>
+                        </div>
+                    </div>
+                 
                     <div class="row">
                         <div>
                             <h3 class="panel-title"><span class="glyphicon glyphicon-info-sign"></span> Attached files</h3>
@@ -170,24 +329,9 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="row">
-                        <div>
-                            <h3 class="panel-title"><span class="glyphicon glyphicon-info-sign"></span> Datasets activities</h3>
-                        </div>
-                        <div *ngIf="activities.length > 0" class="col-md-12 activities-list" >
-                            <ul *ngFor="let activity of activities;" >
-                                <li>On {{activity.created_on}}, user "{{activity.login_name}}" has {{activity.activity}}.  </li>
-                            </ul>
-                        </div>
-                        <div *ngIf="activities.length < 1" class="col-md-12 activities-list" >
-                            <h3>No activities</h3>
-                        </div>
-                    </div>
-                   
-
                 </div>
             </div>
         </div>
     </div>
 </section>
-</div>
+</div>   -->

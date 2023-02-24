@@ -1,56 +1,105 @@
-<section class="cards" id="datatype">
-  <h2 class="title">Dataset type</h2>
-  <div class="content">
-      <div id="1d" class="card" (click)="oneDImageClicked()">
-          <div class="icon">
-              <i class="fas fa-chart-bar"></i>
-          </div>
-          <div class="info">
-              <h3>1D Images</h3>
-          </div>
-      </div>
-      <div id="2d" class="card" (click)="twoDImageClicked()">
-          <div class="icon">
-              <i class="fas fa-image"></i>
-          </div>
-          <div class="info">
-              <h3>2D Images</h3>
-          </div>
-      </div>
-      <div id="3d" class="card" (click)="threeDImageClicked()">
-          <div class="icon">
-              <i class="fas fa-images"></i>
-          </div>
-          <div class="info">
-              <h3>3D Images</h3>
-          </div>
-      </div>
-  </div>
-</section>
+<div class="container">
 
-<section id="data_structure" class="disabled">
-    <hr class="rounded">
-    <h2 class="title">Data structure details</h2>
-    <div class="form-group">
-      <label for="structure">Choose a structure *</label>
-      <!-- <select  name="structure" id="structure" class="form-control">
-        <option *ngFor="let structure of dataStructures;" value={{structure.structure_id}}>{{structure.structure_name}}</option>
-      </select> -->
+  <div class="toolbtn">
+    <button (click)="GoToDashboard()" class="main-btn"> Go to dashboard </button>
+    <button (click)="GoToProfile()" class="main-btn"> Go to Profile </button>
+  </div>
+
+  <section class="cards" id="datatype">
+    <h2 class="title" >Dataset type</h2>
+    <div class="content">
+      <div id="published" class="card" (click)="TypeClicked($event)">
+          <div id="published" class="icon">
+              <i id="published" class="fab fa-slideshare"></i>
+          </div>
+          <div id="published" class="info">
+              <h3 id="published">Published data</h3>
+          </div>
+      </div>
+      <div id="calibration" class="card" (click)="TypeClicked($event)">
+          <div id="calibration" class="icon">
+              <i id="calibration" class="fas fa-balance-scale"></i>
+          </div>
+          <div id="calibration" class="info">
+              <h3 id="calibration">Calibration data</h3>
+          </div>
+      </div>
     </div>
-    <button class="btn btn-rounded btn-lg" (click)="DataStructureDetailsIsReady()">Next</button>
   </section>
 
+  <section id="data_structure" class="disabled">
+    <h2 class="title">Data structure details  <span id="dginfo" class="info-btn fa fa-info" ></span></h2>
+    <div class="content">
+      <div id="Horizontal" class="card" (click)="StructureClicked($event)">
+          <div id="Horizontal" class="icon">
+              <i id="Horizontal" class="fas fa-grip-horizontal"></i>
+          </div>
+          <div id="Horizontal" class="info">
+              <h3 id="Horizontal">Horizontal correlation function</h3>
+          </div>
+      </div>
+      <div id="Vertical" class="card" (click)="StructureClicked($event)">
+          <div  id="Vertical"  class="icon">
+              <i  id="Vertical"  class="fas fa-grip-vertical"></i>
+          </div>
+          <div  id="Vertical"  class="info">
+              <h3  id="Vertical" >Vertical correlation function</h3>
+          </div>
+      </div>
+    </div>
+  </section>
 
-  <section id="details_section" class="disabled">
-    <hr class="rounded">
+  <section id="dataset_details_section" class="disabled">
     <h2 class="title">Dataset details</h2>
     <form id="details-form" class="formstyle" onsubmit="return false">
       <div class="form-group">
         <label for="">Dataset Name *</label>
-        <input type="text" class="form-control" id="data-name" required="required" pattern="[A-Za-z0-9]{1,20}" placeholder="dataset_name">
+        <input type="text" class="form-control" id="data-name" required="required" pattern="[A-Za-z0-9\s]{1,150}" placeholder="dataset name">
+        <h6>Dataset name can NOT contain special character and max is 150 character</h6>
+      </div>
+
+      <div class="form-group">
+        <label for="projects">Project *</label>
+        <select  name="projects" id="projects">
+            <option value="1">DAPHNE XPCS</option>
+            <option value="2">DAPHNE magnetism</option>
+          </select>
+        <!-- <select  name="projects" id="projects" class="form-control">
+          <option *ngFor="let project of projects;" value={{project.project_id}}>{{project.project_name}}</option>
+        </select> -->
+      </div>
+      <div>
+        <label for="visibility">visibility *</label>
+        <select  name="visibility" id="visibility">
+           <option value="1">Public</option>
+            <option value="2">Private</option>
+        </select>
+      </div>
+
+      <div style="text-align: center">
+        <button type="submit" class="btn btn-rounded btn-lg" (click)="NextClicked('experiment_details_section', 'dataset_details_section')"> Next</button>
+      </div>
+  
+    </form>
+  
+  </section>
+  
+
+  <section id="experiment_details_section" class="disabled">
+    <h2 class="title">Experiment details</h2>
+    <form id="details-form" class="formstyle" onsubmit="return false">
+      <div class="form-group">
+        <label for="">Sample name *</label>
+        <input type="text" class="form-control" id="sample-name" required="required" placeholder="sample name">
       </div>
       <div class="form-group">
         <label for="methods">Method *</label>
+        <select  name="methods" id="methods">
+            <option value="1">SAXS</option>
+            <option value="2">WAXS</option>
+            <option value="3">GISAX</option>
+            <option value="4">Other</option>
+          </select>
         <!-- <select  name="methods" id="methods" class="form-control">
           <option *ngFor="let method of methods;" value={{method.method_id}}>{{method.method_name}}</option>
            <option value="XPCS">XPCS</option>
@@ -58,27 +107,57 @@
         </select> -->
       </div>
       <div class="form-group">
-        <label for="projects">Project *</label>
+        <label for="systems">System *</label>
+        <select  name="systems" id="systems">
+            <option value="1">Soft matter</option>
+            <option value="2">Hard matter</option>
+            <option value="3">Other</option>
+          </select>
         <!-- <select  name="projects" id="projects" class="form-control">
           <option *ngFor="let project of projects;" value={{project.project_id}}>{{project.project_name}}</option>
         </select> -->
       </div>
-      <div>
-        <label for="visibility">visibility *</label>
-        <select  name="visibility" id="visibility" class="form-control">
-           <option value="1">Public</option>
-            <option value="2">Private</option>
-        </select>
+      <div class="form-group">
+        <label for="facilities">Light source facility *</label>
+        <select  name="facilities" id="facilities">
+            <option value="1">PETRA III- DESY</option>
+            <option value="2">ESRF</option>
+          </select>
+        <!-- <select  name="projects" id="projects" class="form-control">
+          <option *ngFor="let project of projects;" value={{project.project_id}}>{{project.project_name}}</option>
+        </select> -->
       </div>
 
       <div style="text-align: center">
-        <button type="submit" class="btn btn-rounded btn-lg" (click)="DataDetailsAreReady()"> Next</button>
+        <button type="submit" class="btn btn-rounded btn-lg" (click)="NextClicked('publication_details_section', 'experiment_details_section')"> Next</button>
       </div>
   
     </form>
   
   </section>
+
+
+  <section id="publication_details_section" class="disabled">
+    <h2 class="title">Publication details</h2>
+    <form id="details-form" class="formstyle" onsubmit="return false">
+      <div class="form-group">
+        <label for="">Publication DOI *</label>
+        <input type="text" class="form-control" id="publication-doi" required="required"  placeholder="DOI">
+      </div>
+
+      <div class="form-group">
+        <label for="">Publication Abstract *</label>
+        <textarea class="form-control" id="publication-abstract" required="required"  placeholder="Abstract"></textarea>
+      </div>
+
+      <div style="text-align: center">
+        <button type="submit" class="btn btn-rounded btn-lg" (click)="NextClicked('upload-section', 'publication_details_section')"> Next</button>
+      </div>
   
+    </form>
+  
+  </section>
+
 
 
 
@@ -96,3 +175,4 @@
     </div>
   </section>
   
+</div>

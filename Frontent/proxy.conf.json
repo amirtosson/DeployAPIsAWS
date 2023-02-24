@@ -1,0 +1,7 @@
+{
+  "/aws/test": {
+    "target": "http://52.59.110.241:8080",
+    "secure": false,
+    "changeOrigin": true
+  }  
+}
