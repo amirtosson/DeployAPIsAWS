@@ -1,1 +1,16 @@
-<p>electronic-lab-book works!</p>
+<div class="row ">
+    <div class="col-6 ql-snow ql-editor">
+        <quill-editor [modules]="modules" class="" (onEditorChanged)="EditorChanged($event)"></quill-editor>
+    </div>
+    <div class="col-6 ql-snow">
+        <div id="preview" class="bg-light ql-editor">
+            <!-- <textarea [innerHtml]="editorText"></textarea> -->
+        </div>
+    </div>
+</div>
+<button (click)="Save()"> save</button>
+<button (click)="Get()"> get</button>
+
+<!-- <div class="row ql-snow">
+
+</div> -->

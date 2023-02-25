@@ -68,6 +68,9 @@ export class SideBarComponent implements OnInit {
     else if (id === "home") {
       this.router.navigateByUrl(u["first_name"]+u["last_name"]+"/dashboard/home")
     }
+    else if (id === "exp") {
+      this.router.navigateByUrl(u["_id"]+"/exp/experimentslist")
+    }
     else{
       this.router.navigateByUrl(u["first_name"]+u["last_name"]+"/newdata")
     }

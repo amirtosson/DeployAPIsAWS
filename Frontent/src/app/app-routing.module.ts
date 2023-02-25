@@ -9,6 +9,8 @@ import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.com
 import { DashboardHomeComponent } from './user/user-dashboard/dashboard-child-pages/dashboard-home/dashboard-home/dashboard-home.component';
 import { DashboardDatasetsListComponent } from './user/user-dashboard/dashboard-child-pages/dashboard-datasets-list/dashboard-datasets-list.component';
 import { DatasetWorkingPageComponent } from "./datasets/dataset-working-page/dataset-working-page.component";
+import { ElectronicLabBookComponent } from './data-features/electronic-lab-book/electronic-lab-book.component';
+import { DashboardExperimentsListComponent } from './user/user-dashboard/dashboard-child-pages/dashboard-experiments-list/dashboard-experiments-list.component';
 
 
 const routes: Routes = [
@@ -38,6 +40,12 @@ const routes: Routes = [
   },
   {
     path: ':userid/:datasetdoi', component: DatasetWorkingPageComponent
+  },
+  {
+    path: ':userdoi/eln/:elndoi', component: ElectronicLabBookComponent
+  },
+  {
+    path: ':userdoi/exp/experimentslist', component: DashboardExperimentsListComponent
   },
 ];
 
