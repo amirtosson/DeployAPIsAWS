@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ELNItem } from "../../entities/elns/eln-item";
 import { ELNApis } from "../../server-communications/eln-apis";
 import { EditorChangeContent, EditorChangeSelection } from "ngx-quill";
 import * as QuillNamespace from 'quill';
@@ -11,8 +13,9 @@ Quill.register('modules/imageResize', ImageResize);
   styleUrls: ['./electronic-lab-book.component.css']
 })
 export class ElectronicLabBookComponent implements OnInit {
-  editorText = ""
-
+  inUseELN = new ELNItem();
+  public editorText = ""
+  editingMode = false
 
   modules = {
     toolbar: [
@@ -34,28 +37,33 @@ export class ElectronicLabBookComponent implements OnInit {
     };
 
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.inUseELN = JSON.parse(sessionStorage.getItem('in-use-eln')!)
+    //sessionStorage.removeItem('eln')
   }
 
-  EditorChanged(event: EditorChangeContent | EditorChangeSelection){
-    var prev = document.getElementById('preview') as HTMLDivElement;
-    prev.innerHTML = event['editor']['root']['innerHTML']
-    this.editorText = event['editor']['root']['innerHTML']
-    // this.editorText = event['editor']['root']['innerHTML']
-    //console.log(prev.innerHTML)
+  StartEdit(){
+    this.editingMode = true
   }
-
-  Save(){
-
-    ELNApis.SaveEln("47","Testnam","DOITEST", this.editorText)
+  SaveEdit(){
+    ELNApis.UpdateElnByDOI(this.inUseELN.eln_name,this.inUseELN.eln_doi,this.inUseELN.eln_data)
     .then(
       res=>{
-        console.log(res)
+        this.editingMode = false
       }
     )
   }
+  StartEditor(event: any) {
+    event.root.innerHTML = this.inUseELN.eln_data;
+   
+  }
 
-  Get(){}
+
+  EditorChanged(event: EditorChangeContent | EditorChangeSelection){
+    this.inUseELN.eln_data = event['editor']['root']['innerHTML']
+  }
+
+
 }

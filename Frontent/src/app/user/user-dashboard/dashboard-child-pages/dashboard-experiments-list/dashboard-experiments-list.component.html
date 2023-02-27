@@ -1,39 +1,31 @@
-<h2 class="title">
-    file.attached
-</h2>
-
+<div class="row col-12 toolbar">
+    <button class="function-button" (click)="CreatNewExpELN()">
+        <i  class="material-icons" >add</i>
+    </button>
+</div>
+<div class="row col-12 toolbar">
+    <div  class="inputContainer">
+        <label for="" class="label"> Experiment name </label>
+        <input type="text" class="input" placeholder="Experiment name">
+        
+    </div>  
+</div>
 <div class="exp-list-page">
     <div class="row">
-        <div class="col-12 exp-list-page">
-            <div  class="exp-contents">
+        <div   class="col-12 exp-list-page">
+            <div *ngFor='let eln of ELNs;' class="exp-contents" (click)="OpenExpELN(eln.eln_doi)">
                 <h2 class="title">
-                    file.attached
+                    {{eln.eln_name}}
                 </h2>
                 <div class="ql-snow">
-                    <div id="preview" class="bg-light ql-editor exp-card">
+                    <div id="{{eln.eln_doi}}" [innerHtml]="eln.eln_data" class="bg-light ql-editor exp-card">
                         <!-- <textarea [innerHtml]="editorText"></textarea> -->
                     </div>
                 </div>
-            </div>
-            <div  class="exp-contents">
-                <div class="exp-card">
-                    
-                    <img src="" alt="">
-                    <div>
-                        <h2>file.attached_file_name</h2>
-                        <h4>Added by: ile.login_name</h4>
-                        <h4>Added on: file.added_on</h4>
-                    </div>
-                </div>
-            </div>
-            <div  class="exp-contents">
-                <div class="exp-card ">
-                    <img src="" alt="">
-                    <div>
-                        <h2>file.attached_file_namefsdfds</h2>
-                        <h4>Added by: ile.login_name</h4>
-                        <h4>Added on: file.added_on</h4>
-                    </div>
+                <div class="info">
+                    <p>Added by: <span> {{eln.first_name}} {{eln.last_name}}</span> </p>
+                    <p>Created on: <span> {{eln.eln_added_on}}</span> </p>
+                    <p>Last Modified: <span> {{eln.eln_last_modified_on}}</span> </p>
                 </div>
             </div>
         </div>

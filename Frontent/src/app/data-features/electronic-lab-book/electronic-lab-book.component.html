@@ -1,15 +1,22 @@
-<div class="row ">
-    <div class="col-6 ql-snow ql-editor">
-        <quill-editor [modules]="modules" class="" (onEditorChanged)="EditorChanged($event)"></quill-editor>
+<div>
+    <h3 class="row">
+        {{inUseELN.eln_name}}
+    </h3>
+    <div class="row">
+        <button class="main-btn" (click)="StartEdit()"> Edit</button>
+        <button class="main-btn" (click)="SaveEdit()"> Save Edit</button>
     </div>
-    <div class="col-6 ql-snow">
-        <div id="preview" class="bg-light ql-editor">
+    <div *ngIf="editingMode" class="row">
+        <quill-editor class=" col-12 ql-snow ql-editor" id="quill" [modules]="modules" (onEditorCreated)="StartEditor($event)" (onEditorChanged)="EditorChanged($event)"></quill-editor>
+    </div>
+    <div *ngIf="!editingMode" class="col-12 ql-snow">
+        <div id="preview" class="bg-light ql-editor" [innerHtml]="inUseELN.eln_data">
+            
             <!-- <textarea [innerHtml]="editorText"></textarea> -->
         </div>
     </div>
 </div>
-<button (click)="Save()"> save</button>
-<button (click)="Get()"> get</button>
+
 
 <!-- <div class="row ql-snow">
 

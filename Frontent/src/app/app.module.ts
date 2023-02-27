@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { QuillModule } from 'ngx-quill'
 import { NgxChartsModule }from '@swimlane/ngx-charts';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { FlyingBtnComponent } from './ui-components/flying-btn/flying-btn.component';
 import { AddNewDatasetComponent } from "./datasets/add-new-dataset/add-new-dataset.component";
@@ -49,6 +50,7 @@ import { DashboardExperimentsListComponent } from './user/user-dashboard/dashboa
     AppRoutingModule,
     QuillModule.forRoot(), 
     BrowserAnimationsModule,
+    MatToolbarModule,
     NgxChartsModule
   ],
   providers: [],

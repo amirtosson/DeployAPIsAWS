@@ -1,9 +1,9 @@
 export class ELNApis{
-    static async SaveEln(eln_owner_id: string, eln_name: string, eln_doi:string, eln_data:any) 
+    static async UpdateElnByDOI(eln_name: string, eln_doi:string, eln_data:any) 
     {
         const response = await fetch
         (
-            'http://localhost:3002/savelabbook',  
+            'http://localhost:3002/updatelabbook',  
         {
             method:'POST',
             headers: {
@@ -11,7 +11,6 @@ export class ELNApis{
                 'Access-Control-Allow-Origin': '*'
             }, 
             body: JSON.stringify({
-                'eln_owner_id':eln_owner_id, 
                 'eln_name':eln_name, 
                 'eln_doi':eln_doi, 
                 'eln_data':eln_data })                  
@@ -22,18 +21,18 @@ export class ELNApis{
         return res;
     }
 
-  static async GetEln(eln_doi: string) 
+  static async GetElnsList(eln_owner_id: string) 
   {
     const response = await fetch
     (
         //18.197.145.132
-      'http://localhost:3002/getlabbook', 
+      'http://localhost:3002/getlabbooklist', 
       {
         method:'GET',
         headers: {
             'Content-Type':'application/json', 
             'Access-Control-Allow-Origin': '*',
-            'eln_doi':eln_doi
+            'eln_owner_id':eln_owner_id
           }, 
       }
     );
