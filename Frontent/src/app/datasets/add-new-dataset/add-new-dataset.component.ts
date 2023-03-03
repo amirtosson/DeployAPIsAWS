@@ -165,6 +165,8 @@ export class AddNewDatasetComponent implements OnInit {
     this.dataset.dataset_facility_id =  fac.value
 
     // publication details section
+    var pubTitle = document.getElementById("publication-title") as HTMLInputElement;
+    this.dataset.publication_title = pubTitle.value;
     var pubDOI = document.getElementById("publication-doi") as HTMLInputElement;
     this.dataset.publication_doi = pubDOI.value;
     var pubAbs = document.getElementById("publication-abstract") as HTMLTextAreaElement;
@@ -177,7 +179,6 @@ export class AddNewDatasetComponent implements OnInit {
     .subscribe(res => {
       
       if (res.pid && res.doi && res.file_name) {
-        console.log(res)
         this.dataset.dataset_pid =  res.pid;
         this.dataset.dataset_doi = res.doi;
         this.dataset.dataset_filename = res.file_name; 

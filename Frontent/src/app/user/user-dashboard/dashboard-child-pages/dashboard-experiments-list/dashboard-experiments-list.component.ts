@@ -21,7 +21,54 @@ export class DashboardExperimentsListComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.UpdateELNList()
+    
+  }
 
+  OpenExpELN(eln_doi:string){
+    let inUseEln = this.ELNs.find(i => i.eln_doi === eln_doi);
+    var e = document.getElementById(eln_doi) as HTMLDivElement;
+    sessionStorage.setItem('in-use-eln', JSON.stringify(inUseEln))
+    this.router.navigateByUrl(sessionStorage.getItem("user_id")!+"/eln/" + eln_doi)
+  }
+
+  CreatNewExpELN(){
+    this.ToggleFlyingForm(true)
+   
+  }
+
+  ToggleFlyingForm(disable = false){
+    var f = document.getElementById("dis-div") as HTMLDivElement;
+    f.style.visibility=  disable?"visible":"hidden"
+    f = document.getElementById("flying-form") as HTMLDivElement;
+    disable?f.classList.add("flying-form-opened"):f.classList.remove("flying-form-opened")
+  }
+
+  CancelCreating(){
+    this.ToggleFlyingForm(false)
+  }
+
+  ConfirmCreating(){
+    var elnName = document.getElementById("eln-new-name") as HTMLInputElement;
+    var f = document.getElementById("editing-directly") as HTMLInputElement;
+    if (!elnName.validity.valid) {
+      return
+    }
+    ELNApis.CreateNewELN(sessionStorage.getItem("user_id")!, elnName.value)
+    .then(
+      res=>{
+        this.UpdateELNList()
+        this.ToggleFlyingForm(false)
+        if (f.checked) {
+            this.OpenExpELN(res.eln_doi)
+        }
+      }
+    )
+
+  }
+
+  UpdateELNList(){
+    this.ELNs = []
     ELNApis.GetElnsList(sessionStorage.getItem("user_id")!)
     .then(
       res=>{
@@ -45,15 +92,5 @@ export class DashboardExperimentsListComponent implements OnInit {
       }
     )
   }
-
-  OpenExpELN(eln_doi:string){
-    let inUseEln = this.ELNs.find(i => i.eln_doi === eln_doi);
-    var e = document.getElementById(eln_doi) as HTMLDivElement;
-    sessionStorage.setItem('in-use-eln', JSON.stringify(inUseEln))
-    this.router.navigateByUrl(sessionStorage.getItem("user_id")!+"/eln/" + eln_doi)
-  }
-
-  CreatNewExpELN(){}
-
 }
 

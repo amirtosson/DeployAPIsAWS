@@ -93,6 +93,10 @@ export class DatasetWorkingPageComponent implements OnInit {
         this.dataset.publication_doi = value as string;
         continue;
       }
+      if (key=="publication_title") {
+        this.dataset.publication_title= value as string;
+        continue;
+      }
       var mD = new MetadataItem;
       mD.key = key.replace("_", " ");
       mD.key = mD.key.charAt(0).toUpperCase() + mD.key.slice(1);

@@ -21,6 +21,7 @@ export class Dataset{
     exp_system_name = "";
     dataset_visibility_id = "";
     publication_doi = "";
+    publication_title = "";
     abstract = "";
     first_name="";
     last_name="";

@@ -13,6 +13,8 @@
     animation: 1s ease-out 0s 1 slideInLeft;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    
 }
 
 
@@ -20,18 +22,18 @@
 .exp-card{
     background-color: #fff;
 
-    min-height: 14em;
-    aspect-ratio: 10 / 9;
+    height: 16em;
+
     /* height: calc(width + width); */
     overflow-y:scroll;
     border-radius: 10px;
 
-    padding: px;
+    padding: 5px;
    
 }
 
 .exp-contents:hover{
-    transform: scale(2.2) perspective(100px);
+    transform: scale(1.8) perspective(100px);
     z-index: 999;
     cursor: pointer;
 }
@@ -46,9 +48,9 @@
     background-color: rgb(255, 255, 255);
     margin: 20px;
     transition: 0.7s ease;
-
 }
 .title{
+    word-wrap: break-word;
     display:block;    
     text-align: center;
     font-size: large;
@@ -58,4 +60,56 @@
     margin-top: 5px;
     padding: 5px;
     font-size: small;
+}
+
+.flying-form{
+    width: auto;
+    background-color: white;
+    min-height: 200px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(0.1);
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+    text-align: center;
+    box-shadow: 4px 4px 4px 4px var(--main-color-low);
+
+  }
+
+  .flying-form-opened{
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%,-50%) scale(1);
+    opacity: 1;
+    z-index: 100000;
+  }
+
+.flying-form i{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display:inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: -50px;
+    background-color: var(--main-color-low);
+    box-shadow: 0 4px 4px var(--main-color);
+    z-index: 1000000;
+}
+
+.form-input{
+    padding: 10px;
+    margin-top: 20px;
+}
+.form-input input{
+    width: 200px;
+    margin-left: 5px;
+}
+.btns{
+    margin-top: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
 }

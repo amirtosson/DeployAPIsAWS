@@ -3,7 +3,7 @@ export class ELNApis{
     {
         const response = await fetch
         (
-            'http://localhost:3002/updatelabbook',  
+            'http://18.197.145.132:3002/updatelabbook',  
         {
             method:'POST',
             headers: {
@@ -26,14 +26,35 @@ export class ELNApis{
     const response = await fetch
     (
         //18.197.145.132
-      'http://localhost:3002/getlabbooklist', 
+      'http://18.197.145.132:3002/getlabbooklist', 
       {
         method:'GET',
         headers: {
             'Content-Type':'application/json', 
             'Access-Control-Allow-Origin': '*',
             'eln_owner_id':eln_owner_id
+          } 
+      }
+    );
+    const res = await response.json();
+
+    return res;
+  }
+
+  static async CreateNewELN(eln_owner_id: string, eln_name:string) 
+  {
+    const response = await fetch
+    (
+        //18.197.145.132
+      'http://18.197.145.132:3002/createlabbook', 
+      {
+        method:'POST',
+        headers: {
+            'Content-Type':'application/json', 
+            'Access-Control-Allow-Origin': '*',
+            'eln_owner_id':eln_owner_id
           }, 
+          body: JSON.stringify({'eln_name':eln_name })     
       }
     );
     const res = await response.json();

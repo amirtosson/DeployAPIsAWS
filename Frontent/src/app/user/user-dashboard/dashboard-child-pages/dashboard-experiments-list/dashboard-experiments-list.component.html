@@ -1,34 +1,48 @@
 <div class="row col-12 toolbar">
-    <button class="function-button" (click)="CreatNewExpELN()">
-        <i  class="material-icons" >add</i>
+    <button class="main-btn" (click)="CreatNewExpELN()">
+       Add new ELN 
     </button>
 </div>
-<div class="row col-12 toolbar">
-    <div  class="inputContainer">
-        <label for="" class="label"> Experiment name </label>
-        <input type="text" class="input" placeholder="Experiment name">
-        
-    </div>  
-</div>
+
 <div class="exp-list-page">
-    <div class="row">
-        <div   class="col-12 exp-list-page">
-            <div *ngFor='let eln of ELNs;' class="exp-contents" (click)="OpenExpELN(eln.eln_doi)">
-                <h2 class="title">
-                    {{eln.eln_name}}
-                </h2>
-                <div class="ql-snow">
-                    <div id="{{eln.eln_doi}}" [innerHtml]="eln.eln_data" class="bg-light ql-editor exp-card">
-                        <!-- <textarea [innerHtml]="editorText"></textarea> -->
-                    </div>
-                </div>
-                <div class="info">
-                    <p>Added by: <span> {{eln.first_name}} {{eln.last_name}}</span> </p>
-                    <p>Created on: <span> {{eln.eln_added_on}}</span> </p>
-                    <p>Last Modified: <span> {{eln.eln_last_modified_on}}</span> </p>
-                </div>
+    <div *ngFor='let eln of ELNs;' class="exp-contents" (click)="OpenExpELN(eln.eln_doi)">
+        <h2 class="title">
+            {{eln.eln_name}}
+        </h2>
+        <div class="ql-snow">
+            <div id="{{eln.eln_doi}}" [innerHtml]="eln.eln_data" class="bg-light ql-editor exp-card">
+                <!-- <textarea [innerHtml]="editorText"></textarea> -->
             </div>
+        </div>
+        <div class="info">
+            <p>Added by: <span> {{eln.first_name}} {{eln.last_name}}</span> </p>
+            <p>Created on: <span> {{eln.eln_added_on}}</span> </p>
+            <p>Last Modified: <span> {{eln.eln_last_modified_on}}</span> </p>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="flying-form" id="flying-form">   
+    <i class='form-icon far fa-file' style='font-size:60px'></i>
+    <div class="form-input" >
+        <div>
+            <label>ELN Name:</label>
+            <input type="text" class="input" id="eln-new-name" placeholder="Experiment name" required="required">
+        </div>
+        <div>
+            <label>Start editing directly</label>
+            <input type="checkbox" id="editing-directly" placeholder="Experiment name">
+        </div>
+
+
+        <div class="btns">
+            <button type="submit" (click)="ConfirmCreating()" class="main-btn" >Create</button>
+            <button type="submit" (click)="CancelCreating()" class="main-btn" >Cancel</button>
         </div>
     </div>
 </div>
+
 <!-- *ngFor="let file of attachedFiles;" -->

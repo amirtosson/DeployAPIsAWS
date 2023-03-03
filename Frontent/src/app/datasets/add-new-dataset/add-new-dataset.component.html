@@ -35,7 +35,7 @@
               <i id="Horizontal" class="fas fa-grip-horizontal"></i>
           </div>
           <div id="Horizontal" class="info">
-              <h3 id="Horizontal">Horizontal correlation function</h3>
+              <h3 id="Horizontal">Horizontal data</h3>
           </div>
       </div>
       <div id="Vertical" class="card" (click)="StructureClicked($event)">
@@ -43,7 +43,7 @@
               <i  id="Vertical"  class="fas fa-grip-vertical"></i>
           </div>
           <div  id="Vertical"  class="info">
-              <h3  id="Vertical" >Vertical correlation function</h3>
+              <h3  id="Vertical" >Vertical data</h3>
           </div>
       </div>
     </div>
@@ -122,6 +122,12 @@
         <select  name="facilities" id="facilities">
             <option value="1">PETRA III- DESY</option>
             <option value="2">ESRF</option>
+            <option value="3">APS</option>
+            <option value="4">NSLS II</option>
+            <option value="5">LNLS- Brazil</option>
+            <option value="6">Eu-XFEL</option>
+            <option value="7">LCLS</option>
+            <option value="8">Other</option>
           </select>
         <!-- <select  name="projects" id="projects" class="form-control">
           <option *ngFor="let project of projects;" value={{project.project_id}}>{{project.project_name}}</option>
@@ -140,6 +146,10 @@
   <section id="publication_details_section" class="disabled">
     <h2 class="title">Publication details</h2>
     <form id="details-form" class="formstyle" onsubmit="return false">
+      <div class="form-group">
+        <label for="">Publication title *</label>
+        <input type="text" class="form-control" id="publication-title" required="required"  placeholder="title">
+      </div>
       <div class="form-group">
         <label for="">Publication DOI *</label>
         <input type="text" class="form-control" id="publication-doi" required="required"  placeholder="DOI">
