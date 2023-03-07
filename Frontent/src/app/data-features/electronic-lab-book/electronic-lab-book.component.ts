@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import jsPDF from 'jspdf';
+import { SpinnerServiceService } from "../../services/spinner-service.service";
+
+
 import { ELNItem } from "../../entities/elns/eln-item";
 import { ELNApis } from "../../server-communications/eln-apis";
 import { EditorChangeContent, EditorChangeSelection } from "ngx-quill";
@@ -16,8 +20,10 @@ export class ElectronicLabBookComponent implements OnInit {
   inUseELN = new ELNItem();
   public editorText = ""
   editingMode = false
+  titleEditingMode = false
 
-  modules = {
+  modules = 
+  {
     toolbar: [
     ['bold', 'italic', 'underline', 'strike'], // toggled buttons
     [{ 'header': 1 }, { 'header': 2 }], // custom button values
@@ -34,24 +40,54 @@ export class ElectronicLabBookComponent implements OnInit {
     ['link', 'image'], // link and image, video
     ],
     imageResize: true // for image resize
-    };
+  };
 
+  public previewImg = ""
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private spinnerService:SpinnerServiceService) { }
 
   ngOnInit(): void {
     this.inUseELN = JSON.parse(sessionStorage.getItem('in-use-eln')!)
+    this.GeneratePreview()
     //sessionStorage.removeItem('eln')
+  }
+
+  GeneratePreview(){
+    var previewEle = document.getElementById('preview') as HTMLDivElement;
+    previewEle.innerHTML = this.inUseELN.eln_data
+  }
+
+  StartTitleEditing(start:boolean){
+    this.titleEditingMode = start
+  }
+
+  UpdateELNName(){
+    var newTitleEle = document.getElementById('new-title') as HTMLInputElement;
+    console.log(newTitleEle.value)
+    ELNApis.UpdateElnTitleByDOI(newTitleEle.value,this.inUseELN.eln_doi)
+    .then(
+      res=>{
+        this.inUseELN.eln_name = newTitleEle.value 
+        this.StartTitleEditing(false)
+      }
+     
+    )
   }
 
   StartEdit(){
     this.editingMode = true
+    var previewEle = document.getElementById('preview') as HTMLDivElement;
+    previewEle.style.display = "none"
+
   }
   SaveEdit(){
     ELNApis.UpdateElnByDOI(this.inUseELN.eln_name,this.inUseELN.eln_doi,this.inUseELN.eln_data)
     .then(
       res=>{
         this.editingMode = false
+        var previewEle = document.getElementById('preview') as HTMLDivElement;
+        previewEle.style.display = "block"
+        this.GeneratePreview()
       }
     )
   }
@@ -64,6 +100,31 @@ export class ElectronicLabBookComponent implements OnInit {
   EditorChanged(event: EditorChangeContent | EditorChangeSelection){
     this.inUseELN.eln_data = event['editor']['root']['innerHTML']
   }
+  
+  SaveAsPdf(){
+    const doc = new jsPDF();
+    const name = this.inUseELN.eln_name
+    this.spinnerService.setVisibility(true)
 
+   doc.html(this.inUseELN.eln_data,{
+      callback:function(doc) {
+          // Save the PDF
+          doc.save(name +'.pdf');
+      },
+      x: 15,
+      y: 15,
+      width: 170, //target width in the PDF document
+      windowWidth: 500 //window width in CSS pixels
+  })
+  .then(()=>{
+    this.spinnerService.setVisibility(false)
+
+  }
+  
+  )
+  ;
+   
+   // doc.save('tableToPdf.pdf');
+  }
 
 }

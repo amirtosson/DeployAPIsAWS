@@ -21,6 +21,27 @@ export class ELNApis{
         return res;
     }
 
+    static async UpdateElnTitleByDOI(eln_name: string, eln_doi:string) 
+    {
+        const response = await fetch
+        (
+            'http://18.197.145.132:3002/updatelabbooktitle',  
+        {
+            method:'POST',
+            headers: {
+                'Content-Type':'application/json', 
+                'Access-Control-Allow-Origin': '*'
+            }, 
+            body: JSON.stringify({
+                'eln_name':eln_name, 
+                'eln_doi':eln_doi })                  
+        }
+        );
+        const res = await response.json();
+
+        return res;
+    }
+
   static async GetElnsList(eln_owner_id: string) 
   {
     const response = await fetch

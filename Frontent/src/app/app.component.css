@@ -38,7 +38,7 @@
   height: 100%;
   z-index: 1000;
   background-color: white;
-  position: absolute;
+  position: fixed;
   top:0;
   left:0;
   visibility:hidden;

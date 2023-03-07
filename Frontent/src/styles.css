@@ -6,6 +6,8 @@
     --secondary-color: #f0f0f0;
     --shadow-color: #c5d3e7;
     --hover-color-gray: #dbd8d8;
+    --ok-green: #29be60;
+    --cancel-red: #c0303c;
 }
 
 .main-btn:hover {

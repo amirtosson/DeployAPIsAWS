@@ -1,19 +1,37 @@
 <div>
-    <h3 class="row">
-        {{inUseELN.eln_name}}
-    </h3>
-    <div class="row">
-        <button class="main-btn" (click)="StartEdit()"> Edit</button>
-        <button class="main-btn" (click)="SaveEdit()"> Save Edit</button>
+    <div class="row title-row">
+        <div *ngIf="!titleEditingMode" class="title">
+            {{inUseELN.eln_name}}
+        </div>
+        
+        <div *ngIf="!titleEditingMode" class="edit-title" (click)="StartTitleEditing(true)">
+            <i class="fas fa-pen">
+                <span>Edit name</span>
+            </i>
+        </div>
+        <input *ngIf="titleEditingMode" type="text" id="new-title" value="{{inUseELN.eln_name}}">
+        <div *ngIf="titleEditingMode" class="edit-btns">
+            <i class="fas fa-check-circle" (click)="UpdateELNName()"></i>
+            <i class="fas fa-times-circle" (click)="StartTitleEditing(false)"></i>
+        </div>
+    </div>
+
+    <div class="row btns">
+        <i *ngIf="!editingMode" (click)="StartEdit()" class="fas fa-edit header-item">
+            <div>Edit</div>
+        </i>
+        <i *ngIf="!editingMode" (click)="SaveAsPdf()" class="fas fa-file-download header-item">
+            <div>Save pdf</div>
+        </i>
+        <i *ngIf="editingMode" (click)="SaveEdit()" class="fas fa-save header-item">
+            <div>Save</div>
+        </i>
     </div>
     <div *ngIf="editingMode" class="row">
         <quill-editor class=" col-12 ql-snow ql-editor" id="quill" [modules]="modules" (onEditorCreated)="StartEditor($event)" (onEditorChanged)="EditorChanged($event)"></quill-editor>
     </div>
-    <div *ngIf="!editingMode" class="col-12 ql-snow">
-        <div id="preview" class="bg-light ql-editor" [innerHtml]="inUseELN.eln_data">
-            
-            <!-- <textarea [innerHtml]="editorText"></textarea> -->
-        </div>
+    <div id="preview" class=" col-12 bg-light ql-snow ql-editor">
+
     </div>
 </div>
 

@@ -23,6 +23,7 @@ import { DatasetWorkingPageComponent } from "./datasets/dataset-working-page/dat
 import { ElectronicLabBookComponent } from './data-features/electronic-lab-book/electronic-lab-book.component';
 import { AuxiliaryFilesComponent } from './data-features/auxiliary-files/auxiliary-files.component';
 import { DashboardExperimentsListComponent } from './user/user-dashboard/dashboard-child-pages/dashboard-experiments-list/dashboard-experiments-list.component';
+import { SpinnerComponent } from './ui-components/spinner/spinner.component';
 
 
 
@@ -42,7 +43,8 @@ import { DashboardExperimentsListComponent } from './user/user-dashboard/dashboa
     DatasetWorkingPageComponent,
     ElectronicLabBookComponent,
     AuxiliaryFilesComponent,
-    DashboardExperimentsListComponent
+    DashboardExperimentsListComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
