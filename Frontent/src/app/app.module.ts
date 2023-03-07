@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { QuillModule } from 'ngx-quill'
 import { NgxChartsModule }from '@swimlane/ngx-charts';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { FormsModule } from '@angular/forms';
+
 
 import { FlyingBtnComponent } from './ui-components/flying-btn/flying-btn.component';
 import { AddNewDatasetComponent } from "./datasets/add-new-dataset/add-new-dataset.component";
@@ -16,6 +18,7 @@ import { UserprofileComponent } from './user/userprofile/userprofile.component';
 import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.component';
 import { SideBarComponent } from './ui-components/side-bar/side-bar.component';
 import { DashboardHomeComponent } from './user/user-dashboard/dashboard-child-pages/dashboard-home/dashboard-home/dashboard-home.component';
+import { SearchPipe } from "./pipes/search-eln.pipe";
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardDatasetsListComponent } from './user/user-dashboard/dashboard-child-pages/dashboard-datasets-list/dashboard-datasets-list.component';
@@ -44,7 +47,8 @@ import { SpinnerComponent } from './ui-components/spinner/spinner.component';
     ElectronicLabBookComponent,
     AuxiliaryFilesComponent,
     DashboardExperimentsListComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,8 @@ import { SpinnerComponent } from './ui-components/spinner/spinner.component';
     QuillModule.forRoot(), 
     BrowserAnimationsModule,
     MatToolbarModule,
-    NgxChartsModule
+    NgxChartsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

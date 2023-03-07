@@ -1,17 +1,23 @@
-<div class="row col-12 toolbar">
-    <button class="main-btn" (click)="CreatNewExpELN()">
-       Add new ELN 
-    </button>
+
+<div class="btns">
+    <i (click)="CreatNewExpELN()"class="fas fa-plus	header-item">
+        <div>Add new ELN </div>
+    </i>
+    <div class="search-box">
+        <i class="fa fa-search"></i>
+        <input [(ngModel)]="searchText" type="text" placeholder="Search ELN">
+        
+    </div>
 </div>
 
+
 <div class="exp-list-page">
-    <div *ngFor='let eln of ELNs;' class="exp-contents" (click)="OpenExpELN(eln.eln_doi)">
+    <div *ngFor="let eln of ELNs | filter:searchText" class="exp-contents" (click)="OpenExpELN(eln.eln_doi)">
         <h2 class="title">
             {{eln.eln_name}}
         </h2>
         <div class="ql-snow">
             <div id="{{eln.eln_doi}}" [innerHtml]="eln.eln_data" class="bg-light ql-editor exp-card">
-                <!-- <textarea [innerHtml]="editorText"></textarea> -->
             </div>
         </div>
         <div class="info">

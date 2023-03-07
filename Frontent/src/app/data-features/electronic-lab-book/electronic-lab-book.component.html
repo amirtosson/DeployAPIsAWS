@@ -4,7 +4,7 @@
             {{inUseELN.eln_name}}
         </div>
         
-        <div *ngIf="!titleEditingMode" class="edit-title" (click)="StartTitleEditing(true)">
+        <div *ngIf="!titleEditingMode && !editingMode" class="edit-title" (click)="StartTitleEditing(true)">
             <i class="fas fa-pen">
                 <span>Edit name</span>
             </i>

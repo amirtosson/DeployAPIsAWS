@@ -3,13 +3,6 @@ import { ELNApis } from "../../../../server-communications/eln-apis";
 import { ELNItem } from "../../../../entities/elns/eln-item";
 import { Router, RouterLink } from '@angular/router';
 
-
-
-export interface DialogData {
-  animal: string;
-  name: string;
-}
-
 @Component({
   selector: 'app-dashboard-experiments-list',
   templateUrl: './dashboard-experiments-list.component.html',
@@ -17,13 +10,17 @@ export interface DialogData {
 })
 export class DashboardExperimentsListComponent implements OnInit {
 
+  searchText: string = '';
   ELNs: ELNItem[] = []
   constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.UpdateELNList()
+    this.searchText = ''
     
   }
+
+
 
   OpenExpELN(eln_doi:string){
     let inUseEln = this.ELNs.find(i => i.eln_doi === eln_doi);

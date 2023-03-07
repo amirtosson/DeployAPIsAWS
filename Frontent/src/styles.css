@@ -87,3 +87,27 @@
   .info-btn:hover{
     cursor: pointer;
   }
+
+
+  .search-box{
+    display: flex;
+    flex-direction: row;
+}
+.search-box input{
+    height: 40px;
+    font-size: larger;
+    width: auto;
+    padding-left: 10px;
+}
+
+.search-box i{
+    width: 30px;
+    height: 40px;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    font-size: larger;
+    border: 1px solid black;
+    background-color: var(--secondary-color);
+}

@@ -63,7 +63,6 @@ export class ElectronicLabBookComponent implements OnInit {
 
   UpdateELNName(){
     var newTitleEle = document.getElementById('new-title') as HTMLInputElement;
-    console.log(newTitleEle.value)
     ELNApis.UpdateElnTitleByDOI(newTitleEle.value,this.inUseELN.eln_doi)
     .then(
       res=>{
@@ -114,7 +113,7 @@ export class ElectronicLabBookComponent implements OnInit {
       x: 15,
       y: 15,
       width: 170, //target width in the PDF document
-      windowWidth: 500 //window width in CSS pixels
+      windowWidth: 900 //window width in CSS pixels
   })
   .then(()=>{
     this.spinnerService.setVisibility(false)
