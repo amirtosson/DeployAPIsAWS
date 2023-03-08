@@ -32,19 +32,23 @@
 <div class="disable-div" id="dis-div"></div>
 <body>
 
-<div class="row" >
-  <img width="100%" height="100px" alt="Daphne banner" src="../assets/resources/images/DaphneBanner.png"/>
-</div>
-<app-spinner></app-spinner>
-<div class="row" >
-  <app-side-bar class="col-2"></app-side-bar>
+  <div class="" >
+  </div>
+  <app-spinner></app-spinner>
+  <!-- <app-side-bar></app-side-bar> -->
 
-
-    <div class="col-9 content" role="main">
-      <router-outlet></router-outlet>
-
+  <div class="content">
+    <div class="side">
+      <app-side-bar></app-side-bar>
     </div>
+    <div class="main-content" >
+      <img class="banner" alt="Daphne banner" src="../assets/resources/images/DaphneBanner.png"/>
+      <div class="routers">
+        <router-outlet></router-outlet>
+      </div>
     </div>
+  </div>
+
 </body>
 
   <!-- Footer -->

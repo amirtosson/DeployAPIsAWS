@@ -46,7 +46,7 @@ export class DashboardHomeComponent implements OnInit {
         ]
       },
       options: {
-        aspectRatio:2.5
+        aspectRatio:1.0
       }
       
     });

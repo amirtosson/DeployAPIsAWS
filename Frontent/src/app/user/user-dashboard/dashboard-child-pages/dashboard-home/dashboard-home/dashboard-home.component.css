@@ -17,6 +17,8 @@
   } */
 
 .content-area{
-  width: auto;
+  width: 100%;
+  background-color: black;
+  height: 100%;
 }
 
