@@ -6,6 +6,7 @@ import { SpinnerServiceService } from "../../services/spinner-service.service";
 
 import { ELNItem } from "../../entities/elns/eln-item";
 import { ELNApis } from "../../server-communications/eln-apis";
+import { SidebarService } from "../../services/sidebar-service.service";
 import { EditorChangeContent, EditorChangeSelection } from "ngx-quill";
 import * as QuillNamespace from 'quill';
 let Quill: any = QuillNamespace;
@@ -44,9 +45,12 @@ export class ElectronicLabBookComponent implements OnInit {
 
   public previewImg = ""
 
-  constructor(private router: Router, private spinnerService:SpinnerServiceService) { }
+  constructor(private router: Router, 
+              private spinnerService:SpinnerServiceService,
+              private sB: SidebarService) { }
 
   ngOnInit(): void {
+    this.sB.setVisibility(false)
     this.inUseELN = JSON.parse(sessionStorage.getItem('in-use-eln')!)
     this.GeneratePreview()
     //sessionStorage.removeItem('eln')
@@ -124,6 +128,11 @@ export class ElectronicLabBookComponent implements OnInit {
   ;
    
    // doc.save('tableToPdf.pdf');
+  }
+
+  OnGoToDashboard(){
+    var u = JSON.parse(sessionStorage.getItem("userData")!) 
+    this.router.navigateByUrl(u["first_name"]+u["last_name"]+"/dashboard/home")
   }
 
 }

@@ -228,7 +228,7 @@ export class AddNewDatasetComponent implements OnInit {
 
   GoToDashboard(){
     var u = JSON.parse(sessionStorage.getItem("userData")!) 
-    this.router.navigateByUrl(u["first_name"]+u["last_name"]+"/dashboard")
+    this.router.navigateByUrl(u["first_name"]+u["last_name"]+"/dashboard/home")
   }
 
   GoToProfile(){

@@ -24,7 +24,6 @@ export class DashboardExperimentsListComponent implements OnInit {
 
   OpenExpELN(eln_doi:string){
     let inUseEln = this.ELNs.find(i => i.eln_doi === eln_doi);
-    var e = document.getElementById(eln_doi) as HTMLDivElement;
     sessionStorage.setItem('in-use-eln', JSON.stringify(inUseEln))
     this.router.navigateByUrl(sessionStorage.getItem("user_id")!+"/eln/" + eln_doi)
   }

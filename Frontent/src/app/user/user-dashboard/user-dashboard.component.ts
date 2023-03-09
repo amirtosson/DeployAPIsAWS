@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SidebarService } from "../../services/sidebar-service.service";
 import { Router } from '@angular/router';
-import { DashboardHomeComponent } from "./dashboard-child-pages/dashboard-home/dashboard-home/dashboard-home.component";
-import { DashboardDatasetsListComponent } from "./dashboard-child-pages/dashboard-datasets-list/dashboard-datasets-list.component";
 
 @Component({
   selector: 'app-user-dashboard',
@@ -12,8 +10,7 @@ import { DashboardDatasetsListComponent } from "./dashboard-child-pages/dashboar
 export class UserDashboardComponent implements OnInit {
 
   constructor(private sbService:SidebarService, private router: Router) { }
-  @ViewChild(DashboardHomeComponent) _dbHomeComponent?: DashboardHomeComponent;
-  @ViewChild(DashboardDatasetsListComponent) _dbListComponent?: DashboardDatasetsListComponent;
+
 
   ngOnInit(): void {
     this.sbService.setVisibility(true)

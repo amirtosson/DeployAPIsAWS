@@ -1,12 +1,19 @@
-.content{
-    height: 1000px;
+
+.eln-content{
+    width: 100%;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 2s ease-in-out;
 }
 
 .title-row{
     display: flex;
     flex-direction: column;
     margin-bottom: 50px;
-    width: 90%;
+    width: 100%;
     
 }
 .title{
@@ -67,10 +74,15 @@
 }
 
 #preview{
-  width: 90%;
+  width: 50%;
   border: 2px solid black;
   height:90%;
-  
+  transition: all 2s ease-in-out;
+}
+.editer{
+    width: 50%;
+
+  height:90%; 
 }
 #new-title{
     height: 50px;

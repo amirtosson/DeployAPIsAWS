@@ -18,7 +18,8 @@ export class UserprofileComponent implements OnInit {
   }
   OnGoToDashboard(){
     this.loggedUserMetadata.first_name+this.loggedUserMetadata.last_name
-    this.router.navigateByUrl('/'+this.loggedUserMetadata.first_name+this.loggedUserMetadata.last_name+'/dashboard' );
+    this.sidebarService.setVisibility(true)
+    this.router.navigateByUrl('/'+this.loggedUserMetadata.first_name+this.loggedUserMetadata.last_name+'/dashboard/home' );
   }
 
   OnAddNewDataset(){

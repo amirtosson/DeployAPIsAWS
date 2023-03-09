@@ -74,22 +74,27 @@ p {
   width: 100%;
   justify-content: center;
   flex-direction: row;
-  position: fixed;
+  position: relative;
 
 }
 .side{
   width: fit-content;
   height: 100dvh;
   top: 0;
+  left: 0;
+  position: fixed;
 
 }
 .main-content{
+  height: 100dvb;
   width: 100%;
-
+  display: flex;
+  flex-direction: column;
+  margin-left: var(--main-content-margin);
+  transition: all 0.5s ease-in-out;
 }
 .routers{
   padding: 20px;
-  
 }
 
 .banner{

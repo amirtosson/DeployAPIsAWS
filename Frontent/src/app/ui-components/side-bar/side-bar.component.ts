@@ -2,6 +2,8 @@ import { Component,OnInit } from '@angular/core';
 import { SidebarItem } from "./side-bar-item";
 import { SidebarService } from "../../services/sidebar-service.service";
 import { Router } from '@angular/router';
+import { tree } from 'd3';
+import { Collection } from '@angular-devkit/schematics';
 
 @Component({
   selector: 'app-side-bar',
@@ -12,8 +14,6 @@ import { Router } from '@angular/router';
 
 
 export class SideBarComponent implements OnInit {
-
-
   constructor(private sidebarService : SidebarService, private router: Router) { }
   public sidebarItems: SidebarItem[] = [];
   isExpanded = true;
@@ -22,12 +22,14 @@ export class SideBarComponent implements OnInit {
     this.sidebarService.showToolbar.subscribe(show => {
       this.UpdateSidebarItems(show)
     })
+
    
     //this.TestSidebarItems()
   }
 
   UpdateSidebarItems(show:boolean){
     this.isShown = show
+    show? ( this.isExpanded? document.documentElement.style.setProperty('--main-content-margin', '220px'):document.documentElement.style.setProperty('--main-content-margin', '90px')):document.documentElement.style.setProperty('--main-content-margin', '0px');
   }
 
   TestSidebarItems(){
@@ -50,6 +52,10 @@ export class SideBarComponent implements OnInit {
 
   OnExpandClicked(){
     this.isExpanded = this.isExpanded? false:true;
+
+    this.isExpanded? document.documentElement.style.setProperty('--main-content-margin', '220px')
+                    :document.documentElement.style.setProperty('--main-content-margin', '70px');
+
   }
 
   ItemClicked(){
@@ -57,7 +63,16 @@ export class SideBarComponent implements OnInit {
   }
 
   OnItemClicked($event: { target: any; }) {
+
+    var els = document.getElementsByClassName("is-active") as HTMLCollectionOf <HTMLDivElement>; 
+    for (let index = 0; index < els.length; index++) {
+        els[index].classList.remove('is-active');
+    }
     var id = $event.target.attributes.id.value
+    var t = document.getElementById(id) as HTMLDivElement; 
+    t.classList.add('is-active')
+
+  
     var u = JSON.parse(sessionStorage.getItem("userData")!);
     if (id === "profile") {
       this.router.navigateByUrl("userprofile/"+u["first_name"]+u["last_name"])

@@ -8,6 +8,7 @@
     --hover-color-gray: #dbd8d8;
     --ok-green: #29be60;
     --cancel-red: #c0303c;
+    --main-content-margin: 220px;
 }
 
 .main-btn:hover {

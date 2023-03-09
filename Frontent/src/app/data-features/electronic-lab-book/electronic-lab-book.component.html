@@ -1,4 +1,4 @@
-<div>
+<div class="eln-content">
     <div class="row title-row">
         <div *ngIf="!titleEditingMode" class="title">
             {{inUseELN.eln_name}}
@@ -26,11 +26,15 @@
         <i *ngIf="editingMode" (click)="SaveEdit()" class="fas fa-save header-item">
             <div>Save</div>
         </i>
+
+        <i (click)="OnGoToDashboard()" class="fas fa-dashboard header-item">
+            <div>Go To Dashboard</div>
+        </i>
     </div>
-    <div *ngIf="editingMode" class="row">
-        <quill-editor class=" col-12 ql-snow ql-editor" id="quill" [modules]="modules" (onEditorCreated)="StartEditor($event)" (onEditorChanged)="EditorChanged($event)"></quill-editor>
+    <div *ngIf="editingMode" class="editer">
+        <quill-editor class="ql-snow ql-editor" id="quill" [modules]="modules" (onEditorCreated)="StartEditor($event)" (onEditorChanged)="EditorChanged($event)"></quill-editor>
     </div>
-    <div id="preview" class=" col-12 bg-light ql-snow ql-editor">
+    <div id="preview" class="bg-light ql-snow ql-editor">
 
     </div>
 </div>
