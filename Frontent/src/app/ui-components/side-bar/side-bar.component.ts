@@ -29,7 +29,7 @@ export class SideBarComponent implements OnInit {
 
   UpdateSidebarItems(show:boolean){
     this.isShown = show
-    show? ( this.isExpanded? document.documentElement.style.setProperty('--main-content-margin', '220px'):document.documentElement.style.setProperty('--main-content-margin', '90px')):document.documentElement.style.setProperty('--main-content-margin', '0px');
+    show? ( this.isExpanded? document.documentElement.style.setProperty('--main-content-margin', '220px'):document.documentElement.style.setProperty('--main-content-margin', '70px')):document.documentElement.style.setProperty('--main-content-margin', '0px');
   }
 
   TestSidebarItems(){

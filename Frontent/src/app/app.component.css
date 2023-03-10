@@ -87,7 +87,7 @@ p {
 }
 .main-content{
   height: 100dvb;
-  width: 100%;
+  width: calc(100% - var(--main-content-margin) );
   display: flex;
   flex-direction: column;
   margin-left: var(--main-content-margin);
@@ -109,5 +109,8 @@ p {
 
 }
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 767px) {
+  .main-content{
+    --main-content-margin: 70px;
+  }
 }

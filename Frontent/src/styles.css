@@ -112,3 +112,9 @@
     border: 1px solid black;
     background-color: var(--secondary-color);
 }
+
+
+
+@media screen and (max-width: 575px) {
+
+}

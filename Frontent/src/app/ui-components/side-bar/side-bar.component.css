@@ -130,14 +130,9 @@
     border: none;
   }
 
+
+
   @media screen and (max-width: 767px) {
-    .sidebar-is-expanded .l-header {
-        padding-left: 100px;
-      }
-
-  }
-
-  @media screen and (max-width: 575px) {
 
       .sidebar-is-expanded .l-header {
         padding-left: 10px;
