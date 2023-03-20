@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { SidebarService } from "../../../../services/sidebar-service.service";
 
 
+
 @Component({
   selector: 'app-dashboard-datasets-list',
   templateUrl: './dashboard-datasets-list.component.html',
@@ -13,6 +14,10 @@ import { SidebarService } from "../../../../services/sidebar-service.service";
 export class DashboardDatasetsListComponent implements OnInit {
   datasets: Dataset[] = []
   loggedUserID:any;
+  searchText: string = '';
+  viewStyle = "grid"
+  methodFilter= "all";
+  l: any;
   constructor(private router: Router, private sidebarService : SidebarService) { }
 
   ngOnInit(): void {
@@ -56,5 +61,24 @@ export class DashboardDatasetsListComponent implements OnInit {
         this.datasets.push(x);
       }
     })
+  }
+
+  ViewChanged($event: { target: any; }){
+    this.viewStyle = $event.target.id 
+    var eles= document.getElementsByClassName("view-active")!
+    for (let index = 0; index < eles.length; index++) {
+      eles[index].classList.remove("view-active") 
+    }
+    var ele= document.getElementById($event.target.id )!
+    ele.classList.add("view-active")
+  } 
+
+  MethodFilterChanged($event: { target: any; }){
+    var eles= document.getElementsByClassName("filter-active")!
+    for (let index = 0; index < eles.length; index++) {
+      eles[index].classList.remove("filter-active") 
+    }
+    document.getElementById($event.target.id)!.classList.add("filter-active")
+    this.methodFilter = $event.target.id
   }
 }

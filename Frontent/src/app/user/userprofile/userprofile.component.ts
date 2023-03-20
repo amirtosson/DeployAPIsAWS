@@ -22,6 +22,13 @@ export class UserprofileComponent implements OnInit {
     this.router.navigateByUrl('/'+this.loggedUserMetadata.first_name+this.loggedUserMetadata.last_name+'/dashboard/home' );
   }
 
+
+  OnLogOutClicked(){
+    sessionStorage.clear()
+    this.router.navigateByUrl('login')
+  }
+
+
   OnAddNewDataset(){
     this.router.navigateByUrl('/'+this.loggedUserMetadata.first_name+this.loggedUserMetadata.last_name+'/newdata' );
   }

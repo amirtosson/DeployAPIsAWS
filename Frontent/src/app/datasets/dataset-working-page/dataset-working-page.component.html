@@ -2,14 +2,206 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
-<div class="col-12">
+<div class="working-page">
     <h1 class="dataset-name"><span class="glyphicon glyphicon-file"></span> {{dataset.dataset_name}}</h1>
 
+    <div class="working-page-boxes">
+
+        <div class="info-box-general">
+            <div class="panel-heading">
+                <h3 class="panel-title">Dataset general information</h3>
+            </div>
+            <div class="info-item-box">
+                <h4>Added by:</h4>
+                <h4>{{dataset.first_name}} {{dataset.last_name}}</h4>
+            </div>
+            <div class="info-item-box">
+                <h4>Added on:</h4>
+                <h4>{{dataset.added_on}}</h4>
+            </div>
+            <div class="info-item-box">
+                <h4>Structure:</h4>
+                <h4>{{dataset.dataset_structure_name}}</h4>
+            </div>
+            <div class="info-item-box">
+                <h4>Data type:</h4>
+                <h4>{{dataset.dataset_type}}</h4>
+            </div>
+            <div class="info-item-box">
+                <h4>Project:</h4>
+                <h4>{{dataset.project_name}}</h4>
+            </div>
+            <div class="info-item-box">
+                <h4>Data file:</h4>
+                <h4>{{dataset.dataset_filename}}</h4>
+            </div>
+        </div>
+        <div class="info-box-general publication-box">
+            <div class="panel-heading">
+                <h3 class="panel-title">Publication information</h3>
+            </div>
+            <div class="info-item-box">
+                <h4>Publication title:</h4>
+                <h4>{{dataset.publication_title}}</h4>
+            </div>
+            <div class="info-item-box">
+                <h4>Publication DOI:</h4>
+                <h4>{{dataset.publication_doi}}</h4>
+            </div>
+            <div class="info-item-box">
+                <h4>Abstract:</h4>
+                <h4>{{dataset.abstract}}</h4>
+            </div>
+        </div>
+        <div class="info-box-general">
+            <div class="panel-heading">
+                <h3 class="panel-title">Experimental information</h3>
+            </div>
+            <div class="info-item-box">
+                <h4>Facility:</h4>
+                <h4>{{dataset.facility_name}}</h4>
+            </div>
+            <div class="info-item-box">
+                <h4>Method:</h4>
+                <h4>{{dataset.method_name}}</h4>
+            </div>
+            <div class="info-item-box">
+                <h4>Sample:</h4>
+                <h4>dataset.dataset_sample_name</h4>
+            </div>
+            <div class="info-item-box">
+                <h4>System:</h4>
+                <h4>{{dataset.exp_system_name}}</h4>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="boxes">
+        <div class="user-metadata-box">
+            <div class="panel-heading">
+                <h3 class="panel-title">User-defined metadata and information</h3>
+            </div>
+            <div class="panel-info">
+                <div *ngFor="let metadataitem of metadata; let i = index" class="info-item row">
+                    <div class="metadata-list">
+                        <div><h4 class="key">{{metadataitem.key}}:</h4></div>
+                        <div class="value"><h4>{{metadataitem.value}}</h4> </div>
+                        <div class="tool-btns"> 
+                            <div class="col-1">
+                                <i id="icon" (click)="DeleteMetadataItem(metadataitem.key, metadataitem.value)" class="function-button-small material-icons">delete</i>
+                            </div>
+                            <div (click)="StartEditMetadataItem(metadataitem.key)"  class="col-2">
+                                <i id="icon" [ngClass]="stopEditing? 'function-button-small material-icons disabled' : 'function-button-small material-icons'">edit</i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="{{metadataitem.key}}" class="col-11 edit-item" style="display: none;">
+                        <h3>New Key and Value</h3>
+                        <div class="row">
+                            <div class="col-2">
+                                <textarea type="text" id="key-e" placeholder="key">{{metadataitem.key}}</textarea>
+                            </div>
+                            <div class="col-7">
+                                <textarea type="text" id="value-e" placeholder="value" name="fname">{{metadataitem.value}}</textarea>
+                            </div>
+                            <div class="col-1">
+                                <i id="icon" (click)="EditMetadataItem(metadataitem.key, metadataitem.value)" class="function-button-small material-icons">check_circle</i>
+                            </div>
+                            <div class="col-1">
+                                <i id="icon" (click)="CloseAddNewMetadataItemFrom(metadataitem.key)" class="function-button-small material-icons">remove_circle</i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div *ngIf="!stopEditing" class="add-btn row">
+                    <button class="main-btn" (click)="AddNewMetadataItemOpenForm()" role="button">
+                        <span class="glyphicon glyphicon-plus glyphsize green"></span> 
+                        <h3>Add a new metadata item</h3> 
+                    </button>
+                </div>
+                <div id="add-new-item" class="row add-new-item" style="display: none;">
+                    <div class="row">
+                        <div class="col-3">
+                            <textarea type="text" id="key" placeholder="key"></textarea>
+                        </div>
+                        <div class="col-7">
+                            <textarea type="text" id="value" placeholder="value" name="fname"></textarea>
+                        </div>
+                        <div class="col-1">
+                            <i id="icon" (click)="AddNewMetadataItem()" class="function-button-small material-icons">check_circle</i>
+                        </div>
+                        <div class="col-1">
+                            <i id="icon" (click)="CloseAddNewMetadataItemFrom('add-new-item')" class="function-button-small material-icons">remove_circle</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="attached-files-box">
+            <div class="panel-heading">
+                <h3 class="panel-title">Attached files</h3>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                  <div *ngFor="let file of attachedFiles;" class="attached_files_contents col-md-4">
+                    <div class="attached-file-card ">
+                        <img src="{{file.data}}" alt="">
+                        <div>
+                            <h2>{{file.attached_file_name}}</h2>
+                            <h4>Added by: {{file.login_name}}</h4>
+                            <h4>Added on: {{file.added_on}}</h4>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+    
+
+</div>
+
+<!-- 
+<div class="working-page">
+    <h1 class="dataset-name"><span class="glyphicon glyphicon-file"></span> {{dataset.dataset_name}}</h1>
+
+
+
+
+
+    <div class="panel-info">
     <div class="panel">
         <div class="panel-heading">
             <h3 class="panel-title">Dataset general information</h3>
         </div>
-        <div class="panel-info">
+
+        <div class="info-row">
+            <div class="info-item-box">
+                <h4>Added by:</h4>
+                <h4>{{dataset.last_name}}</h4>
+            </div>
+            <div class="info-item-box">
+                <h4>Added by:</h4>
+                <h4>{{dataset.login_name}}</h4>
+            </div>
+        </div>
+
+        <div class="info-row">
+            <div class="info-item-box">
+                <h4>Added by:</h4>
+                <h4>{{dataset.first_name}} {{dataset.last_name}}</h4>
+            </div>
+            <div class="info-item-box">
+                <h4>Added by:</h4>
+                <h4>{{dataset.login_name}}</h4>
+            </div>
+        </div>
+
+
             <div class="info-item row">
                 <div class="col-2"><h4>Added by:</h4></div>
                 <div class="col-4"><h4>{{dataset.login_name}}</h4> </div>
@@ -136,9 +328,9 @@
                 </div>
               </div>
             </div>
-        </div>
+        </div> 
     </div>
-</div>
+</div>-->
 
 <!-- 
 <div class="container">

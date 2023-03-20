@@ -3,95 +3,114 @@
 </div>
 
 
-<div class="row col-12">
-
-    <div class="col-6">
-
-        <div class="signupFrm">
-            <form action="" class="form">
+<div class="sign-up-form">
+    <div class="signupFrm">
+        <form action="" class="form formstyle" autocomplete="off" onsubmit="return false">
+            <div class="notification" *ngIf="errorMSG.length > 0">
                 
-                <h1 class="title">Login data</h1>
-               
-                <div  class="inputContainer">
-                    <input type="text" class="input" placeholder="a">
-                    <label for="" class="label">First name</label>
-                </div>  
-                <div  class="inputContainer">
-                    <input type="text" class="input" placeholder="a">
-                    <label for="" class="label">Last name</label>
+                <div  *ngFor="let err of errorMSG; let i = index ;">
+                    <h5 >
+                        {{i+1}} {{err}}
+                    </h5>
                 </div>
-        
-                    <div  class="inputContainer">
-                        <input type="text" class="input" placeholder="a">
-                        <label for="" class="label">Email</label>
+
+                
+                
+            </div>
+            <h1 class="title">Login data</h1>
+           
+            
+    
+                <div  class="inputContainer form-group">
+                    <input [(ngModel)]="loginName"  name="user_name" id="user_name" type="text" class="input" placeholder="a" required="required" pattern="[a-z0-9]{6,15}">
+                    <label for="" class="label">Username*</label>
+                    
+                </div>
+                <div class="inputContainer notification" *ngIf="loginName.length < 6">
+                    <div>
+                        <h5>Username should be at least 6 character without capital letters or special characters</h5>
                     </div>
-        
-                    <div  class="inputContainer">
-                        <input type="text" class="input" placeholder="a">
-                        <label for="" class="label">Username</label>
+                </div>
+                <div class="inputContainer notification" *ngIf="loginName.length >= 6">
+
+                    <div  *ngIf="!nameAvailable">
+                        <h5>This name is in used</h5>
                     </div>
-        
-        
-        
-        
-                <div class="inputContainer">
-                    <input type="text" class="input" placeholder="a">
-                    <label for="" class="label">Password</label>
+                    <div id="av" *ngIf="nameAvailable">
+                        <h5>This name is in available</h5>
+                    </div>
                 </div>
-        
-                <div class="inputContainer">
-                    <input type="text" class="input" placeholder="a">
-                    <label for="" class="label">Confirm Password</label>
+                <div class="inputContainer"  *ngIf="loginName.length >= 6">
+                    <div class="bc">
+                        <label for=""> Check availability</label>
+                        <i id="icon" (click)="OnCheckAvailability()" class="function-button-small material-icons" >spellcheck</i>
+                    </div>
                 </div>
-        
-            </form>
-        </div>
+    
+    
+            <div class="inputContainer">
+                <input id="user_pwd" type="password" class="input" placeholder="a" pattern="[a-z0-9]{8,15}">
+                <label for="" class="label">Password</label>
+            </div>
+    
+            <div class="inputContainer">
+                <input id="user_pwd_conf" type="password" class="input" placeholder="a">
+                <label for="" class="label">Confirm Password</label>
+            </div>
+    
+        </form>
     </div>
-
-    <div class="col-6">
-
-        <div class="signupFrm">
-            <form action="" class="form">
-                
-                <h1 class="title">Personal data</h1>
-               
+    <div class="signupFrm">
+        <form action="" class="form">
+            
+            <h1 class="title">Personal data</h1>
+            <div  class="inputContainer">
+                <input id="first_name"  type="text" class="input" placeholder="a" required="required">
+                <label for="" class="label">First name*</label>
+            </div>  
+            <div  class="inputContainer">
+                <input id="last_name" type="text" class="input" placeholder="a" required="required">
+                <label for="" class="label">Last name*</label>
+            </div>
+    
                 <div  class="inputContainer">
-                    <input type="text" class="input" placeholder="a">
-                    <label for="" class="label">Location*</label>
-                </div>  
-                <div  class="inputContainer">
-                    <input type="text" class="input" placeholder="a">
-                    <label for="" class="label">Organization*</label>
+                    <input id="email"  type="text" class="input" placeholder="a" required="required">
+                    <label for="" class="label">Email*</label>
                 </div>
-        
-                    <div  class="inputContainer">
-                        <input type="text" class="input" placeholder="a">
-                        <label for="" class="label">Department</label>
-                    </div>
-        
-                    <div  class="inputContainer">
-                        <input type="text" class="input" placeholder="a">
-                        <label for="" class="label">Position*</label>
-                    </div>
-        
-        
-        
-        
-                <div class="inputContainer">
-                    <input type="text" class="input" placeholder="a">
-                    <label for="" class="label">Phone number</label>
-                </div>
-        
-                <div class="inputContainer">
-                    <input type="text" class="input" placeholder="a">
-                    <label for="" class="label">Date of birth</label>
-                </div>
-                    </form>
-        </div>
+            <div  class="inputContainer">
+                <input id="location" type="text" class="input" placeholder="a" required="required">
+                <label for="" class="label">Location*</label>
+            </div>  
+            <div  class="inputContainer">
+                <input id="organization"  type="text" class="input" placeholder="a" required="required">
+                <label for="" class="label">Organization*</label>
+            </div>
+    
+            <div  class="inputContainer">
+                <input  id="department" type="text" class="input" placeholder="a" required="required">
+                <label for="" class="label">Department*</label>
+            </div>
+
+            <div  class="inputContainer">
+                <input id="position" type="text" class="input" placeholder="a" required="required">
+                <label for="" class="label">Position*</label>
+            </div>
+    
+            <div class="inputContainer">
+                <input id="phone_number"  type="text" class="input" placeholder="a">
+                <label for="" class="label">Phone number</label>
+            </div>
+    
+            <div class="inputContainer">
+                <input id="date_birth" type="date" class="input" placeholder="a">
+                <label  for="" class="label">Date of birth</label>
+            </div>
+                </form>
     </div>
 </div>
+
 <div class="btn-all row">
-    <button type="submit" class="submitBtn">Sign up</button>
+    <i  class="submitBtn" (click)="OnSignUpClicked()">Sign up</i>
 </div>
 
 

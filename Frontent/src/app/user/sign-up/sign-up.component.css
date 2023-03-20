@@ -7,6 +7,14 @@
 
 }
 
+.sign-up-form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+
 .registration-form{
     background-color: var(--shadow-color);
     width: 100%;
@@ -18,7 +26,7 @@
 .signupFrm {
     margin-top: 20px;
     height: auto;
-    width: 100%;
+    width: 50dvw;
   }
 
   .form {
@@ -45,6 +53,26 @@
     height: 45px;
     width: 100%;
     margin-bottom: 20px;
+  }
+
+  .not-valid{
+    border: 1px solid red;
+  }
+
+  .notification{
+    color: red;
+    margin-bottom: 5px;
+  }
+
+  .bc{
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-start;
+    align-items: center;
+    column-gap: 20px;
+  }
+  #av{
+    color: green;
   }
 
 .input {
@@ -112,8 +140,9 @@
   }
   .btn-all{
     display: flex;
-    flex-direction:column-reverse;
+    flex-direction:row;
     align-items: center;
+    justify-content: center;
   }
 
 @media (min-width: 1025px) {

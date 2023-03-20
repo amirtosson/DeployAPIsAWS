@@ -19,6 +19,8 @@ import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.com
 import { SideBarComponent } from './ui-components/side-bar/side-bar.component';
 import { DashboardHomeComponent } from './user/user-dashboard/dashboard-child-pages/dashboard-home/dashboard-home/dashboard-home.component';
 import { SearchPipe } from "./pipes/search-eln.pipe";
+import { SearchDatasetsPipe } from "./pipes/search-datasets.pipe";
+
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardDatasetsListComponent } from './user/user-dashboard/dashboard-child-pages/dashboard-datasets-list/dashboard-datasets-list.component';
@@ -48,7 +50,8 @@ import { SpinnerComponent } from './ui-components/spinner/spinner.component';
     AuxiliaryFilesComponent,
     DashboardExperimentsListComponent,
     SpinnerComponent,
-    SearchPipe
+    SearchPipe,
+    SearchDatasetsPipe
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 :root{
-    --main-color: #1e3e6f;
-    --main-color-low: #7894e0;
+    --main-color: #023161;
+    --main-color-low: #189DD5;
     --main-gradient: linear-gradient(to bottom right,#dcd7d7, rgb(255, 255, 255));
     --secondary-color: #f0f0f0;
     --shadow-color: #c5d3e7;
@@ -9,6 +9,9 @@
     --ok-green: #29be60;
     --cancel-red: #c0303c;
     --main-content-margin: 220px;
+
+    --daphne-color-1:#6A398B;
+    --daphne-color-2:#189DD5;
 }
 
 .main-btn:hover {
@@ -90,9 +93,12 @@
   }
 
 
-  .search-box{
+.search-box{
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
 }
 .search-box input{
     height: 40px;
@@ -106,7 +112,6 @@
     height: 40px;
     display: flex;
     text-align: center;
-    flex-direction: column;
     justify-content: center;
     font-size: larger;
     border: 1px solid black;

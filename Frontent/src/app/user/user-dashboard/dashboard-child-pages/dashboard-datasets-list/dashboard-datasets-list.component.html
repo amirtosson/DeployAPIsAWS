@@ -1,53 +1,92 @@
-<!-- <div class="table-wrapper ">
-    <table class=" fl-table" >
-        <tr>
-            <th>Name</th>
-            <th>File name</th>
-            <th>Added on</th>
-            <th>Added by</th>
-            <th>Project</th>
-            <th>Method</th>
-            <th> </th>
-        </tr>
-        <tr *ngFor='let dataset of datasets; let i=index;' class="table-row">
-            <td>{{dataset.dataset_name}} </td>
-            <td>{{dataset.dataset_filename}} </td>
-            <td>{{dataset.added_on}} </td>
-            <td>{{dataset.first_name}} {{dataset.last_name}}</td>
-            <td>{{dataset.project_name}}</td>
-            <td>{{dataset.method_name}}</td>
-            <td style="width: 150px;">
-                <i id="icon" (click)="OpenDataset(dataset.dataset_doi)" class="function-button-small material-icons" >arrow_forward</i>
-                <i id="icon" (click)="DownloadDataset(dataset.dataset_pid)" class="function-button-small material-icons" >download</i>
-                <i id="icon" *ngIf="dataset.owner_id == loggedUserID " (click)="DeleteDataset(dataset.dataset_doi, dataset.dataset_filename)" class="function-button-small material-icons" >delete</i>
-               <i [ngClass]="dataset.inUse? 'disabled':''" id="icon" class="function-button-small material-icons" (click)="UseDataset(dataset, dataset.inUse = true)" >arrow_forward</i>
-                <i id="icon" class="function-button-small material-icons" (click)="DeleteDataset(dataset.DOI)">delete</i> 
-        </tr> 
-    </table>
-</div> -->
 
-<div  class="datasets-list">
+<div class="main-content">
 
-    <div *ngFor='let dataset of datasets; let i=index;' class="dataset-thumbnail" >
-        <div class="thumbnail-container">
-            <div class="details">
-                <div [ngClass]="dataset.dataset_type == 'published'?  'data-type-sign data-sign-published': 'data-type-sign data-sign-calibration'">
-                    <h5>{{dataset.dataset_type}} </h5>
+    <div class="methods-filters" (click)=" MethodFilterChanged($event)">
+        <div id="all"  class="method-box filter-active">
+            <i id="all"  class="material-symbols-outlined">
+                filter_alt_off
+            </i>
+            <h4 id="all" >All</h4>
+        </div>
+        <div id="xpcs" class="method-box">
+            <i id="xpcs" class="fas fa-dna"></i>
+            <h4 id="xpcs">XPCS</h4>
+        </div>
+        <div id="magnetism"  class="method-box">
+            <i id="magnetism" class="fas fa-magnet"></i>
+            <h4 id="magnetism" >Magnetism</h4>
+        </div>
+        <div id="bio-saxs" class="method-box">
+            <i id="bio-saxs" class="fas fa-atom"></i>
+            <h4 id="bio-saxs">Bio-SAXS</h4>
+        </div>
+
+    </div>
+
+
+
+    <div class="header-bar">
+        <div class="search-box-s">
+            <span class="fa fa-search"></span>
+            <input [(ngModel)]="searchText" type="text" placeholder="Search data">
+        </div>
+        <div class="view-switcher" (click)="ViewChanged($event)">
+            <i id="grid" class="view-active fas fa-grip-horizontal"></i>
+            <i id="list" class="fas fa-list"></i>
+        </div>
+    </div>
+
+
+
+    <div *ngIf="viewStyle== 'list'" class="table-wrapper ">
+        <table class=" fl-table" >
+            <tr>
+                <th>Name</th>
+                <th>Owner</th>
+                <th>Method</th>
+                <th>Facilty</th>
+                <th> </th>
+            </tr>
+            <tr *ngFor="let dataset of datasets | filterdata : searchText : methodFilter" class="table-row">
+                <td> <h4>{{dataset.dataset_name}} <h5>Date: {{dataset.added_on}}</h5> <h5>Type: {{dataset.dataset_type}}</h5> <h5>Project: {{dataset.project_name}}</h5> </h4> </td>
+                <td><h4>{{dataset.first_name}} {{dataset.last_name}}</h4></td>
+                <td><h4>{{dataset.method_name}}</h4></td>
+                <td><h4>{{dataset.facility_name}}</h4></td>
+                <td >
+                    <i id="icon" (click)="OpenDataset(dataset.dataset_doi)" class="function-button-small material-icons" >arrow_forward</i>
+                    <i id="icon" (click)="DownloadDataset(dataset.dataset_pid)" class="function-button-small material-icons" >download</i>
+                    <i id="icon" *ngIf="dataset.owner_id == loggedUserID " (click)="DeleteDataset(dataset.dataset_doi, dataset.dataset_filename)" class="function-button-small material-icons" >delete</i>
+            </tr> 
+        </table>
+    </div>
+
+
+
+
+    <div *ngIf="viewStyle== 'grid'" class="datasets-list">
+
+        <div *ngFor="let dataset of datasets | filterdata : searchText : methodFilter"  class="dataset-thumbnail" >
+            <div class="thumbnail-container">
+                <div class="details">
+                    <div [ngClass]="dataset.dataset_type == 'published'?  'data-type-sign data-sign-published': 'data-type-sign data-sign-calibration'">
+                        <h5>{{dataset.dataset_type}} </h5>
+                    </div>
+                    <div class="title">
+                        <h1>{{dataset.dataset_name}} </h1>
+                        <h3>Owner: {{dataset.first_name}} {{dataset.last_name}}</h3>
+                    </div>
+                    <div class="second">
+                        <h3>Added on: {{dataset.added_on}} </h3>
+                        <h3>Project: {{dataset.project_name}} </h3>
+                        <h3>Method: {{dataset.method_name}} </h3>
+                        <h3>Facility: {{dataset.facility_name}} </h3>
+                    </div>
                 </div>
-                <div class="title">
-                    <h1>{{dataset.dataset_name}} </h1>
-                    <h3>Owner: {{dataset.first_name}} {{dataset.last_name}}</h3>
+                <div class="func-btn">
+                    <i id="icon" (click)="OpenDataset(dataset.dataset_doi)" class="function-button-small material-icons" >arrow_forward</i>
+                    <i id="icon" (click)="DownloadDataset(dataset.dataset_pid)" class="function-button-small material-icons" >download</i>
+                    <i id="icon" *ngIf="dataset.owner_id == loggedUserID " (click)="DeleteDataset(dataset.dataset_doi, dataset.dataset_filename)" class="function-button-small material-icons" >delete</i>
                 </div>
-                <div class="second">
-                    <h3>Added on: {{dataset.added_on}} </h3>
-                    <h3>Project: {{dataset.project_name}} </h3>
-                    <h3>Method: {{dataset.method_name}} </h3>
-                </div>
-            </div>
-            <div class="func-btn">
-                <i id="icon" (click)="OpenDataset(dataset.dataset_doi)" class="function-button-small material-icons" >arrow_forward</i>
-                <i id="icon" (click)="DownloadDataset(dataset.dataset_pid)" class="function-button-small material-icons" >download</i>
-                <i id="icon" *ngIf="dataset.owner_id == loggedUserID " (click)="DeleteDataset(dataset.dataset_doi, dataset.dataset_filename)" class="function-button-small material-icons" >delete</i>
             </div>
         </div>
     </div>

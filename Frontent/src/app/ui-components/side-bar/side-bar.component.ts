@@ -62,6 +62,11 @@ export class SideBarComponent implements OnInit {
     this.router.navigateByUrl
   }
 
+  OnLogOutClicked(){
+    sessionStorage.clear()
+    this.router.navigateByUrl('login')
+  }
+
   OnItemClicked($event: { target: any; }) {
 
     var els = document.getElementsByClassName("is-active") as HTMLCollectionOf <HTMLDivElement>; 

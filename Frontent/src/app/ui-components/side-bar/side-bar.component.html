@@ -39,7 +39,11 @@
       </div>
     </div>
     <div>
-
+      <div id="exp-btn" class="c-menu__item toggle__btn" (click)="OnLogOutClicked()" data-toggle="tooltip">
+        <div id="exp-btn" class="c-menu__item__inner"><i id="exp-btn" class="fa fa-sign-out"></i>
+          <div  id="exp-btn" class="c-menu-item__title"><span id="exp-btn">Log out</span></div>
+        </div>
+      </div>   
       <div id="exp-btn" class="c-menu__item toggle__btn" (click)="OnExpandClicked()" data-toggle="tooltip" [title]="isExpanded? 'Shrink toolbar':'Expand toolbar'">
         <div id="exp-btn" class="c-menu__item__inner"><i id="exp-btn" [ngClass]="isExpanded? 'fa fa-arrow-left':'fa fa-arrow-right'"></i>
           <div  id="exp-btn" class="c-menu-item__title"><span id="exp-btn">Close toolbar</span></div>

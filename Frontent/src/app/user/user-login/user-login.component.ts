@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {UserAuthServerFunctions} from "../../server-communications/user-auth";
 import { User } from "../../entities/user/user-entity";
+import { SidebarService } from "../../services/sidebar-service.service";
+
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
@@ -9,9 +11,10 @@ import { User } from "../../entities/user/user-entity";
 })
 export class UserLoginComponent implements OnInit {
   user= new User();
-  constructor(private router: Router) { }
+  constructor(private router: Router, private sidebarService : SidebarService) { }
 
   ngOnInit(): void {
+    this.sidebarService.setVisibility(false)
   }
 
   OnLoginClicked(){

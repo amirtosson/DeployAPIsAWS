@@ -19,4 +19,8 @@ export class LandingPageComponent implements OnInit {
     this.router.navigateByUrl('login')
   }
 
+  OnSignUpClicked(){
+    this.router.navigateByUrl('signup')
+  }
+
 }

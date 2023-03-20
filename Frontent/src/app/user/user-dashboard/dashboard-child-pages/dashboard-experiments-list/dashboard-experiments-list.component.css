@@ -59,7 +59,7 @@
 .exp-card{
     background-color: #fff;
 
-    height: 16em;
+    height: 19em;
 
     /* height: calc(width + width); */
     overflow-y:scroll;
@@ -68,30 +68,49 @@
 }
 
 .exp-contents:hover{
-    transform: scale(1.8) perspective(100px);
+    transform: scale(1.8);
     z-index: 999;
     cursor: pointer;
 }
 
 
 .exp-contents{
+    width: 20%;
+    min-width: 350px;
     border: 2px solid rgba(210, 196, 200, 0.4);
     box-shadow: 0px 10px 10px 10px rgba(210, 196, 200, 0.4);
     padding: 3px;
     flex-wrap: wrap;
-    width: 20%;
     background-color: rgb(255, 255, 255);
     margin: 20px;
     transition: 0.7s ease;
+    flex-shrink: 0;
 }
 .title{
+    align-items: center;
+    position: relative;
+    top: -50px;
+    padding: 10px;
+    height: 80px;
     word-wrap: break-word;
     display:block;    
     text-align: center;
     font-size: large;
     font-weight: bold;
+    background-color: var(--main-color-low);
+    border-radius: 5%;
 }
+
+.preview-box{
+    position: relative;
+    top: -50px;
+}
+
+
 .info{
+    height:50px;
+    position: relative;
+    top: -50px;
     margin-top: 5px;
     padding: 5px;
     font-size: small;
