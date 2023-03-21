@@ -1,0 +1,19 @@
+<div class="chat-main">
+    <div class="chat-display" >
+        <div class="msg-items" *ngFor="let msg of msgHistory">
+           <div>{{msg}}</div> 
+        </div>
+
+    </div>
+    <div *ngIf="showLoader" class="loader">
+        Our bot is writing a message ...
+    </div>
+    <div class="chat-writing">
+        <div class="input-box">
+            <input name="msg" id="user-msg" type="text" placeholder="write youe message" [(ngModel)]="userMSG">
+        </div>
+        <div [ngClass]="userMSG.length>0? 'send-btn': 'send-btn disabled'" (click)="SendMSG()">
+            <i class="fa fa-send"></i>
+        </div>
+    </div>
+</div>

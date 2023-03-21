@@ -11,6 +11,7 @@ import { DashboardDatasetsListComponent } from './user/user-dashboard/dashboard-
 import { DatasetWorkingPageComponent } from "./datasets/dataset-working-page/dataset-working-page.component";
 import { ElectronicLabBookComponent } from './data-features/electronic-lab-book/electronic-lab-book.component';
 import { DashboardExperimentsListComponent } from './user/user-dashboard/dashboard-child-pages/dashboard-experiments-list/dashboard-experiments-list.component';
+import { ChatComponent } from './ui-components/chat/chat.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,9 @@ const routes: Routes = [
   },
   {
     path: ':userdoi/exp/experimentslist', component: DashboardExperimentsListComponent
+  },
+  {
+    path: 'feat/chat/:userdoi', component: ChatComponent
   },
 ];
 

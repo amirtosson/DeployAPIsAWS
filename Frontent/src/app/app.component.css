@@ -85,6 +85,16 @@ p {
   position: fixed;
 
 }
+
+.chat{
+  position: fixed;
+  left:96dvw;
+  width: 50px;
+  height: 50px;
+  background-color: #333;
+}
+
+
 .main-content{
   height: 100dvb;
   width: calc(100% - var(--main-content-margin) );

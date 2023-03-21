@@ -1,11 +1,26 @@
 
   .card-container {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
     margin-top: 16px;
   }
 
+.logo-banner{
+  width: 100%;
+}
+
+.logo-banner img{
+  width: 100%;
+  opacity: 0.8;
+}
+
+.btns-box{
+  display: flex;
+  flex-direction: row;
+}
 
   .card {
     all: unset;

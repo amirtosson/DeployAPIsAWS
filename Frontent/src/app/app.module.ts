@@ -7,7 +7,7 @@ import { QuillModule } from 'ngx-quill'
 import { NgxChartsModule }from '@swimlane/ngx-charts';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormsModule } from '@angular/forms';
-
+import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 
 import { FlyingBtnComponent } from './ui-components/flying-btn/flying-btn.component';
 import { AddNewDatasetComponent } from "./datasets/add-new-dataset/add-new-dataset.component";
@@ -29,6 +29,8 @@ import { ElectronicLabBookComponent } from './data-features/electronic-lab-book/
 import { AuxiliaryFilesComponent } from './data-features/auxiliary-files/auxiliary-files.component';
 import { DashboardExperimentsListComponent } from './user/user-dashboard/dashboard-child-pages/dashboard-experiments-list/dashboard-experiments-list.component';
 import { SpinnerComponent } from './ui-components/spinner/spinner.component';
+import { ChatComponent } from './ui-components/chat/chat.component';
+import { CodeSnippetComponent } from './data-features/code-snippet/code-snippet.component';
 
 
 
@@ -51,7 +53,9 @@ import { SpinnerComponent } from './ui-components/spinner/spinner.component';
     DashboardExperimentsListComponent,
     SpinnerComponent,
     SearchPipe,
-    SearchDatasetsPipe
+    SearchDatasetsPipe,
+    ChatComponent,
+    CodeSnippetComponent
   ],
   imports: [
     BrowserModule,
@@ -61,9 +65,15 @@ import { SpinnerComponent } from './ui-components/spinner/spinner.component';
     BrowserAnimationsModule,
     MatToolbarModule,
     NgxChartsModule,
-    FormsModule
+    FormsModule,
+    HighlightModule
   ],
-  providers: [],
+  providers: [{
+    provide: HIGHLIGHT_OPTIONS,
+    useValue: {
+      fullLibraryLoader: () => import('highlight.js')
+    }
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

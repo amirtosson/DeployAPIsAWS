@@ -107,7 +107,16 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  border-radius: 1%;
+  border-radius: 15px;
+  box-shadow:3px 3px 25px 10px rgba( 0, 0, 0, 0.5 );
+}
+.code-snippets{
+  margin-top: 70px;
+  margin-bottom: 150px;
+  width: 100%;
+  height: 100px;
+  background-color: #000;
+  border-radius: 15px;
   box-shadow:3px 3px 25px 10px rgba( 0, 0, 0, 0.5 );
 }
 

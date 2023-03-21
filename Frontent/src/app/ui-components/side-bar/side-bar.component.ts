@@ -67,6 +67,7 @@ export class SideBarComponent implements OnInit {
     this.router.navigateByUrl('login')
   }
 
+
   OnItemClicked($event: { target: any; }) {
 
     var els = document.getElementsByClassName("is-active") as HTMLCollectionOf <HTMLDivElement>; 
@@ -91,6 +92,9 @@ export class SideBarComponent implements OnInit {
     else if (id === "exp") {
       this.router.navigateByUrl(u["_id"]+"/exp/experimentslist")
     }
+    else if (id === "chat") {
+      var ut = sessionStorage.getItem("user_token")!;
+      this.router.navigateByUrl('feat/chat/'+ut)    }
     else{
       this.router.navigateByUrl(u["first_name"]+u["last_name"]+"/newdata")
     }
