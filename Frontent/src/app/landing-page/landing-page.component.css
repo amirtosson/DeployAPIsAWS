@@ -10,10 +10,12 @@
 
 .logo-banner{
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .logo-banner img{
-  width: 100%;
+  width: 70%;
   opacity: 0.8;
 }
 

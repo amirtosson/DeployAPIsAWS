@@ -12,18 +12,32 @@
 
 
 <div class="exp-list-page">
-    <div *ngFor="let eln of ELNs | filter:searchText" class="exp-contents" (click)="OpenExpELN(eln.eln_doi)">
+    <div *ngFor="let eln of ELNs | filter:searchText" class="exp-contents" (click)="OpenExpELN(eln.elnData['eln_doi'])">
         <h2 class="title">
-            {{eln.eln_name}}
+            {{eln.elnData['eln_name']}}
         </h2>
         <div class="ql-snow preview-box">
-            <div id="{{eln.eln_doi}}" [innerHtml]="eln.eln_data" class="bg-light ql-editor exp-card">
+            <div id="{{eln.eln_doi}}" [innerHtml]="eln.elnData['eln_data']" class="bg-light ql-editor exp-card">
         </div>
         </div>
         <div class="info">
-            <p>Added by: <span> {{eln.first_name}} {{eln.last_name}}</span> </p>
-            <p>Created on: <span> {{eln.eln_added_on}}</span> </p>
-            <p>Last Modified: <span> {{eln.eln_last_modified_on}}</span> </p>
+            <p>Added by: <span> {{eln.elnData['first_name']}} {{eln.elnData['last_name']}}</span> </p>
+            <p>Created on: <span> {{eln.elnData['eln_added_on']}}</span> </p>
+            <p>Last Modified: <span> {{eln.elnData['eln_last_modified_on']}}</span> </p>
+        </div>
+        <div *ngIf="eln.elnData['linked_datasets_names'].length > 0" class="linked-datasets-tags">
+            <div   *ngFor="let tag of eln.elnData['linked_datasets_names']">
+                <p class="tag-item">
+                    {{tag}}
+                </p>
+            </div>
+        </div>
+        <div *ngIf="eln.elnData['linked_datasets_names'].length == 0" class="linked-datasets-tags">
+            <div >
+                <p >
+                    No linked dataset
+                </p>
+            </div>
         </div>
     </div>
 

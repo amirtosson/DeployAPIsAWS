@@ -1,5 +1,8 @@
-<div class="eln-content">
-    <div class="row title-row">
+<div class="eln-content-wrap">
+    <div class="eln-contents">
+
+    
+    <div class="title-row">
         <div *ngIf="!titleEditingMode" class="title">
             {{inUseELN.eln_name}}
         </div>
@@ -16,7 +19,7 @@
         </div>
     </div>
 
-    <div class="row btns">
+    <div class="btns">
         <i *ngIf="!editingMode" (click)="StartEdit()" class="fas fa-edit header-item">
             <div>Edit</div>
         </i>
@@ -31,12 +34,51 @@
             <div>Go To Dashboard</div>
         </i>
     </div>
-    <div *ngIf="editingMode" class="editer">
-        <quill-editor class="ql-snow ql-editor" id="quill" [modules]="modules" (onEditorCreated)="StartEditor($event)" (onEditorChanged)="EditorChanged($event)"></quill-editor>
+    <div class="main-content">
+        <div class="eln-info">
+            <div class="info-box">
+                <div class="info-box-title">
+                    <span class="fas fa-info"></span>
+                    <p>ELN details and description</p>
+                </div>
+                <div class="info-box-body">
+                    <div class="info-item">
+                        <p>Added by</p><h3>{{inUseELN.first_name}} {{inUseELN.last_name}}</h3>
+                    </div>
+                    <div class="info-item">
+                        <p>Added on</p><h3>{{inUseELN.eln_added_on}}</h3>
+                    </div>
+                    <div class="info-item">
+                        <p>Last modification on</p><h3>{{inUseELN.eln_last_modified_on}}</h3>
+                    </div>
+              
+                </div>
+            </div>
+            <div class="info-box">
+                <div class="info-box-title">
+                    <span class="fas fa-link"></span>
+                    <p>Linked datasets</p>
+                </div>
+                <div class="linked-datasets-box-body">
+                    <div *ngFor="let d of inUseELN.linked_datasets_names" class="linked-dataset-item">
+                        <p>{{d}}</p>
+                    </div>  
+                    <div class="link-new-dataset header-item">
+                        <i *ngIf="!editingMode"  class="fas fa-link">
+                            <div>Link dataset</div>
+                        </i>
+                    </div>             
+                </div>
+            </div>
+        </div>
+        <div *ngIf="editingMode" class="editor">
+            <quill-editor class="ql-snow ql-editor" id="quill" [modules]="modules" (onEditorCreated)="StartEditor($event)" (onEditorChanged)="EditorChanged($event)"></quill-editor>
+        </div>
+        <div id="preview" class="bg-light ql-snow ql-editor">
+        </div>
+        
     </div>
-    <div id="preview" class="bg-light ql-snow ql-editor">
-
-    </div>
+</div>
 </div>
 
 

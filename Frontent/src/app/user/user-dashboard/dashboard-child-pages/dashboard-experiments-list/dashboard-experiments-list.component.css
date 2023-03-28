@@ -161,3 +161,23 @@
     width: 200px;
     margin-left: 5px;
 }
+
+.linked-datasets-tags{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    padding: 5px;
+}
+.tag-item{
+    display: flex;
+    width: fit-content;
+    background-color: whitesmoke;
+    padding: 4px 15px;
+    margin-left: 3px;
+    border-radius: 30px;
+    font-size: 1.5em;
+}
+

@@ -120,7 +120,5 @@ p {
 }
 
 @media screen and (max-width: 767px) {
-  .main-content{
-    --main-content-margin: 70px;
-  }
+
 }

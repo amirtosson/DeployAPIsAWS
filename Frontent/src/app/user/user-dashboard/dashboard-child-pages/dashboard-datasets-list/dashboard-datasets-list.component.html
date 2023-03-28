@@ -29,8 +29,23 @@
         <div class="search-box-s">
             <span class="fa fa-search"></span>
             <input [(ngModel)]="searchText" type="text" placeholder="Search data">
+ 
+            
+        </div>
+        <div class="checkboxes">
+            <input type="checkbox" id="owner" name="owner" value="" (change)="OwnershipChanged($event.target)">
+            <label for="owner">Only Yours</label>
+        </div>
+        <div class="type-menu">
+            <label for="types">Data type:</label>
+            <select name="types" id="types" (change)="TypeChanged($event.target)">
+                <option value="all">All types</option>
+                <option value="published">Only published</option>
+                <option value="calibration">Only calibration</option>
+              </select>
         </div>
         <div class="view-switcher" (click)="ViewChanged($event)">
+        
             <i id="grid" class="view-active fas fa-grip-horizontal"></i>
             <i id="list" class="fas fa-list"></i>
         </div>
@@ -47,7 +62,7 @@
                 <th>Facilty</th>
                 <th> </th>
             </tr>
-            <tr *ngFor="let dataset of datasets | filterdata : searchText : methodFilter" class="table-row">
+            <tr *ngFor="let dataset of datasets | filterdata : searchText : methodFilter : typeFilter : ownerFilter " class="table-row">
                 <td> <h4>{{dataset.dataset_name}} <h5>Date: {{dataset.added_on}}</h5> <h5>Type: {{dataset.dataset_type}}</h5> <h5>Project: {{dataset.project_name}}</h5> </h4> </td>
                 <td><h4>{{dataset.first_name}} {{dataset.last_name}}</h4></td>
                 <td><h4>{{dataset.method_name}}</h4></td>
@@ -65,7 +80,7 @@
 
     <div *ngIf="viewStyle== 'grid'" class="datasets-list">
 
-        <div *ngFor="let dataset of datasets | filterdata : searchText : methodFilter"  class="dataset-thumbnail" >
+        <div *ngFor="let dataset of datasets | filterdata : searchText : methodFilter : typeFilter : ownerFilter"  class="dataset-thumbnail" >
             <div class="thumbnail-container">
                 <div class="details">
                     <div [ngClass]="dataset.dataset_type == 'published'?  'data-type-sign data-sign-published': 'data-type-sign data-sign-calibration'">

@@ -70,7 +70,8 @@ export class ElectronicLabBookComponent implements OnInit {
     ELNApis.UpdateElnTitleByDOI(newTitleEle.value,this.inUseELN.eln_doi)
     .then(
       res=>{
-        this.inUseELN.eln_name = newTitleEle.value 
+        //this.inUseELN.eln_name = newTitleEle.value
+        sessionStorage.setItem('in-use-eln',JSON.stringify(this.inUseELN)) 
         this.StartTitleEditing(false)
       }
      

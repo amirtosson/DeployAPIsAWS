@@ -246,6 +246,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .search-box-s{
@@ -260,6 +261,17 @@
   width: auto;
   padding-left: 10px;
 }
+.checkboxes label{
+  margin-left: 5px;
+}
+
+.checkboxes input{
+  margin-left: 10px;
+}
+.checkboxes{
+  margin-right: 10px;
+}
+
 
 .search-box-s span{
   width: 30px;
@@ -277,6 +289,7 @@
 .view-switcher{
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .view-switcher i{

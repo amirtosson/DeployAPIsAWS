@@ -1,5 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ELNApis } from "../../../../server-communications/eln-apis";
+import { SharedApis } from "../../../../server-communications/shared-apis";
+
 import { ELNItem } from "../../../../entities/elns/eln-item";
 import { Router, RouterLink } from '@angular/router';
 
@@ -23,8 +25,8 @@ export class DashboardExperimentsListComponent implements OnInit {
 
 
   OpenExpELN(eln_doi:string){
-    let inUseEln = this.ELNs.find(i => i.eln_doi === eln_doi);
-    sessionStorage.setItem('in-use-eln', JSON.stringify(inUseEln))
+    let inUseEln = this.ELNs.find(i => i.elnData['eln_doi'] === eln_doi);
+    sessionStorage.setItem('in-use-eln', JSON.stringify(inUseEln?.elnData))
     this.router.navigateByUrl(sessionStorage.getItem("user_id")!+"/eln/" + eln_doi)
   }
 
@@ -68,23 +70,50 @@ export class DashboardExperimentsListComponent implements OnInit {
     ELNApis.GetElnsList(sessionStorage.getItem("user_id")!)
     .then(
       res=>{
+        console.log("here1")
         const iterator = res.values();
-        
-        for (const value of iterator) {  
-          console.log()
-          if (value['eln_data'].length > 0) {
-            value['eln_data'] = JSON.parse(value['eln_data'])
-          }
-
+        for (const value of iterator) { 
           var x = new ELNItem();
-          x = value;
+          x.ELNMap(value)
+          if (value['eln_data'].length > 0) {
+            x.elnData['eln_data'] = JSON.parse(value['eln_data'])
+          }
           this.ELNs.push(x);
         }
-        // var e = document.getElementById("preview") as HTMLDivElement;
-        // var resString = JSON.parse(res[0].eln_data)
-
-
-        // e.innerHTML =  resString
+      }
+    )
+    .then
+    (()=>
+      {
+        console.log("here2")
+        var request = indexedDB.open("daphne", 1)
+        request.onsuccess = event =>{
+          var db = request.result;
+          this.ELNs.forEach
+          (
+            eln =>
+            {
+              SharedApis.GetELNsDatasetsLinksByELNId(eln.elnData['eln_id'])
+              .then
+              ( 
+                resu=>
+                {
+                  for (let index = 0; index < resu.length; index++) {
+                    var r = db.transaction("datasets", "readwrite").objectStore("datasets").get(resu[index].dataset_id!)
+                    r.onsuccess = (e:any) => {
+                      eln.elnData['linked_datasets_names'].push(e.target.result.details.dataset_name)
+                    }
+                  
+                    eln.elnData['linked_datasets_ids'].push(resu[index].dataset_id!)
+                    
+                    
+            
+                  }
+                }
+              )
+            }
+          )
+        }
       }
     )
   }

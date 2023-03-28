@@ -16,7 +16,9 @@ export class DashboardDatasetsListComponent implements OnInit {
   loggedUserID:any;
   searchText: string = '';
   viewStyle = "grid"
-  methodFilter= "all";
+  methodFilter = "all";
+  typeFilter = "all";
+  ownerFilter = "-1";
   l: any;
   constructor(private router: Router, private sidebarService : SidebarService) { }
 
@@ -49,18 +51,42 @@ export class DashboardDatasetsListComponent implements OnInit {
     }
   }
 
-  UpdateTable(id:any){
-    this.datasets = []
-    DatasetsAPIs.GetDatasetsByUserId(id)
-    .then
-    (res =>{
-      const iterator = res.values();
-      for (const value of iterator) {  
-        var x = new Dataset();
-        x = value;
-        this.datasets.push(x);
+
+  async GetDAta(){
+    var request = indexedDB.open("daphne", 1)
+    request.onsuccess = event =>{
+      var db = request.result;
+      var r = db.transaction("datasets", "readwrite").objectStore("datasets").getAll()
+      r.onsuccess = (e:any) => {
+        const iterator = e.target.result.values();
+        for (const value of iterator) {  
+          var x = new Dataset();
+          x = value.details;
+          this.datasets.push(x);
+        }
       }
-    })
+        
+     
+  }
+}
+
+  UpdateTable(id:any){
+    var request = indexedDB.open("daphne", 1)
+    this.datasets = []
+
+    this.GetDAta()
+
+
+    // DatasetsAPIs.GetDatasetsByUserId(id)
+    // .then
+    // (res =>{
+    //   const iterator = res.values();
+    //   for (const value of iterator) {  
+    //     var x = new Dataset();
+    //     x = value;
+    //     this.datasets.push(x);
+    //   }
+    // })
   }
 
   ViewChanged($event: { target: any; }){
@@ -72,6 +98,16 @@ export class DashboardDatasetsListComponent implements OnInit {
     var ele= document.getElementById($event.target.id )!
     ele.classList.add("view-active")
   } 
+
+  TypeChanged(typeValue){
+    this.typeFilter = typeValue.value
+  }
+
+  OwnershipChanged(e){
+    e.checked? this.ownerFilter = this.loggedUserID : this.ownerFilter = "-1";
+  }
+
+
 
   MethodFilterChanged($event: { target: any; }){
     var eles= document.getElementsByClassName("filter-active")!
