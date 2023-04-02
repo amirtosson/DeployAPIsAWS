@@ -4,7 +4,7 @@ export class SharedApis{
         const response = await fetch
         (
             //'http://18.197.145.132:3002/getlinkeddatasetsbyelnid', 
-            'http://141.99.126.53:3002/getlinkeddatasetsbyelnid',
+            'https://server.daphne-nfdi.com/getlinkeddatasetsbyelnid',
             {
                 method:'GET',
                 headers: {

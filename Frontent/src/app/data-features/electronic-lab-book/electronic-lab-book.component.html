@@ -1,5 +1,4 @@
 <div class="eln-content-wrap">
-    <div class="eln-contents">
 
     
     <div class="title-row">
@@ -31,10 +30,16 @@
         </i>
 
         <i (click)="OnGoToDashboard()" class="fas fa-dashboard header-item">
-            <div>Go To Dashboard</div>
+            <div>Dashboard</div>
         </i>
     </div>
     <div class="main-content">
+
+        <div *ngIf="editingMode" class="editor">
+            <quill-editor class="ql-snow ql-editor" id="quill" [modules]="modules" (onEditorCreated)="StartEditor($event)" (onEditorChanged)="EditorChanged($event)"></quill-editor>
+        </div>
+        <div id="preview" class="bg-light ql-snow ql-editor">
+        </div>
         <div class="eln-info">
             <div class="info-box">
                 <div class="info-box-title">
@@ -71,14 +76,7 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="editingMode" class="editor">
-            <quill-editor class="ql-snow ql-editor" id="quill" [modules]="modules" (onEditorCreated)="StartEditor($event)" (onEditorChanged)="EditorChanged($event)"></quill-editor>
-        </div>
-        <div id="preview" class="bg-light ql-snow ql-editor">
-        </div>
-        
     </div>
-</div>
 </div>
 
 

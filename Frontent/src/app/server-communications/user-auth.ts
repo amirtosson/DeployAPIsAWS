@@ -5,13 +5,13 @@ static async LoginUser(user_name: string, user_pwd: string)
   {
     const response = await fetch
     (
-      'http://18.197.145.132:3002/login', 
+      'https://server.daphne-nfdi.com/login', 
       //'http://141.99.126.53:3002/login', 
       {
         method:'POST',
         headers: {
             'Content-Type':'application/json', 
-            'Access-Control-Allow-Origin': '*'
+            'Access-Control-Allow-Origin': 'https://server.daphne-nfdi.com/'
           }, 
         body: JSON.stringify({'user_name':user_name, 'user_pwd':user_pwd })                  
       }
@@ -25,7 +25,7 @@ static async LoginUser(user_name: string, user_pwd: string)
   {
     const response = await fetch
     (
-      'http://18.197.145.132:3002/checknameavailability', 
+      'https://server.daphne-nfdi.com/checknameavailability', 
      //' http://141.99.126.53:3002/checknameavailability',
       {
         method:'POST',
@@ -45,13 +45,13 @@ static async LoginUser(user_name: string, user_pwd: string)
   {
     const response = await fetch
     (
-      'http://18.197.145.132:3002/signup', 
+      'https://server.daphne-nfdi.com/signup', 
      //' http://141.99.126.53:3002/signup',
       {
         method:'POST',
         headers: {
             'Content-Type':'application/json', 
-            'Access-Control-Allow-Origin': '*'
+            'Access-Control-Allow-Origin': 'https://server.daphne-nfdi.com/'
           }, 
         body: JSON.stringify({newUser})                  
       }

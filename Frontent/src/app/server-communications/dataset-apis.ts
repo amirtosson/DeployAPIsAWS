@@ -3,7 +3,7 @@ export class DatasetsAPIs {
 
       const response = await fetch
         (
-        'http://18.197.145.132:3002/getdatasetsbyuserid', 
+        'https://server.daphne-nfdi.com/getdatasetsbyuserid', 
         {
             method:'GET',
             headers: {
@@ -23,7 +23,7 @@ export class DatasetsAPIs {
     {
         const response = await fetch
         (
-        'http://18.197.145.132:3002/getmetadatabydoi', 
+        'https://server.daphne-nfdi.com/getmetadatabydoi', 
         {
             method:'GET',
             headers: {
@@ -43,7 +43,7 @@ export class DatasetsAPIs {
     {
         const response = await fetch
         (
-        'http://18.197.145.132:3002/addmetadataitem', 
+        'https://server.daphne-nfdi.com/addmetadataitem', 
         {
             method:'POST',
             headers: {
@@ -64,7 +64,7 @@ export class DatasetsAPIs {
     {
         const response = await fetch
         (
-        'http://18.197.145.132:3002/deletemetadataitem', 
+        'https://server.daphne-nfdi.com/deletemetadataitem', 
         {
             method:'POST',
             headers: {
@@ -85,7 +85,7 @@ export class DatasetsAPIs {
     {
         const response = await fetch
         (
-        'http://18.197.145.132:3002/Editmetadataitem', 
+        'https://server.daphne-nfdi.com/Editmetadataitem', 
         {
             method:'POST',
             headers: {
@@ -109,7 +109,7 @@ export class DatasetsAPIs {
     {
         const response = await fetch
         (
-        'http://18.197.145.132:3002/deletedatasetbydoi', 
+        'https://server.daphne-nfdi.com/deletedatasetbydoi', 
         {
             method:'POST',
             headers: {
@@ -130,7 +130,7 @@ export class DatasetsAPIs {
     {
         const response = await fetch
         (
-        'http://18.197.145.132:3002/addfiletodatabases', 
+        'https://server.daphne-nfdi.com/addfiletodatabases', 
         {
             method:'POST',
             headers: {

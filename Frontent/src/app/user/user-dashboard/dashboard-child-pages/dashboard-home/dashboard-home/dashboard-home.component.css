@@ -19,6 +19,6 @@
 .content-area{
   width: 100%;
   height: 300px;
-  background-color: aquamarine;
+  background-color:var(--daphne-color-1);
 }
 

@@ -22,13 +22,13 @@ export class SignUpComponent implements OnInit {
 
   OnSignUpClicked(){
     const detailsAreReady = this.InputValidation()
-    if(detailsAreReady)console.log(this.newUser)
+
+    if(!detailsAreReady || !this.nameAvailable) return
     UserAuthServerFunctions.SignUp(this.newUser)
     .then(res=>{
       if(res.user_id>0){
         this.router.navigateByUrl('login')
       }
-      console.log(res)
     })
     //if(this.InputValidation()) console.log(this.newUser)
   }
@@ -49,6 +49,7 @@ export class SignUpComponent implements OnInit {
     this.errorMSG = []
     var ele = document.getElementsByTagName('input')!
     this.OnCheckAvailability()
+    
     var ready = true
 
     if (!ele[0].validity.valid) {

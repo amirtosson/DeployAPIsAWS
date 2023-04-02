@@ -31,6 +31,7 @@ import { DashboardExperimentsListComponent } from './user/user-dashboard/dashboa
 import { SpinnerComponent } from './ui-components/spinner/spinner.component';
 import { ChatComponent } from './ui-components/chat/chat.component';
 import { CodeSnippetComponent } from './data-features/code-snippet/code-snippet.component';
+import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 
 
 
@@ -73,7 +74,11 @@ import { CodeSnippetComponent } from './data-features/code-snippet/code-snippet.
     useValue: {
       fullLibraryLoader: () => import('highlight.js')
     }
-  }],
+  }, 
+  {
+    provide: LocationStrategy, useClass:HashLocationStrategy
+  }  
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

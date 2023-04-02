@@ -6,7 +6,10 @@
 
 .logo-img{
     margin: 2px;
-    width: 70px;
+    width: 65px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--daphne-color-1-low);
     transition: all 0.5s ease-in-out;
 }
 
@@ -24,7 +27,7 @@
   left: 0;
   top: 0px;
   bottom: 0;
-  background: var(--main-color-low);
+  background-color:var(--main-color);
   -webkit-transition: width 0.5s ease-in-out;
   -moz-transition: width 0.5s ease-in-out;
   -ms-transition: width 0.5s ease-in-out;
@@ -122,8 +125,10 @@
     font-weight: bold;
   }
   .c-menu__item.is-active .c-menu__item__inner {
-    background-color: var(--main-color);
-    border-left: 2px solid white;
+    background-color: var(--main-color-low);
+    border: none;
+    color: black;
+    border-left: 2px solid rgb(16, 15, 15);
   }
  .c-menu__item:not(.is-active):hover .c-menu__item__inner {
     background-color: var(--main-color);

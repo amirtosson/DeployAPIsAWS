@@ -3,7 +3,7 @@ export class ELNApis{
     {
         const response = await fetch
         (
-            'http://18.197.145.132:3002/updatelabbook',  
+            'https://server.daphne-nfdi.com/updatelabbook',  
         {
             method:'POST',
             headers: {
@@ -25,7 +25,7 @@ export class ELNApis{
     {
         const response = await fetch
         (
-            'http://18.197.145.132:3002/updatelabbooktitle',  
+            'https://server.daphne-nfdi.com/updatelabbooktitle',  
         {
             method:'POST',
             headers: {
@@ -47,7 +47,7 @@ export class ELNApis{
     const response = await fetch
     (
         //18.197.145.132
-      'http://18.197.145.132:3002/getlabbooklist', 
+      'https://server.daphne-nfdi.com/getlabbooklist', 
       {
         method:'GET',
         headers: {
@@ -67,7 +67,7 @@ export class ELNApis{
     const response = await fetch
     (
         //18.197.145.132
-      'http://18.197.145.132:3002/createlabbook', 
+      'https://server.daphne-nfdi.com/createlabbook', 
       {
         method:'POST',
         headers: {

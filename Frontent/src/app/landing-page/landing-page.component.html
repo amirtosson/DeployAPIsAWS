@@ -1,10 +1,127 @@
 
-<div class="content" role="main">
+<header>
+  <nav class="header-nav">
+    <div class="left">
+        <img src="../../assets/resources/images/daphne.png" alt="daphne-nfdi-logo">
+    </div>
+    <div class="middle">
+      <i id="home"(click)="Scroll($event)" class="active-section header-item">
+        <div id="home">Home</div>
+      </i>  
+      <i  id="about"(click)="Scroll($event)" class="header-item">
+        <div id="about">About</div>
+      </i>  
+      <i  id="news" (click)="Scroll($event)" class="header-item">
+        <div id="news" >News</div>
+      </i> 
+      <i id="contributors" (click)="Scroll($event)" class="header-item">
+        <div id="contributors">Contributors</div>
+      </i>  
+      <i  id="contact" (click)="Scroll($event)" class="header-item">
+        <div id="contact">Contact Us</div>
+      </i>  
+    </div>
+    <div class="right">
+        <button  (click)="OnSignUpClicked()">
+            Sign Up
+        </button>
+        <button class="" (click)="OnLoginClicked()">
+          Login
+        </button>
+    </div>
+  </nav>
+</header>
 
+
+<div class="content-wrapper">
+    <div id="home-div" class="home">
+      <div class="animated-thumbnails">
+        <i class="fas fa-search">
+          <span><strong>Findable</strong> </span>
+        </i>  
+        <i class="far fa-hand-pointer">
+          <span><strong>Accessible</strong> </span>
+        </i> 
+        <i class="fa fa-gears">
+          <span><strong>Interoperable</strong> </span>
+        </i> 
+        <i class="fas fa-recycle">
+          <span><strong>Reusable</strong></span>
+        </i> 
+      </div>
+      <div class="home-wrapper">
+        <h1>Make your data FAIR with {{ title }}</h1>
+        <h3>Link electronic laboratory log books (ELNs)</h3>
+        <h3>Create repositories of processed (reduced) data</h3>
+        <h3>Create, curate and foster analysis software</h3>
+        <h3>Develop a common data policy between users and large-scale facilities </h3>
+      </div>
+    </div>
+
+
+    <div id="about-div" class="about">
+      <h2 class="title">About</h2>
+      <div class="about-wrapper">
+        <div class="about-card">
+          <div class="about-image">
+              <img src="../../assets/resources/images/nfdi.png" alt="nfdi-logo"/>
+          </div>
+          <div class="about-info">
+            <p>
+              The DAPHNE (DAta for Neutrons and PHotons NEutrons) initiative is a German national research 
+              project that aims to establish a sustainable research infrastructure for data 
+              analysis and processing in the field of photon and neutron research. 
+              This infrastructure will support scientific research in a variety of areas, 
+              including materials science, physics, chemistry, and biology.
+            </p>
+          </div>
+        </div>
+        <div class="about-card">
+          <div class="about-image">
+              <img src="../../assets/resources/images/nfdi.png" alt="nfdi-logo"/>
+          </div>
+          <div class="about-info">
+            <p>
+              The DAPHNE (DAta for Neutrons and PHotons NEutrons) initiative is a German national research 
+              project that aims to establish a sustainable research infrastructure for data 
+              analysis and processing in the field of photon and neutron research. 
+              This infrastructure will support scientific research in a variety of areas, 
+              including materials science, physics, chemistry, and biology.
+            </p>
+          </div>
+        </div>        
+        <div class="about-card">
+          <div class="about-image">
+              <img src="../../assets/resources/images/nfdi.png" alt="nfdi-logo"/>
+          </div>
+          <div class="about-info">
+            <p>
+              The DAPHNE (DAta for Neutrons and PHotons NEutrons) initiative is a German national research 
+              project that aims to establish a sustainable research infrastructure for data 
+              analysis and processing in the field of photon and neutron research. 
+              This infrastructure will support scientific research in a variety of areas, 
+              including materials science, physics, chemistry, and biology.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+         
+    <div id="news-div" class="news">
+
+    </div>
+    <div id="contributors-div" class="contributors">
+
+    </div>
+    <div id="contact-div" class="contact">
+
+    </div>
+
+     <!--
     <div class="card highlight-card card-small">
       <span>{{ title }} landing-page (testing)</span>
     </div>
-  
+
     <div class="card-container">
       <div class="btns-box">
         <a class="card" (click)="OnSignUpClicked()">
@@ -17,7 +134,7 @@
 
       <div class="logo-banner">
         <img src="../../assets/resources/images/logo_new.jpg" alt="">
-      </div>
+      </div> -->
     
 
 

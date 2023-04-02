@@ -11,7 +11,12 @@
     --main-content-margin: 220px;
 
     --daphne-color-1:#6A398B;
+    --daphne-color-1-low:#ebe6ee;
+
     --daphne-color-2:#189DD5;
+
+
+    --shadow-small : 3px 3px 3px 3px rgba( 0, 0, 0, 0.3 );
 }
 
 .main-btn:hover {

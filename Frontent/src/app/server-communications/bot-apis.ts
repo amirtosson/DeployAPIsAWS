@@ -3,7 +3,7 @@ export class BotAPIs {
     {
         const response = await fetch
         (
-           'http://18.197.145.132:3002/bot/msg',  
+           'https://server.daphne-nfdi.com/bot/msg',  
              //'http://141.99.126.53:3002/bot/msg',
         {
             method:'POST',
