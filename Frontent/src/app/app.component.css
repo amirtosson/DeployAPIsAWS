@@ -93,7 +93,7 @@ p {
 
 
 .main-content{
-  height: 100dvb;
+  height: 100dvh;
   width: calc(100% - var(--main-content-margin) );
   display: flex;
   flex-direction: column;
@@ -119,7 +119,9 @@ p {
   
     /* Responsive Styles */
 @media screen and (max-width: 767px) {
-
+  *{
+    --main-content-margin:70px;
+  }
 }
 
 @media screen and (max-width: 767px) {

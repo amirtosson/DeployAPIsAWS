@@ -11,7 +11,7 @@
 </div>
 
 
-<div class="exp-list-page">
+<div class="exp-list-page router-item">
     <div *ngFor="let eln of ELNs | filter:searchText" class="exp-contents" (click)="OpenExpELN(eln.elnData['eln_doi'])">
         <h2 class="title">
             {{eln.elnData['eln_name']}}

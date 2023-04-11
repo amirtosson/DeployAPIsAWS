@@ -14,9 +14,13 @@
     --daphne-color-1-low:#ebe6ee;
 
     --daphne-color-2:#189DD5;
-
+    --daphne-color-2-low-op:#189cd557;
 
     --shadow-small : 3px 3px 3px 3px rgba( 0, 0, 0, 0.3 );
+}
+
+.router-item{
+  padding: 10px;
 }
 
 .main-btn:hover {

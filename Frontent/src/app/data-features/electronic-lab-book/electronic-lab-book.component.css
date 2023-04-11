@@ -93,7 +93,7 @@
 }
 
 #preview{
-  width: 65dvw;
+  width: 65%;
   height:90%;
   border-radius: 10px;
   padding: 30px;
@@ -102,14 +102,14 @@
   box-shadow:3px 3px 25px 10px rgba( 0, 0, 0, 0.5 );
 }
 .editor{
-    width: 65dvw;
+    width: 65%;
     height:90%;
     min-width: 400px;
     border-radius: 10px;
     box-shadow:3px 3px 25px 10px rgba( 0, 0, 0, 0.5 ); 
 }
 .eln-info{
-    width: 25dvw;
+    width: 25%;
     min-width: 400px;
     flex-shrink: 1;
     height: fit-content;
