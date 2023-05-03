@@ -37,13 +37,13 @@ export class AddNewDatasetComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.sbService.setVisibility(false)  
+    this.sbService.setVisibility(false)
     // GeneralAPIs.GetDataStructuresList()
     // .then(
     //   res=>{
     //     const iterator = res.values();
-    //     for (const value of iterator) 
-    //     {   
+    //     for (const value of iterator)
+    //     {
     //       var struc = new DataStructureItem()
     //       struc = value
     //       this.dataStructures.push(struc)
@@ -55,8 +55,8 @@ export class AddNewDatasetComponent implements OnInit {
     // .then(
     //   res=>{
     //     const iterator = res.values();
-    //     for (const value of iterator) 
-    //     {   
+    //     for (const value of iterator)
+    //     {
     //       var method = new MethodItem()
     //       method = value
     //       this.methods.push(method)
@@ -70,8 +70,8 @@ export class AddNewDatasetComponent implements OnInit {
     //   res=>
     //   {
     //     const iterator = res.values();
-    //     for (const value of iterator) 
-    //     {   
+    //     for (const value of iterator)
+    //     {
     //       var pro = new ProjectItem()
     //       pro = value
     //       this.projects.push(pro)
@@ -129,8 +129,8 @@ export class AddNewDatasetComponent implements OnInit {
   NextClicked(next_ele_id:string, current_ele_id:string){
     var inp = document.getElementById(current_ele_id) as HTMLDivElement;
     var inps = inp.getElementsByTagName('input') as HTMLCollectionOf<HTMLInputElement>;
-    
-    for (let index = 0; index < inps.length; index++) 
+
+    for (let index = 0; index < inps.length; index++)
     {
       if (!inps[index].validity.valid) return;
     }
@@ -138,7 +138,7 @@ export class AddNewDatasetComponent implements OnInit {
       var textarea = document.getElementById("publication-abstract") as HTMLTextAreaElement;
       if (!textarea.validity.valid) return;
     }
-    
+
     var el2 = document.getElementById(next_ele_id) as HTMLDivElement;
     el2.classList.remove("disabled");
     el2.scrollIntoView({behavior: 'smooth'})
@@ -175,20 +175,20 @@ export class AddNewDatasetComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', this.file);
 
-    this.http.post<any>('http://18.197.145.132:3002/uploadfile',formData, {reportProgress: false})
+    this.http.post<any>('https://server.daphne-nfdi.com/uploadfile',formData, {reportProgress: false})
     .subscribe(res => {
-      
+
       if (res.pid && res.doi && res.file_name) {
         this.dataset.dataset_pid =  res.pid;
         this.dataset.dataset_doi = res.doi;
-        this.dataset.dataset_filename = res.file_name; 
+        this.dataset.dataset_filename = res.file_name;
         DatasetsAPIs.AddFileDetailsToDatabases(this.dataset)
         .then(resu => {
           var input =  document.getElementById("upload-file") as HTMLInputElement;
           input.value = ''
           var inps = document.getElementsByTagName('input') as HTMLCollectionOf<HTMLInputElement>;
-    
-          for (let index = 0; index < inps.length; index++) 
+
+          for (let index = 0; index < inps.length; index++)
           {
             inps[index].value = '';
           }
@@ -201,7 +201,7 @@ export class AddNewDatasetComponent implements OnInit {
 
 
     })
-  
+
 
 
     //  .subscribe(res => {
@@ -220,19 +220,19 @@ export class AddNewDatasetComponent implements OnInit {
     //         }
     //       )
 
-        
+
     //  });
 
   }
 
 
   GoToDashboard(){
-    var u = JSON.parse(sessionStorage.getItem("userData")!) 
+    var u = JSON.parse(sessionStorage.getItem("userData")!)
     this.router.navigateByUrl(u["first_name"]+u["last_name"]+"/dashboard/home")
   }
 
   GoToProfile(){
-    var u = JSON.parse(sessionStorage.getItem("userData")!) 
+    var u = JSON.parse(sessionStorage.getItem("userData")!)
     this.router.navigateByUrl("userprofile/"+u["first_name"]+u["last_name"])
   }
 }
