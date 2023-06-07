@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SidebarService } from "../../services/sidebar-service.service";
 import { Dataset } from "../../entities/dataset/dataset-entity";
 import { DatasetsAPIs } from "../../server-communications/dataset-apis";
+import { LocalStorageServiceService } from "../../services/local-storage-service.service";
 //import { GeneralAPIs } from "../../server-communication/general-apis";
 //import { MethodItem, DataStructureItem } from "../../objects/general-items";
 ////import { ProjectItem } from "../../objects/project-object"
@@ -33,7 +34,8 @@ export class AddNewDatasetComponent implements OnInit {
     //public userService:UserService,
     //public flyingBtnService:GeneralService,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private localStorageService:LocalStorageServiceService
   ) { }
 
   ngOnInit(): void {
@@ -193,6 +195,7 @@ export class AddNewDatasetComponent implements OnInit {
             inps[index].value = '';
           }
           window.alert("Your file has been uploaded uploaded with the name "+ this.file.name);
+          this.localStorageService.AddItem(this.dataset)
           this.allCardsToDefault()
         })
 
